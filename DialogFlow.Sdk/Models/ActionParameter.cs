@@ -10,7 +10,7 @@ namespace DialogFlow.Sdk.Models
         public string Value { get; set; }
         
         public bool IsList { get; set; }
-        public bool IsRequired { get; set; }
+        public bool Required { get; set; }
         
         public IEnumerable<string> Prompts { get; set; }
     }

@@ -3,6 +3,9 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using Refit;
 
 namespace DialogFlow.Sdk.Services
@@ -18,6 +21,12 @@ namespace DialogFlow.Sdk.Services
      
         public IDialogFlowService CreateDialogFlowService()
         {
+            JsonConvert.DefaultSettings = 
+                () => new JsonSerializerSettings() { 
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    Converters = {new StringEnumConverter()}
+                };
+
             return RestService.For<IDialogFlowService>(_httpClient);
         }
 

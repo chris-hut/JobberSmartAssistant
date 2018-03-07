@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DialogFlow.Sdk.Models;
 using DialogFlow.Sdk.Services;
 using Newtonsoft.Json;
+using Refit;
 
 namespace Testing
 {
@@ -12,7 +13,7 @@ namespace Testing
         {
             var config = new DialogFlowConfig
             {
-                ApiKey = "7e0de8bad48542f9be2253a21cbebaaa"
+                ApiKey = "7da136a3c39b48e1b955bd47f53e20a9"
             };
 
             var dialogFlowService = new DialogFlowServiceFactory(config).CreateDialogFlowService();
@@ -20,7 +21,40 @@ namespace Testing
             var intent = new Intent
             {
                 Name = "Testing",
-                Templates = new string[] {"I like hockey!"},
+                UserSays = new List<UserSays>
+                {
+                    new UserSays
+                    {
+                         Data = new List<IUserSaysData>
+                         {
+                             new TextData
+                             {
+                                 Text = "I like hockey."
+                             }
+                         }
+                    },
+                    new UserSays
+                    {
+                        Data = new List<IUserSaysData>
+                        {
+                            new TextData
+                            {
+                                Text = "I like hockey "
+                            },
+                            new EntityData
+                            {
+                                Alias = "amount",
+                                Meta = "@sys.number",
+                                Text = "6",
+                                UserDefined = true
+                            },
+                            new TextData
+                            {
+                                Text = " out of 10."
+                            }
+                        }
+                    }
+                },
                 Responses = new List<IntentResponse>
                 {
                     new IntentResponse
@@ -39,7 +73,7 @@ namespace Testing
                                 Name = "amount",
                                 Value = "$amount",
                                 Prompts = new List<string> {"How much do you like hockey?"},
-                                IsRequired = true
+                                Required = true
                             }
                         },
                         Messages = new List<IntentMessage>
@@ -54,8 +88,8 @@ namespace Testing
             };
             
             var str = JsonConvert.SerializeObject(intent);
-
             var res = dialogFlowService.CreateIntent(intent).Result;
+
             return;
         }
     }

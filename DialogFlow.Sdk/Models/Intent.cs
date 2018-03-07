@@ -17,6 +17,8 @@ namespace DialogFlow.Sdk.Models
 
         public int Priority { get; set; } = 1;
 
+        public IEnumerable<string> Event { get; set; } = new List<string>();
+        public IEnumerable<UserSays> UserSays { get; set; } = new List<UserSays>();
         public IEnumerable<string> Contexts { get; set; } = new List<string>();
         public IEnumerable<string> Templates { get; set; } = new List<string>();
         public IEnumerable<IntentResponse> Responses { get; set; } = new List<IntentResponse>();

@@ -10,8 +10,6 @@ namespace Jobber.Sdk.Models
         public JobberStatus Status { get; set; }
 
 
-        public string totalCount { get; set; }
-
         public List<Job> Jobs { get; set; }
 
         public List<Quote> Quotes { get; set; }

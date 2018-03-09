@@ -6,8 +6,21 @@ namespace Jobber.Sdk.Models
 {
     public class Job
     {
-        public bool Auto { get; set; }
-        public IEnumerable<string> Contexts { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+
+        public bool Closed { get; set; }
+
+        public int CreatedAt { get; set; }
+
+        public int StartAt { get; set; }
+
+        public int EndAt { get; set; }
+
+        public string Status { get; set; }
+
+        public int CLient { get; set; }
+
+        public int Quote { get; set; }
+
     }
 }

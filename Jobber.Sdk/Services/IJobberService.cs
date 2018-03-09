@@ -16,22 +16,22 @@ namespace Jobber.Sdk.Services
         Task<JobberModificationResponse> ModifyQuote([AliasAs("quote_id")] string quote_Id, [Body] Quote quote);
 
         [Get("/jobs")]
-        Task<JobberModificationResponse> GetJobs([Body] Job job);
+        Task<JobberModificationResponse> GetJobs();
 
         [Get("/quotes")]
-        Task<JobberModificationResponse> GetQuotes([Body] Quote quote);
+        Task<JobberModificationResponse> GetQuotes();
 
         [Get("/invoices")]
-        Task<JobberModificationResponse> GetInvoices([Body] Invoice invoice);
+        Task<JobberModificationResponse> GetInvoices();
 
         [Get("/transactions")]
-        Task<JobberModificationResponse> GetTransactions([Body] Transaction transaction);
+        Task<JobberModificationResponse> GetTransactions();
 
         [Get("/expenses")]
-        Task<JobberModificationResponse> GetExpenses([Body] Expense expense);
+        Task<JobberModificationResponse> GetExpenses();
 
         [Get("/visits")]
-        Task<JobberModificationResponse> GetVisits([Body] Visit visit);
+        Task<JobberModificationResponse> GetVisits();
 
 
 

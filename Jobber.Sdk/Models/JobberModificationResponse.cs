@@ -8,6 +8,23 @@ namespace Jobber.Sdk.Models
     {
         public string Id { get; set; }
         public JobberStatus Status { get; set; }
+
+
+        public string totalCount { get; set; }
+
+        public List<Job> Jobs { get; set; }
+
+        public List<Quote> Quotes { get; set; }
+
+        public List<Invoice> Invoices { get; set; }
+
+        public List<Transaction> Transactions { get; set; }
+
+        public List<Expense> Expenses { get; set; }
+
+        public List<Visit> Vists { get; set; }
+
+
     }
 
     public class JobberStatus

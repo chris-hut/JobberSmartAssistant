@@ -2,9 +2,9 @@
 using DialogFlow.Sdk.Intents.Models;
 using Refit;
 
-namespace DialogFlow.Sdk.Intents
+namespace DialogFlow.Sdk
 {
-    public interface IIntentService
+    public interface IDialogFlowService
     {
         [Post("/intents")]
         Task<IntentModificationResponse> CreateIntent([Body] Intent intent);

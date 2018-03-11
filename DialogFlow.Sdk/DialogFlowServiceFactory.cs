@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using DialogFlow.Sdk.Intents;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -19,7 +18,7 @@ namespace DialogFlow.Sdk
             _httpClient = BuildAuthenticatingHttpClientFrom(dialogFlowConfig);
         }
      
-        public IIntentService CreateDialogFlowService()
+        public IDialogFlowService CreateDialogFlowService()
         {
             JsonConvert.DefaultSettings = 
                 () => new JsonSerializerSettings() { 
@@ -27,7 +26,7 @@ namespace DialogFlow.Sdk
                     Converters = {new StringEnumConverter()}
                 };
 
-            return RestService.For<IIntentService>(_httpClient);
+            return RestService.For<IDialogFlowService>(_httpClient);
         }
 
         private static HttpClient BuildAuthenticatingHttpClientFrom(DialogFlowConfig dialogFlowConfig)

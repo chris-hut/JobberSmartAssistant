@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DialogFlow.Sdk.Intents.Models;
+using DialogFlow.Sdk.Intents;
 using Refit;
 
 namespace DialogFlow.Sdk

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DialogFlow.Sdk.Intents.Models;
+using DialogFlow.Sdk.Intents;
 
 namespace DialogFlow.Sdk.Fulfillment
 {

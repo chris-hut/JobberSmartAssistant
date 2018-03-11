@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using DialogFlow.Sdk.Models;
-using DialogFlow.Sdk.Services;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using DialogFlow.Sdk;
+using DialogFlow.Sdk.Intents.Models;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Refit;
 
 namespace Testing
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+
+        public async Task CreateActionAsync()
         {
             var config = new DialogFlowConfig
             {
@@ -88,9 +96,35 @@ namespace Testing
             };
             
             var str = JsonConvert.SerializeObject(intent);
-            var res = dialogFlowService.CreateIntent(intent).Result;
+            var res = await dialogFlowService.CreateIntent(intent);
+        }
 
-            return;
+        public static void CreateServer()
+        {
+
+            WebHost.CreateDefaultBuilder()
+                .UseUrls("http://0.0.0.0:5000")
+                .Configure(builder => builder.Run(async c => await c.Response.WriteAsync("Testing")))
+                .Build()
+                .Run();
+            
+            
+        }
+        
+        public static void Main(string[] args)
+        {
+             CreateServer();
+        }
+        
+    }
+
+    public class MessageHandler : HttpMessageHandler
+    {
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            var response = new HttpResponseMessage();
+            response.Content = new StringContent("Jess is SMEXY");
+            return response;
         }
     }
 }

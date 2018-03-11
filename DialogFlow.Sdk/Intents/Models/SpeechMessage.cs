@@ -1,4 +1,4 @@
-﻿namespace DialogFlow.Sdk.Models
+﻿namespace DialogFlow.Sdk.Intents.Models
 {
     public class SpeechMessage : IntentMessage
     {

@@ -1,4 +1,4 @@
-﻿namespace DialogFlow.Sdk.Services
+﻿namespace DialogFlow.Sdk
 {
     public class DialogFlowConfig
     {

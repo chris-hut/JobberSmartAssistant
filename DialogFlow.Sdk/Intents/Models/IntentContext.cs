@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DialogFlow.Sdk.Models
+namespace DialogFlow.Sdk.Intents.Models
 {
     public class IntentContext
     {

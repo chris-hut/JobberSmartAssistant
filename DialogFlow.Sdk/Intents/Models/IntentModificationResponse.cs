@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DialogFlow.Sdk.Models
+﻿namespace DialogFlow.Sdk.Intents.Models
 {
     public class IntentModificationResponse
     {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using DialogFlow.Sdk.Models;
+﻿using System.Threading.Tasks;
+using DialogFlow.Sdk.Intents.Models;
 using Refit;
 
-namespace DialogFlow.Sdk.Services
+namespace DialogFlow.Sdk.Intents
 {
-    public interface IDialogFlowService
+    public interface IIntentService
     {
         [Post("/intents")]
         Task<IntentModificationResponse> CreateIntent([Body] Intent intent);

@@ -1,10 +1,10 @@
 ﻿namespace DialogFlow.Sdk.Intents
 {
-    public class IntentMessage
+    public class Message
     {
         public int Type { get; }
 
-        public IntentMessage(int type)
+        public Message(int type)
         {
             Type = type;
         }

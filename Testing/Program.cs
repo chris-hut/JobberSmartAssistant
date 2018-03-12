@@ -33,7 +33,7 @@ namespace Testing
                 {
                     new UserSays
                     {
-                         Data = new List<IUserSaysData>
+                         Data = new List<IConversationData>
                          {
                              new TextData
                              {
@@ -43,7 +43,7 @@ namespace Testing
                     },
                     new UserSays
                     {
-                        Data = new List<IUserSaysData>
+                        Data = new List<IConversationData>
                         {
                             new TextData
                             {
@@ -73,9 +73,9 @@ namespace Testing
                         {
                             {"google", true}  
                         },
-                        Parameters = new List<ActionParameter>
+                        Parameters = new List<Parameter>
                         {
-                            new ActionParameter
+                            new Parameter
                             {
                                 DataType = "@sys.number",
                                 Name = "amount",
@@ -84,7 +84,7 @@ namespace Testing
                                 Required = true
                             }
                         },
-                        Messages = new List<IntentMessage>
+                        Messages = new List<Message>
                         {
                             new SpeechMessage
                             {
@@ -96,7 +96,7 @@ namespace Testing
             };
             
             var str = JsonConvert.SerializeObject(intent);
-            var res = await dialogFlowService.CreateIntent(intent);
+            var res = await dialogFlowService.CreateIntentAsync(intent);
         }
 
         public static void CreateServer()

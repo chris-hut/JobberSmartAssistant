@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Jobber.Sdk.Models
 {
-    class JobberResponse
+    public class JobsResponse
     {
+        private IEnumerable<Job> Jobs { get; set; }
     }
 }

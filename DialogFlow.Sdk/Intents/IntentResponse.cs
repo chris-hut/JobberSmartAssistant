@@ -7,8 +7,8 @@ namespace DialogFlow.Sdk.Intents
         public string Name { get; set; }
         public string Action { get; set; }
         public Dictionary<string, bool> DefaultResponsePlatforms { get; set; } = new Dictionary<string, bool>();
-        public IEnumerable<ActionParameter> Parameters { get; set; } = new List<ActionParameter>();
-        public IEnumerable<IntentMessage> Messages { get; set; } = new List<IntentMessage>();
-        public IEnumerable<IntentContext> AffectedContexts { get; set; } = new List<IntentContext>();
+        public IEnumerable<Parameter> Parameters { get; set; } = new List<Parameter>();
+        public IEnumerable<Message> Messages { get; set; } = new List<Message>();
+        public IEnumerable<Context> AffectedContexts { get; set; } = new List<Context>();
     }
 }

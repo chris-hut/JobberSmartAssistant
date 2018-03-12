@@ -1,6 +1,6 @@
 ﻿namespace DialogFlow.Sdk.Intents
 {
-    public class SpeechMessage : IntentMessage
+    public class SpeechMessage : Message
     {
         public string Speech { get; set; }
         

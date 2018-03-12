@@ -7,6 +7,6 @@ namespace DialogFlow.Sdk.Fulfillment
     {
         public string Speech { get; set; }
         public string DisplayText { get; set; }
-        public List<IntentContext> ContextOut { get; set; } = new List<IntentContext>();
+        public List<Context> ContextOut { get; set; } = new List<Context>();
     }
 }

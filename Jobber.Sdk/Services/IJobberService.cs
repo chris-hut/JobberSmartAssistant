@@ -10,30 +10,27 @@ namespace Jobber.Sdk.Services
     public interface IJobberService
     {
         [Post("/jobs")]
-        Task<JobberModificationResponse> CreateJob([Body] Job job);
+        Task<JobsResponse> CreateJobAsync([Body] Job job);
 
         [Put("/quotes/{quote_id}")]
-        Task<JobberModificationResponse> ModifyQuote([AliasAs("quote_id")] string quote_Id, [Body] Quote quote);
+        Task ModifyQuoteAsync([AliasAs("quote_id")] string quote_Id, [Body] Quote quote);
 
         [Get("/jobs")]
-        Task<JobberModificationResponse> GetJobs();
+        Task<JobsResponse> GetJobsAsync();
 
         [Get("/quotes")]
-        Task<JobberModificationResponse> GetQuotes();
+        Task<QuotesResponse> GetQuotesAsync();
 
         [Get("/invoices")]
-        Task<JobberModificationResponse> GetInvoices();
+        Task<InvoicesResponse> GetInvoicesAsync();
 
         [Get("/transactions")]
-        Task<JobberModificationResponse> GetTransactions();
+        Task<TransactionsResponse> GetTransactionsAsync();
 
         [Get("/expenses")]
-        Task<JobberModificationResponse> GetExpenses();
+        Task<ExpensesResponse> GetExpensesAsync();
 
         [Get("/visits")]
-        Task<JobberModificationResponse> GetVisits();
-
-
-
+        Task<VisitsResponse> GetVisitsAsync();
     }
 }

@@ -7,9 +7,9 @@ namespace DialogFlow.Sdk
     public interface IDialogFlowService
     {
         [Post("/intents")]
-        Task<IntentModificationResponse> CreateIntent([Body] Intent intent);
+        Task<IntentModificationResponse> CreateIntentAsync([Body] Intent intent);
 
         [Put("/intents/{intentId}")]
-        Task<IntentModificationResponse> UpdateIntent([AliasAs("intentId")] string intentId, [Body] Intent intent);
+        Task<IntentModificationResponse> UpdateIntentAsync([AliasAs("intentId")] string intentId, [Body] Intent intent);
     }
 }

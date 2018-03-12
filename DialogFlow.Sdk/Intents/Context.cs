@@ -2,7 +2,7 @@
 
 namespace DialogFlow.Sdk.Intents
 {
-    public class IntentContext
+    public class Context
     {
         public int Lifespan { get; set; }
         public string Name { get; set; }

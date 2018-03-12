@@ -2,7 +2,7 @@
 
 namespace DialogFlow.Sdk.Intents
 {
-    public class ActionParameter
+    public class Parameter
     {
         public string Name { get; set; }
         public string DataType { get; set; }

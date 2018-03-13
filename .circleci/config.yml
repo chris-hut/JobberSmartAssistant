@@ -3,3 +3,6 @@ jobs:
   build:
     docker:
       - image: microsoft:dotnet
+    steps:
+      - checkout
+      - run: echo testing

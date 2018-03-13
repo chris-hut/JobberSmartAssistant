@@ -5,4 +5,5 @@ jobs:
       - image: microsoft/dotnet:sdk
     steps:
       - checkout
-      - run: echo testing
+      - run: dotnet restore
+      - run: dotnet build

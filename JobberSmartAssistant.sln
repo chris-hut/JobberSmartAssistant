@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assistant", "Assistant\Assistant.csproj", "{CC93D4D7-4B83-4BE8-B411-F85F2DF3D545}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobberAssistant", "JobberAssistant\JobberAssistant.csproj", "{820F200B-197C-4032-A47E-B725114FE2F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CC93D4D7-4B83-4BE8-B411-F85F2DF3D545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC93D4D7-4B83-4BE8-B411-F85F2DF3D545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC93D4D7-4B83-4BE8-B411-F85F2DF3D545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820F200B-197C-4032-A47E-B725114FE2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820F200B-197C-4032-A47E-B725114FE2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820F200B-197C-4032-A47E-B725114FE2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820F200B-197C-4032-A47E-B725114FE2F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ namespace DialogFlow.Sdk.Intents
     public class UserSays
     {
         public int Count { get; set; }
-        public IEnumerable<IConversationData> Data { get; set; } = new List<IConversationData>();
+        public IList<IConversationData> Data { get; set; } = new List<IConversationData>();
     }
 
     public interface IConversationData { }

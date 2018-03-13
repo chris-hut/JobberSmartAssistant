@@ -15,10 +15,10 @@ namespace DialogFlow.Sdk.Intents
 
         public int Priority { get; set; } = 1;
 
-        public IEnumerable<string> Event { get; set; } = new List<string>();
-        public IEnumerable<UserSays> UserSays { get; set; } = new List<UserSays>();
-        public IEnumerable<string> Contexts { get; set; } = new List<string>();
-        public IEnumerable<string> Templates { get; set; } = new List<string>();
-        public IEnumerable<IntentResponse> Responses { get; set; } = new List<IntentResponse>();
+        public IList<string> Event { get; set; } = new List<string>();
+        public IList<UserSays> UserSays { get; set; } = new List<UserSays>();
+        public IList<string> Contexts { get; set; } = new List<string>();
+        public IList<string> Templates { get; set; } = new List<string>();
+        public IList<IntentResponse> Responses { get; set; } = new List<IntentResponse>();
     }
 }

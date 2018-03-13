@@ -30,7 +30,7 @@ namespace Testing
             var intent = IntentBuilder.For("tennis")
                 .TriggerOn("I like tennis")
                 .TriggerOn("I like tennis @sys.number:amount:10 out of 10")
-                .WithParameter(ParameterBuilder.Of("amount", "@sys.number")
+                .RequireParameter(ParameterBuilder.Of("amount", "@sys.number")
                     .WithPrompt("How much do you like tennis out of 10?")
                     .WithPrompt("On a scale of 1 to 10, how much do you like tennis?")
                 )

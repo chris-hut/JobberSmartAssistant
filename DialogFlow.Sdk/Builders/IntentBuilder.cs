@@ -40,7 +40,7 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
-        public IntentBuilder WithParameter(ParameterBuilder parameterBuilder)
+        public IntentBuilder RequireParameter(ParameterBuilder parameterBuilder)
         {
             GetCurrentResponse().Parameters.Add(parameterBuilder.Build());
             return this;

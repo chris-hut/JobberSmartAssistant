@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Jobber.Sdk.Models;
+using Jobber.Sdk.Responses;
 using Refit;
 
-namespace Jobber.Sdk.Services
+namespace Jobber.Sdk
 {
     public interface IJobberService
     {

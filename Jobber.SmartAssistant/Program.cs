@@ -12,8 +12,10 @@ namespace Jobber.SmartAssistant
     {
         public static async Task Main(string[] args)
         {
+            var config = LoadConfiguration();
+            
             var webHostBuilder = WebHost.CreateDefaultBuilder()
-                .UseUrls("http://0.0.0.0:5000");
+                .UseUrls($"http://0.0.0.0:{config.Port}");
             
             await Assistant.Sdk.Assistant.Builder()
                 .UseWebHostBuilder(webHostBuilder)
@@ -21,6 +23,11 @@ namespace Jobber.SmartAssistant
                 .UseIntentSynchronizer(new DialogFlowIntentSynchronizer(null))
                 .UseIntentFulfiller(new JobberSmartAssistantIntentFulfiller())
                 .BuildAndRunAsync();
+        }
+
+        private static Configuration LoadConfiguration()
+        {
+            return new Configuration();
         }
     }
 }

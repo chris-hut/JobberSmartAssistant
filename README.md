@@ -1,5 +1,7 @@
 # JobberSmartAssistant [![CircleCI](https://circleci.com/gh/gantonious/JobberSmartAssistant.svg?style=svg)](https://circleci.com/gh/gantonious/JobberSmartAssistant)
 
+An assistant utilzing DialogFlow to help Jobber clients carry out common tasks and ask common questions without having to open up their laptop.
+
 ## Building
 
 This project uses the .NET Core 2 SDK. If you don't have it available you can grab it from https://www.microsoft.com/net/download/. To build the project do:

@@ -2,7 +2,7 @@
 
 namespace Assistant.Core
 {
-    public interface IAuthorizationExtractor
+    public interface IAuthenticationExtractor
     {
         Authentication ExtractAuthenticationFrom(HttpRequest httpRequest);
     }

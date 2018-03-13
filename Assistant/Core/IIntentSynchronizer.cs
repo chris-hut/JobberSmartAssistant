@@ -6,6 +6,6 @@ namespace Assistant.Core
 {
     public interface IIntentSynchronizer
     {
-        Task SyncronizeIntentsAsync(IEnumerable<Intent> intents);
+        Task SynchronizeIntentsAsync(IEnumerable<Intent> intents);
     }
 }

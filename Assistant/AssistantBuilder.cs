@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Assistant.BuiltIns;
 using Assistant.Core;
 using Microsoft.AspNetCore.Hosting;
@@ -54,11 +55,16 @@ namespace Assistant
                 authenticationExtractor == null || intentFulfiller == null ||
                 webHostBuilder == null)
             {
-                throw new Exception();
+                throw new Exception("Missing expected parameters when building an Assistant.");
             }
             
             return new Assistant(intentRegistry, intentSynchronizer, 
                 authenticationExtractor, intentFulfiller, webHostBuilder);
+        }
+
+        public async Task BuildAndRunAsync()
+        {
+            await Build().RunAsync();
         }
     }
 }

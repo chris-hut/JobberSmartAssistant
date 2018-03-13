@@ -1,6 +1,6 @@
 # JobberSmartAssistant [![CircleCI](https://circleci.com/gh/gantonious/JobberSmartAssistant.svg?style=svg)](https://circleci.com/gh/gantonious/JobberSmartAssistant)
 
-An assistant utilzing DialogFlow to help Jobber clients carry out common tasks and ask common questions without having to open up their laptop.
+An assistant utilizing DialogFlow to help Jobber clients carry out common tasks and ask common questions without having to open up their laptop.
 
 ## Building
 

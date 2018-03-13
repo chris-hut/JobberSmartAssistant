@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Assistant.Sdk.BuiltIns;
+using Jobber.SmartAssistant.Fulfillment;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
@@ -18,7 +19,7 @@ namespace Jobber.SmartAssistant
                 .UseWebHostBuilder(webHostBuilder)
                 .UseIntentRegistry(new JobberIntentRegistry())
                 .UseIntentSynchronizer(new DialogFlowIntentSynchronizer(null))
-                .UseIntentFulfiller(new JobberIntentFulfiller())
+                .UseIntentFulfiller(new JobberSmartAssistantIntentFulfiller())
                 .BuildAndRunAsync();
         }
     }

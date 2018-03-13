@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Assistant.Sdk\Assistant.Sdk.csproj" />
+    <ProjectReference Include="..\Jobber.Sdk\Jobber.Sdk.csproj" />
   </ItemGroup>
 </Project>

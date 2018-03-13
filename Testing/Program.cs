@@ -34,7 +34,7 @@ namespace Testing
                     .WithPrompt("How much do you like tennis out of 10?")
                     .WithPrompt("On a scale of 1 to 10, how much do you like tennis?")
                 )
-                .RespondsWith("Hey I like tenis $amount/10 too!")
+                .RespondsWith("Hey I like tennis $amount/10 too!")
                 .Build();
 
             await dialogFlowService.CreateIntentAsync(intent);

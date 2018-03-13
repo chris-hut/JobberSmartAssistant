@@ -1,4 +1,4 @@
-# JobberSmartAssistant
+# JobberSmartAssistant [![CircleCI](https://circleci.com/gh/gantonious/JobberSmartAssistant.svg?style=svg)](https://circleci.com/gh/gantonious/JobberSmartAssistant)
 
 More info to come.
 

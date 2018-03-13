@@ -10,7 +10,7 @@ namespace Assistant.Sdk.BuiltIns
             return new Authentication
             {
                 Type = 0,
-                AuthenticationString = httpRequest.Headers["Authroization"]
+                AuthenticationString = "test"
             };
         }
     }

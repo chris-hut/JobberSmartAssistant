@@ -8,7 +8,7 @@ namespace Jobber.Sdk
 {
     public class JobberServiceFactory
     {
-        public IJobberService CreateDialogFlowService(JobberConfig jobberConfig)
+        public IJobberService CreateJobberService(JobberConfig jobberConfig)
         {
             var httpClient = BuildAuthenticatingHttpClientFrom(jobberConfig);
             return RestService.For<IJobberService>(httpClient);

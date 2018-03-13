@@ -27,7 +27,7 @@ namespace Jobber.SmartAssistant.Fulfillment
         
         public async Task<FullfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, Authentication authentication)
         {
-            var jobberServer = _jobberServiceFactory.CreateDialogFlowService(new JobberConfig
+            var jobberServer = _jobberServiceFactory.CreateJobberService(new JobberConfig
             {
                 ApiKey = authentication.AuthenticationString
             });

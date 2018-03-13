@@ -61,8 +61,9 @@ namespace Assistant.Sdk
             var authentication = _authenticationExtractor.ExtractAuthenticationFrom(httpContext.Request);
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
             var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest, authentication);
-            var rawFulfillmentResponse = JsonConvert.SerializeObject(fulfillmentRequest);
+            var rawFulfillmentResponse = JsonConvert.SerializeObject(fulfillmentResponse);
 
+            httpContext.Response.ContentType = "application/json";
             await httpContext.Response.WriteAsync(rawFulfillmentResponse);
         }
 

@@ -15,9 +15,9 @@ namespace Assistant.Sdk.BuiltIns
             _dialogFlowService = dialogFlowService;
         }
 
-        public Task SynchronizeIntentsAsync(IEnumerable<Intent> intents)
+        public async Task SynchronizeIntentsAsync(IEnumerable<Intent> intents)
         {
-            throw new System.NotImplementedException();
+            await Task.CompletedTask;
         }
     }
 }

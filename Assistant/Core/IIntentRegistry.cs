@@ -5,6 +5,6 @@ namespace Assistant.Core
 {
     public interface IIntentRegistry
     {
-        IEnumerable<Intent> RegisterIntents();
+        IEnumerable<Intent> DefineIntents();
     }
 }

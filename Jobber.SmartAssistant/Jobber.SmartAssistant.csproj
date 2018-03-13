@@ -5,6 +5,6 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Assistant\Assistant.csproj" />
+    <ProjectReference Include="..\Assistant.Sdk\Assistant.Sdk.csproj" />
   </ItemGroup>
 </Project>

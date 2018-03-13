@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DialogFlow.Sdk.Fulfillment;
 
-namespace Assistant.Core
+namespace Assistant.Sdk.Core
 {
     public interface IIntentFulfiller
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Assistant.BuiltIns;
-using Assistant.Core;
+using Assistant.Sdk.BuiltIns;
+using Assistant.Sdk.Core;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Assistant
+namespace Assistant.Sdk
 {
     public class AssistantBuilder
     {

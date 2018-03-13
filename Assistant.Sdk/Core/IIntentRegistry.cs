@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DialogFlow.Sdk.Intents;
 
-namespace Assistant.Core
+namespace Assistant.Sdk.Core
 {
     public interface IIntentRegistry
     {

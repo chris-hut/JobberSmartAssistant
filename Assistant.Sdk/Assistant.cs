@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using Assistant.Core;
+using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Fulfillment;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace Assistant
+namespace Assistant.Sdk
 {
     public class Assistant
     {

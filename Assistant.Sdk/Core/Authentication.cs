@@ -1,4 +1,4 @@
-﻿namespace Assistant.Core
+﻿namespace Assistant.Sdk.Core
 {
     public class Authentication
     {

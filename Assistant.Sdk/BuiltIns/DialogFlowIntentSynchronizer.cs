@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Assistant.Core;
+using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
 using DialogFlow.Sdk.Intents;
 
-namespace Assistant.BuiltIns
+namespace Assistant.Sdk.BuiltIns
 {
     public class DialogFlowIntentSynchronizer : IIntentSynchronizer
     {

@@ -1,7 +1,7 @@
-﻿using Assistant.Core;
+﻿using Assistant.Sdk.Core;
 using Microsoft.AspNetCore.Http;
 
-namespace Assistant.BuiltIns
+namespace Assistant.Sdk.BuiltIns
 {
     public class HeaderBasedAuthenticationExtractor : IAuthenticationExtractor
     {

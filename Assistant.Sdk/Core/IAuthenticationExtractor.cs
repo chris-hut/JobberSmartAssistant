@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Assistant.Core
+namespace Assistant.Sdk.Core
 {
     public interface IAuthenticationExtractor
     {

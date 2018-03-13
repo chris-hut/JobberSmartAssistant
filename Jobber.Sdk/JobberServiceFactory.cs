@@ -38,5 +38,4 @@ namespace Jobber.Sdk
             return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
         }
     }
-    }
 }

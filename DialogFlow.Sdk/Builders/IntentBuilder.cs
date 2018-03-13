@@ -46,7 +46,7 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
-        public IntentBuilder WithResponse(string responseString)
+        public IntentBuilder RespondsWith(string responseString)
         {
             GetCurrentResponse().Messages.Add(new SpeechMessage
             {

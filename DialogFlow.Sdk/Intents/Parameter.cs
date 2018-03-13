@@ -12,6 +12,6 @@ namespace DialogFlow.Sdk.Intents
         public bool IsList { get; set; }
         public bool Required { get; set; }
         
-        public IList<string> Prompts { get; set; }
+        public IList<string> Prompts { get; set; } = new List<string>();
     }
 }

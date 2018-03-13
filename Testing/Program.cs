@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using DialogFlow.Sdk;
+using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Intents;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +18,29 @@ namespace Testing
     public class Program
     {
 
-        public async Task CreateActionAsync()
+        public static async Task TestBuilding()
+        {
+            var config = new DialogFlowConfig
+            {
+                ApiKey = "7da136a3c39b48e1b955bd47f53e20a9"
+            };
+
+            var dialogFlowService = new DialogFlowServiceFactory(config).CreateDialogFlowService();
+
+            var intent = IntentBuilder.For("tennis")
+                .TriggerOn("I like tennis")
+                .TriggerOn("I like tennis @sys.number:amount:10 out of 10")
+                .WithParameter(ParameterBuilder.Of("amount", "@sys.number")
+                    .WithPrompt("How much do you like tennis out of 10?")
+                    .WithPrompt("On a scale of 1 to 10, how much do you like tennis?")
+                )
+                .RespondsWith("Hey I like tenis $amount/10 too!")
+                .Build();
+
+            await dialogFlowService.CreateIntentAsync(intent);
+        }
+
+        public static async Task CreateActionAsync()
         {
             var config = new DialogFlowConfig
             {
@@ -33,13 +56,13 @@ namespace Testing
                 {
                     new UserSays
                     {
-                         Data = new List<IConversationData>
-                         {
-                             new TextData
-                             {
-                                 Text = "I like hockey."
-                             }
-                         }
+                        Data = new List<IConversationData>
+                        {
+                            new TextData
+                            {
+                                Text = "I like hockey."
+                            }
+                        }
                     },
                     new UserSays
                     {
@@ -71,7 +94,7 @@ namespace Testing
                         Action = "okay",
                         DefaultResponsePlatforms = new Dictionary<string, bool>
                         {
-                            {"google", true}  
+                            {"google", true}
                         },
                         Parameters = new List<Parameter>
                         {
@@ -94,7 +117,7 @@ namespace Testing
                     }
                 }
             };
-            
+
             var str = JsonConvert.SerializeObject(intent);
             var res = await dialogFlowService.CreateIntentAsync(intent);
         }
@@ -107,24 +130,15 @@ namespace Testing
                 .Configure(builder => builder.Run(async c => await c.Response.WriteAsync("Testing")))
                 .Build()
                 .Run();
-            
-            
+
+
         }
-        
+
         public static void Main(string[] args)
         {
-             CreateServer();
+            TestBuilding().Wait();
         }
-        
+
     }
 
-    public class MessageHandler : HttpMessageHandler
-    {
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            var response = new HttpResponseMessage();
-            response.Content = new StringContent("Jess is SMEXY");
-            return response;
-        }
-    }
 }

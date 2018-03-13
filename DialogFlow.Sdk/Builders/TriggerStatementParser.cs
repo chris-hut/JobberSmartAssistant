@@ -13,7 +13,7 @@ namespace DialogFlow.Sdk.Builders
             while (remainingStatement.Trim().Length > 0)
             {
                 var nextEntityIndex = remainingStatement.IndexOf("@");
-                if (nextEntityIndex == -1)
+                if (nextEntityIndex != -1)
                 {
                     var currentText = remainingStatement.Substring(0, nextEntityIndex);
                     if (!String.IsNullOrEmpty(currentText))
@@ -46,9 +46,11 @@ namespace DialogFlow.Sdk.Builders
                     {
                         userData.Data.Add(new TextData
                         {
-                            Text = remainingStatement.Trim()
+                            Text = remainingStatement.TrimEnd()
                         });
                     }
+                    
+                    break;
                 }
             }
 

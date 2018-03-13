@@ -1,6 +1,13 @@
 # JobberSmartAssistant [![CircleCI](https://circleci.com/gh/gantonious/JobberSmartAssistant.svg?style=svg)](https://circleci.com/gh/gantonious/JobberSmartAssistant)
 
-More info to come.
+## Building
+
+This project uses the .NET Core 2 SDK. If you don't have it available you can grab it from https://www.microsoft.com/net/download/. To build the project do:
+
+```bash
+dotnet restore
+dotnet build
+```
 
 # License
 

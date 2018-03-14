@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DialogFlow.Sdk.Intents;
 using Refit;
 
@@ -6,6 +7,9 @@ namespace DialogFlow.Sdk
 {
     public interface IDialogFlowService
     {
+        [Get("/intents")]
+        Task<IEnumerable<Intent>> GetIntentsAsync();
+        
         [Post("/intents")]
         Task<IntentModificationResponse> CreateIntentAsync([Body] Intent intent);
 

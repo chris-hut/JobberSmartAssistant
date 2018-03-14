@@ -15,7 +15,7 @@ namespace DialogFlow.Sdk.Builders
             };
         }
 
-        public ContextBuilder For(string name)
+        public static ContextBuilder For(string name)
         {
             return new ContextBuilder(name);
         }

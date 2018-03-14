@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Assistant.Sdk.BuiltIns;
+using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.Tennis;
 using Microsoft.AspNetCore;
@@ -23,18 +24,28 @@ namespace Jobber.SmartAssistant
             
             var intentFulfiller = new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());
+
+            var dialogFlowConfig = new DialogFlowConfig
+            {
+                ApiKey = config.DialogFlowApiKey
+            };
+
+            var dialogFlowService = new DialogFlowServiceFactory(dialogFlowConfig).CreateDialogFlowService();
             
             await Assistant.Sdk.Assistant.Builder()
                 .UseWebHostBuilder(webHostBuilder)
                 .UseIntentRegistry(intentRegistry)
-                .UseIntentSynchronizer(new DialogFlowIntentSynchronizer(null))
+                .UseIntentSynchronizer(new DialogFlowIntentSynchronizer(dialogFlowService))
                 .UseIntentFulfiller(intentFulfiller)
                 .BuildAndRunAsync();
         }
 
         private static Configuration LoadConfiguration()
         {
-            return new Configuration();
+            return new Configuration
+            {
+                DialogFlowApiKey = Environment.GetEnvironmentVariable("JSA_DIALOG_FLOW_KEY")
+            };
         }
     }
 }

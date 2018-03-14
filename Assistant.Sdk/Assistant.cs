@@ -41,7 +41,11 @@ namespace Assistant.Sdk
 
         public async Task RunAsync()
         {
+            _logger.LogInfo("Synchronizing Intents.");
             await SynchronizeLatestIntentsAsync();
+            _logger.LogInfo("Intent synchronization complete.");
+
+            _logger.LogInfo("Launching fulfillment endpoint.");
             await LaunchFulfillmentWebServerAsync();
         }
 
@@ -63,6 +67,11 @@ namespace Assistant.Sdk
         {
             var authentication = _authenticationExtractor.ExtractAuthenticationFrom(httpContext.Request);
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
+
+            _logger.LogInfo("Fulfillment request recieved for intent with action: " +
+                    $"{fulfillmentRequest.ConversationResult.ActionName} " +
+                    $"and id: {fulfillmentRequest.Id}.");
+
             var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest, authentication);
             var rawFulfillmentResponse = JsonConvert.SerializeObject(fulfillmentResponse);
 

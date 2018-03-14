@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace DialogFlow.Sdk.Intents
 {
@@ -25,8 +24,9 @@ namespace DialogFlow.Sdk.Intents
         [JsonProperty("priority")]
         public int Priority { get; set; } = 1;
 
-        [JsonProperty("events")]
+        [JsonProperty("event")]
         public IList<string> Events { get; set; } = new List<string>();
+        
         [JsonProperty("userSays")]
         public IList<UserSays> UserSays { get; set; } = new List<UserSays>();
         [JsonProperty("contexts")]

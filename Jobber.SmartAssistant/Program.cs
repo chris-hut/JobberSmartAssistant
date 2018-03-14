@@ -18,12 +18,15 @@ namespace Jobber.SmartAssistant
             var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .UseUrls($"http://0.0.0.0:{config.Port}");
 
+            var intentRegistry = new DefaultIntentRegistry()
+                .WithIntentDefinition(new TennisIntentDefinition());
+            
             var intentFulfiller = new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());
             
             await Assistant.Sdk.Assistant.Builder()
                 .UseWebHostBuilder(webHostBuilder)
-                .UseIntentRegistry(new JobberIntentRegistry())
+                .UseIntentRegistry(intentRegistry)
                 .UseIntentSynchronizer(new DialogFlowIntentSynchronizer(null))
                 .UseIntentFulfiller(intentFulfiller)
                 .BuildAndRunAsync();

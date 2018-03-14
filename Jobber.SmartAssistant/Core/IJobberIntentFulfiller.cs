@@ -2,7 +2,7 @@
 using DialogFlow.Sdk.Fulfillment;
 using Jobber.Sdk;
 
-namespace Jobber.SmartAssistant.Fulfillment
+namespace Jobber.SmartAssistant.Core
 {
     public interface IJobberIntentFulfiller
     {

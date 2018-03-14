@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Fulfillment;
 using Jobber.Sdk;
 
-namespace Jobber.SmartAssistant.Fulfillment
+namespace Jobber.SmartAssistant.Core
 {
     public class JobberSmartAssistantIntentFulfiller : IIntentFulfiller
     {

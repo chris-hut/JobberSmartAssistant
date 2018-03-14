@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Assistant.Sdk.BuiltIns;
-using Jobber.SmartAssistant.Fulfillment;
+using Jobber.SmartAssistant.Core;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 

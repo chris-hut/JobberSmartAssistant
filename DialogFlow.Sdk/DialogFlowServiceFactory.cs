@@ -20,12 +20,6 @@ namespace DialogFlow.Sdk
      
         public IDialogFlowService CreateDialogFlowService()
         {
-            JsonConvert.DefaultSettings = 
-                () => new JsonSerializerSettings() { 
-                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    Converters = {new StringEnumConverter()}
-                };
-
             return RestService.For<IDialogFlowService>(_httpClient);
         }
 

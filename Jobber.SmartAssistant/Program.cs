@@ -44,8 +44,20 @@ namespace Jobber.SmartAssistant
         {
             return new Configuration
             {
-                DialogFlowApiKey = Environment.GetEnvironmentVariable("JSA_DIALOG_FLOW_KEY")
+                DialogFlowApiKey = Environment.GetEnvironmentVariable("JSA_DIALOG_FLOW_KEY"),
+                Port = GetPortFromEnvironment()
             };
+        }
+
+        private static int GetPortFromEnvironment()
+        {
+            var portValue = Environment.GetEnvironmentVariable("PORT");
+            if (String.IsNullOrEmpty(portValue))
+            {
+                return 5000;
+            }
+
+            return int.Parse(portValue);
         }
     }
 }

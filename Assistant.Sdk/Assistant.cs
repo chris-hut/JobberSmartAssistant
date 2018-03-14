@@ -15,6 +15,7 @@ namespace Assistant.Sdk
         private readonly IIntentSynchronizer _intentSynchronizer;
         private readonly IAuthenticationExtractor _authenticationExtractor;
         private readonly IIntentFulfiller _intentFulfiller;
+        private readonly ILogger _logger;
         private readonly IWebHostBuilder _webHostBuilder;
 
         public Assistant(
@@ -22,12 +23,14 @@ namespace Assistant.Sdk
             IIntentSynchronizer intentSynchronizer, 
             IAuthenticationExtractor authenticationExtractor, 
             IIntentFulfiller intentFulfiller,
+            ILogger logger,
             IWebHostBuilder webHostBuilder
         ) {
             _intentRegistry = intentRegistry;
             _intentSynchronizer = intentSynchronizer;
             _authenticationExtractor = authenticationExtractor;
             _intentFulfiller = intentFulfiller;
+            _logger = logger;
             _webHostBuilder = webHostBuilder;
         }
 

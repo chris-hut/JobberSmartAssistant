@@ -12,11 +12,13 @@ namespace Assistant.Sdk
         private IIntentSynchronizer intentSynchronizer;
         private IAuthenticationExtractor authenticationExtractor;
         private IIntentFulfiller intentFulfiller;
+        private ILogger logger;
         private IWebHostBuilder webHostBuilder;
 
         public AssistantBuilder()
         {
             authenticationExtractor = new HeaderBasedAuthenticationExtractor();
+            logger = new ConsoleLogger();
         }
 
         public AssistantBuilder UseIntentRegistry(IIntentRegistry intentRegistry)
@@ -43,6 +45,12 @@ namespace Assistant.Sdk
             return this;
         }
 
+        public AssistantBuilder UseLogger(ILogger logger)
+        {
+            this.logger = logger;
+            return this;
+        }
+
         public AssistantBuilder UseWebHostBuilder(IWebHostBuilder webHostBuilder)
         {
             this.webHostBuilder = webHostBuilder;
@@ -53,13 +61,13 @@ namespace Assistant.Sdk
         {
             if (intentRegistry == null || intentSynchronizer == null ||
                 authenticationExtractor == null || intentFulfiller == null ||
-                webHostBuilder == null)
+                logger == null || webHostBuilder == null)
             {
                 throw new Exception("Missing expected parameters when building an Assistant.");
             }
             
             return new Assistant(intentRegistry, intentSynchronizer, 
-                authenticationExtractor, intentFulfiller, webHostBuilder);
+                authenticationExtractor, intentFulfiller, logger, webHostBuilder);
         }
 
         public async Task BuildAndRunAsync()

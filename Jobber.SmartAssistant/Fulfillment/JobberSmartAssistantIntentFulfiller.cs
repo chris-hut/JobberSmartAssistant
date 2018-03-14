@@ -25,7 +25,7 @@ namespace Jobber.SmartAssistant.Fulfillment
             return this;
         }
         
-        public async Task<FullfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, Authentication authentication)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, Authentication authentication)
         {
             var jobberServer = _jobberServiceFactory.CreateJobberService(new JobberConfig
             {

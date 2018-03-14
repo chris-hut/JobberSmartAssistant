@@ -5,6 +5,6 @@ namespace Assistant.Sdk.Core
 {
     public interface IIntentFulfiller
     {
-        Task<FullfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, Authentication authentication);
+        Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, Authentication authentication);
     }
 }

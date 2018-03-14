@@ -11,9 +11,9 @@ namespace Jobber.SmartAssistant.Fulfillment
             return true;
         }
 
-        public async Task<FullfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
         {
-            var response = new FullfillmentResponse
+            var response = new FulfillmentResponse
             {
                 Speech = "Sorry, I'm not sure what you're asking for.",
                 DisplayText = "Sorry, I'm not sure what you're asking for."

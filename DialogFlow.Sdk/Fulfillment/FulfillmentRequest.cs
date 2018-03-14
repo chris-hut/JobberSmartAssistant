@@ -11,5 +11,12 @@ namespace DialogFlow.Sdk.Fulfillment
         public DateTime Timestamp { get; set; }
         [JsonProperty("lang")]
         public string Language { get; set; }
+        [JsonProperty("result")]
+        public ConversationResult ConversationResult { get; set; }
+
+        public bool IsForAction(string actionName)
+        {
+            return actionName.ToLower().Equals(ConversationResult.ActionName);
+        }
     }
 }

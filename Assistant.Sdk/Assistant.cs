@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
+using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Fulfillment;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -65,14 +67,56 @@ namespace Assistant.Sdk
 
         private async Task HandleWebRequestAsync(HttpContext httpContext)
         {
+            if (IsRequestForFulfillment(httpContext.Request))
+            {
+                await TryToHandleFulfillmentRequestAsync(httpContext);
+            }
+            else
+            {
+                _logger.LogInfo("Received invalid request.");
+                httpContext.Response.StatusCode = 404;
+            }
+        }
+
+        private static bool IsRequestForFulfillment(HttpRequest httpRequest)
+        {
+            var strippedPath = httpRequest.Path.Value.TrimStart('/').TrimEnd('/').ToLower();
+            return httpRequest.Method == "POST" && strippedPath == "fulfillment";
+        }
+
+        private async Task TryToHandleFulfillmentRequestAsync(HttpContext httpContext)
+        {
+            try
+            {
+                await HandleFulfillmentRequestAsync(httpContext);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Encountered an exception [{ex.GetType().Name}: {ex.Message}] while handling request.");
+                
+                var response = FulfillmentResponseBuilder.Create()
+                    .Speech("Sorry something went wrong. Try asking me again later.")
+                    .Build();
+
+                await WriteFulfillmentResponse(response, httpContext);
+            }
+        }
+        
+        private async Task HandleFulfillmentRequestAsync(HttpContext httpContext)
+        {
             var authentication = _authenticationExtractor.ExtractAuthenticationFrom(httpContext.Request);
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
 
             _logger.LogInfo("Fulfillment request recieved for intent with action: " +
-                    $"{fulfillmentRequest.ConversationResult.ActionName} " +
-                    $"and id: {fulfillmentRequest.Id}.");
+                            $"{fulfillmentRequest.ConversationResult.ActionName} " +
+                            $"and id: {fulfillmentRequest.Id}.");
 
             var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest, authentication);
+            await WriteFulfillmentResponse(fulfillmentResponse, httpContext);
+        }
+
+        private static async Task WriteFulfillmentResponse(FulfillmentResponse fulfillmentResponse, HttpContext httpContext)
+        {
             var rawFulfillmentResponse = JsonConvert.SerializeObject(fulfillmentResponse);
 
             httpContext.Response.ContentType = "application/json";

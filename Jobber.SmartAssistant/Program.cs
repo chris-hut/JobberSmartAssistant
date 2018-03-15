@@ -5,6 +5,7 @@ using Assistant.Sdk.BuiltIns;
 using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.Tennis;
+using Jobber.SmartAssistant.Features.Welcome;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
@@ -20,6 +21,7 @@ namespace Jobber.SmartAssistant
                 .UseUrls($"http://0.0.0.0:{config.Port}");
 
             var intentRegistry = new DefaultIntentRegistry()
+                .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new TennisIntentDefinition());
             
             var intentFulfiller = new JobberSmartAssistantIntentFulfiller()

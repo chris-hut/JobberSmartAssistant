@@ -98,7 +98,7 @@ namespace Assistant.Sdk
                     .Speech("Sorry something went wrong. Try asking me again later.")
                     .Build();
 
-                await WriteFulfillmentResponse(response, httpContext);
+                await WriteFulfillmentResponseAsync(response, httpContext);
             }
         }
         
@@ -112,10 +112,10 @@ namespace Assistant.Sdk
                             $"and id: {fulfillmentRequest.Id}.");
 
             var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest, authentication);
-            await WriteFulfillmentResponse(fulfillmentResponse, httpContext);
+            await WriteFulfillmentResponseAsync(fulfillmentResponse, httpContext);
         }
 
-        private static async Task WriteFulfillmentResponse(FulfillmentResponse fulfillmentResponse, HttpContext httpContext)
+        private static async Task WriteFulfillmentResponseAsync(FulfillmentResponse fulfillmentResponse, HttpContext httpContext)
         {
             var rawFulfillmentResponse = JsonConvert.SerializeObject(fulfillmentResponse);
 

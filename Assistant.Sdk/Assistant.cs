@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Builders;
@@ -104,6 +105,8 @@ namespace Assistant.Sdk
         
         private async Task HandleFulfillmentRequestAsync(HttpContext httpContext)
         {
+            var headerValues = String.Join(", ", httpContext.Request.Headers.Select(s => (s.Key, s.Value)));
+            _logger.LogInfo($"Fulfillment request headers: [{headerValues}]");
             var authentication = _authenticationExtractor.ExtractAuthenticationFrom(httpContext.Request);
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
 

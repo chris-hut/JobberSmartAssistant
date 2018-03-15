@@ -33,6 +33,15 @@ namespace DialogFlow.Sdk.Builders
             _intent.Contexts.Add(contextName);
             return this;
         }
+
+        public IntentBuilder RequiresEvent(string eventName)
+        {
+            _intent.Events.Add(new Event
+            {
+                Name = eventName
+            });
+            return this;
+        }
         
         public IntentBuilder TriggerOn(string triggerStatement)
         {

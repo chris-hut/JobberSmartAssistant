@@ -22,7 +22,7 @@ namespace DialogFlow.Sdk.Intents
         public bool WebhookForSlotFilling { get; set; }
 
         [JsonProperty("priority")]
-        public int Priority { get; set; } = 1;
+        public int Priority { get; set; } = 500000;
 
         [JsonProperty("event")]
         public IList<string> Events { get; set; } = new List<string>();

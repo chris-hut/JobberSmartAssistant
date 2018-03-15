@@ -40,6 +40,12 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
+        public IntentBuilder WithPriority(int priority)
+        {
+            _intent.Priority = priority;
+            return this;
+        }
+
         public IntentBuilder RequireParameter(ParameterBuilder parameterBuilder)
         {
             GetCurrentResponse().Parameters.Add(parameterBuilder.Build());

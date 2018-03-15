@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Assistant.Sdk.BuiltIns;
 using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
+using Jobber.SmartAssistant.Features.CreateJob;
 using Jobber.SmartAssistant.Features.Tennis;
 using Jobber.SmartAssistant.Features.Welcome;
 using Microsoft.AspNetCore;
@@ -22,9 +23,11 @@ namespace Jobber.SmartAssistant
 
             var intentRegistry = new DefaultIntentRegistry()
                 .WithIntentDefinition(new WelcomeIntentDefinition())
+                .WithIntentDefinition(new StartCreateJobIntentDefinition())
                 .WithIntentDefinition(new TennisIntentDefinition());
             
             var intentFulfiller = new JobberSmartAssistantIntentFulfiller()
+                .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());
 
             var dialogFlowConfig = new DialogFlowConfig

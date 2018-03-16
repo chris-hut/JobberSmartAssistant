@@ -12,7 +12,7 @@ namespace DialogFlow.Sdk.Builders
 
             while (remainingStatement.Trim().Length > 0)
             {
-                var nextEntityIndex = remainingStatement.IndexOf("@");
+                var nextEntityIndex = remainingStatement.IndexOf("[");
                 if (nextEntityIndex != -1)
                 {
                     var currentText = remainingStatement.Substring(0, nextEntityIndex);
@@ -24,8 +24,8 @@ namespace DialogFlow.Sdk.Builders
                         });
                     }
 
-                    remainingStatement = remainingStatement.Substring(nextEntityIndex);
-                    var indexOfNextSpace = remainingStatement.IndexOf(" ");
+                    remainingStatement = remainingStatement.Substring(nextEntityIndex + 1);
+                    var indexOfNextSpace = remainingStatement.IndexOf("]");
                     var entityBindingText = remainingStatement.Substring(0, indexOfNextSpace);
                     var entityBindingTextTokens = entityBindingText.Split(':');
                     
@@ -37,7 +37,7 @@ namespace DialogFlow.Sdk.Builders
                         UserDefined = false
                     });
 
-                    remainingStatement = remainingStatement.Substring(indexOfNextSpace);
+                    remainingStatement = remainingStatement.Substring(indexOfNextSpace + 1);
 
                 }
                 else

@@ -105,16 +105,16 @@ After implementing custom intent definitions and fulfillers they can be register
 private static IIntentRegistry BuildIntentRegistry()
 {
     return new DefaultIntentRegistry()
-        ...
-        ...
+        .WithIntentDefinition(...)
+        .WithIntentDefinition(...)
         .WithIntentDefinition(new FavoriteNumberIntentDefinition());
 }
 
 private static IIntentFulfiller BuildIntentFulfiller()
 {
     return new JobberSmartAssistantIntentFulfiller()
-        ...
-        ...
+        .WithJobberIntentFulfiller(...)
+        .WithJobberIntentFulfiller(...)
         .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller());
 }
 ```

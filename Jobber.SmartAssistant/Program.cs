@@ -39,17 +39,17 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new TennisIntentDefinition());
         }
 
-        private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)
-        {
-            return new DialogFlowIntentSynchronizer(BuildDialogFlowServiceFrom(config));
-        }
-
         private static IIntentFulfiller BuldIntentFulfiller()
         {
             return new  JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());
+        }
+
+        private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)
+        {
+            return new DialogFlowIntentSynchronizer(BuildDialogFlowServiceFrom(config));
         }
 
         private static IDialogFlowService BuildDialogFlowServiceFrom(Configuration config)

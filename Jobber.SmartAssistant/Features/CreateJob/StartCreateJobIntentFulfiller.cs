@@ -42,7 +42,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         private static FulfillmentResponse BuildClientFoundResponse(Client client)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"Okay! What are going to do for {client.Name}?")
+                .Speech($"Okay! What are you going to do for {client.Name}?")
                 .WithContext(
                     ContextBuilder.For(Constants.Intents.StartCreateJob)
                         .Lifespan(1)

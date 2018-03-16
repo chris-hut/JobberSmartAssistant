@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Remotion.Linq.Clauses.ResultOperators;
 
 namespace Assistant.Sdk
 {
@@ -103,15 +104,43 @@ namespace Assistant.Sdk
         private async Task HandleFulfillmentRequestAsync(HttpContext httpContext)
         {
             var headerValues = String.Join(", ", httpContext.Request.Headers.Select(s => (s.Key, s.Value)));
-            _logger.LogInfo($"Fulfillment request headers: [{headerValues}]");
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
-
-            _logger.LogInfo("Fulfillment request recieved for intent with action: " +
-                            $"{fulfillmentRequest.ConversationResult.ActionName} " +
-                            $"and id: {fulfillmentRequest.Id}.");
+            LogRequest(fulfillmentRequest);
 
             var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest);
+            LogResponse(fulfillmentRequest, fulfillmentResponse);
+
             await WriteFulfillmentResponseAsync(fulfillmentResponse, httpContext);
+        }
+
+        private void LogRequest(FulfillmentRequest fulfillmentRequest)
+        {
+            var actionName = fulfillmentRequest.ConversationResult.ActionName;
+            var logTag = $"{actionName}:{fulfillmentRequest.Id}";
+
+            _logger.LogInfo("Fulfillment started for request with action: " +
+                            $"{actionName} " +
+                            $"and id: {fulfillmentRequest.Id}.");
+
+            var seralizedContexts = ConvertToPrettyJson(fulfillmentRequest.ConversationResult.Contexts);
+            _logger.LogInfo($"{logTag} Request Contexts\n{seralizedContexts}");
+
+            var seralizedParameters = ConvertToPrettyJson(fulfillmentRequest.ConversationResult.Parameters);
+            _logger.LogInfo($"{logTag} Request Parameters\n{seralizedParameters}");
+        }
+
+        private void LogResponse(FulfillmentRequest fulfillmentRequest, FulfillmentResponse fulfillmentResponse)
+        {
+            var actionName = fulfillmentRequest.ConversationResult.ActionName;
+            var logTag = $"{actionName}:{fulfillmentRequest.Id}";
+
+            var seralizedContexts = ConvertToPrettyJson(fulfillmentResponse.ContextOut);
+            _logger.LogInfo($"{logTag} Response Contexts\n{seralizedContexts}");
+        }
+
+        private string ConvertToPrettyJson(object obj)
+        {
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
         private static async Task WriteFulfillmentResponseAsync(FulfillmentResponse fulfillmentResponse, HttpContext httpContext)

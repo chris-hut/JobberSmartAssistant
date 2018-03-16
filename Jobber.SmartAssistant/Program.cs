@@ -6,7 +6,7 @@ using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.CreateJob;
-using Jobber.SmartAssistant.Features.Tennis;
+using Jobber.SmartAssistant.Features.FavoriteNumber;
 using Jobber.SmartAssistant.Features.Welcome;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -36,7 +36,7 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())
                 .WithIntentDefinition(new ClientSetCreateJobintentDefintion())
-                .WithIntentDefinition(new TennisIntentDefinition());
+                .WithIntentDefinition(new FavoriteNumberIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
@@ -44,7 +44,7 @@ namespace Jobber.SmartAssistant
             return new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
-                .WithJobberIntentFulfiller(new TennisIntentFulfiller());
+                .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller());
         }
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)

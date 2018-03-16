@@ -18,5 +18,10 @@ namespace DialogFlow.Sdk.Fulfillment
         {
             return actionName.ToLower().Equals(ConversationResult.ActionName.ToLower());
         }
+
+        public int GetParameterAsInt(string parameterName)
+        {
+            return int.Parse(ConversationResult.Parameters[parameterName]);
+        }
     }
 }

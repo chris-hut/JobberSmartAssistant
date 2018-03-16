@@ -26,7 +26,7 @@ namespace Jobber.SmartAssistant
                 .UseWebHostBuilder(webHostBuilder)
                 .UseIntentRegistry(BuildIntentRegistry())
                 .UseIntentSynchronizer(BuildIntentSynchronizerFrom(config))
-                .UseIntentFulfiller(BuldIntentFulfiller())
+                .UseIntentFulfiller(BuildIntentFulfiller())
                 .BuildAndRunAsync();
         }
 
@@ -39,7 +39,7 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new TennisIntentDefinition());
         }
 
-        private static IIntentFulfiller BuldIntentFulfiller()
+        private static IIntentFulfiller BuildIntentFulfiller()
         {
             return new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())

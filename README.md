@@ -66,13 +66,40 @@ public class FavoriteNumberIntentDefinition : IIntentDefinition
                 ParameterBuilder.Of("num", Entity.Number)
                     .WithPrompt("What is your favorite number?")
             )
-            .RespondsWith("Your favorite number is $num!")
+            .FulfillWithWebhook()
             .Build();
     }
 }
 ```
 
-Once this is done the intent should be registered in our main file as so:
+### Creating an Intent Fulfiller
+
+If we specify that we want an intent to be fulfilled by a webhook we then need to define an IntentFulfiller that can handle that logic. An IntentFulfiller should be able to answer if a fulfillment request belongs to that intent. If sho it should also define logic that handles the fulfillment request. We can make one for the favorite number intent as follows:
+
+```csharp
+public class FavoriteNumberIntentFulfiller : IJobberIntentFulfiller
+{
+    public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
+    {
+        return fulfillmentRequest.IsForAction("FAVORITE_NUMBER");
+    }
+
+    public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+    {
+        var num = fulfillmentRequest.GetParameterAsInt("num");
+
+        return FulfillmentResponseBuilder.Create()
+            .Speech($"Your favorite number is {num}")
+            .Build();
+    }
+}
+```
+
+As shown above the `FulfillAsync()` method receives an instance of an `IJobberService`. This service provides access to the user's Jobber account that triggered the request. You can use this to actually query and modify the users account data for a real request.
+
+### Registering the new Intent Definition and Fulfiller
+
+After implementing custom intent definitions and fulfillers they can be registered by modifying the `BuildIntentRegistry()` and `BuilderIntentFulfiller()` methods in the main program:
 
 ```csharp
 private static IIntentRegistry BuildIntentRegistry()
@@ -84,13 +111,6 @@ private static IIntentRegistry BuildIntentRegistry()
         .WithIntentDefinition(new FavoriteNumberIntentDefinition());
 }
 ```
-
-### Creating an IntentFulfiller
-
-If we specify that we want an intent to be fulfilled by a webhook we then need to define an IntentFulfiller that can handle that logic.
-
-
-
 
 # License
 

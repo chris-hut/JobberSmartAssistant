@@ -10,7 +10,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         {
             return IntentBuilder.For(Constants.CLIENT_SET_CREATE_JOB)
                 .RequiresContext(Constants.START_CREATE_JOB)
-                .TriggerOn($"[{Entity.Any}:{Constants.DESCRIPTION_VAR}:Mowing the lawn.]")
+                .TriggerOn($"[{Entity.Any}:{Constants.DESCRIPTION_VAR}:Mowing the lawn]")
                 .RequireParameter(ParameterBuilder.Of(Constants.DESCRIPTION_VAR, Entity.Any)
                     .WithPrompt("What is the description of the job?")
                 )

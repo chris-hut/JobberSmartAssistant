@@ -11,6 +11,20 @@ dotnet restore
 dotnet build
 ```
 
+## Running
+
+Running the project will first synchronize the defined intents to the DialogFlow project then launch the intent fulfillment server. To run the project do:
+
+```bash
+dotnet run -p Jobber.SmartAssistant/Jobber.SmartAssistant.csproj
+```
+
+Environment Variables:
+
+- `JSA_DIALOG_FLOW_KEY`: API key for the DialogFlow project where intents should be synchronized to
+- `PORT`: Defines the port the fulfillment server should be launched on
+
+
 # License
 
 ```

@@ -13,6 +13,8 @@ namespace DialogFlow.Sdk.Fulfillment
         public string Language { get; set; }
         [JsonProperty("result")]
         public ConversationResult ConversationResult { get; set; }
+        [JsonProperty("originalRequest")]
+        public OriginalRequest OriginalRequest { get; set; }
 
         public bool IsForAction(string actionName)
         {

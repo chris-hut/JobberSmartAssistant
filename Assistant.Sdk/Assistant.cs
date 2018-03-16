@@ -16,7 +16,6 @@ namespace Assistant.Sdk
     {
         private readonly IIntentRegistry _intentRegistry;
         private readonly IIntentSynchronizer _intentSynchronizer;
-        private readonly IAuthenticationExtractor _authenticationExtractor;
         private readonly IIntentFulfiller _intentFulfiller;
         private readonly ILogger _logger;
         private readonly IWebHostBuilder _webHostBuilder;
@@ -24,14 +23,12 @@ namespace Assistant.Sdk
         public Assistant(
             IIntentRegistry intentRegistry, 
             IIntentSynchronizer intentSynchronizer, 
-            IAuthenticationExtractor authenticationExtractor, 
             IIntentFulfiller intentFulfiller,
             ILogger logger,
             IWebHostBuilder webHostBuilder
         ) {
             _intentRegistry = intentRegistry;
             _intentSynchronizer = intentSynchronizer;
-            _authenticationExtractor = authenticationExtractor;
             _intentFulfiller = intentFulfiller;
             _logger = logger;
             _webHostBuilder = webHostBuilder;
@@ -107,14 +104,13 @@ namespace Assistant.Sdk
         {
             var headerValues = String.Join(", ", httpContext.Request.Headers.Select(s => (s.Key, s.Value)));
             _logger.LogInfo($"Fulfillment request headers: [{headerValues}]");
-            var authentication = _authenticationExtractor.ExtractAuthenticationFrom(httpContext.Request);
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
 
             _logger.LogInfo("Fulfillment request recieved for intent with action: " +
                             $"{fulfillmentRequest.ConversationResult.ActionName} " +
                             $"and id: {fulfillmentRequest.Id}.");
 
-            var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest, authentication);
+            var fulfillmentResponse = await _intentFulfiller.FulfillAsync(fulfillmentRequest);
             await WriteFulfillmentResponseAsync(fulfillmentResponse, httpContext);
         }
 

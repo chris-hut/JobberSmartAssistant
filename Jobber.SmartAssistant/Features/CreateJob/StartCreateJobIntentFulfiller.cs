@@ -4,6 +4,7 @@ using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Fulfillment;
 using DialogFlow.Sdk.Intents;
 using Jobber.Sdk;
+using Jobber.Sdk.Models;
 using Jobber.Sdk.Responses;
 using Jobber.SmartAssistant.Core;
 
@@ -21,28 +22,39 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             var clientName = fulfillmentRequest.GetParameter(Constants.ClientNameVar);
             var matchingClients = await jobberService.GetClientsAsync(clientName);
 
-            if (DoesContainClients(matchingClients))
+            if (matchingClients.Count == 1)
             {
-                return BuildClientFoundResponse(matchingClients.Clients.First().Id);
+                return BuildClientFoundResponse(matchingClients.Clients.First());
+            }
+            else if (matchingClients.Count > 1)
+            {
+                return BuildMultipleClientsFound(clientName);
             }
 
             return BuildClientNotFoundResponse(clientName);
         }
 
-        private static bool DoesContainClients(ClientsResponse clientsResponse)
+        private static bool ContainsOnlyOneClient(ClientsResponse clientsResponse)
         {
             return clientsResponse.Clients.Any();
         }
         
-        private static FulfillmentResponse BuildClientFoundResponse(int clientId)
+        private static FulfillmentResponse BuildClientFoundResponse(Client client)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech("Okay! Can you describe the job?")
+                .Speech($"Okay! What are going to do for {client.Name}?")
                 .WithContext(
                     ContextBuilder.For(Constants.StartCreateJob)
                         .Lifespan(1)
-                        .WithParameter(Constants.ClientIdVar, clientId.ToString())
+                        .WithParameter(Constants.ClientIdVar, client.Id.ToString())
                 )
+                .Build();
+        }
+        
+        private static FulfillmentResponse BuildMultipleClientsFound(string clientName)
+        {
+            return FulfillmentResponseBuilder.Create()
+                .Speech($"I found multiple people with names similar to {clientName}. Could you be more specific next time?")
                 .Build();
         }
 

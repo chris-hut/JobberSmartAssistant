@@ -29,12 +29,12 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return BuildClientNotFoundResponse(clientName);
         }
 
-        private bool DoesContainClients(ClientsResponse clientsResponse)
+        private static bool DoesContainClients(ClientsResponse clientsResponse)
         {
             return clientsResponse.Clients.Any();
         }
         
-        private FulfillmentResponse BuildClientFoundResponse(int clientId)
+        private static FulfillmentResponse BuildClientFoundResponse(int clientId)
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech("Okay! Can you describe the job?")
@@ -46,7 +46,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .Build();
         }
 
-        private FulfillmentResponse BuildClientNotFoundResponse(string clientName)
+        private static FulfillmentResponse BuildClientNotFoundResponse(string clientName)
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"Sorry I dont know who {clientName} is.")

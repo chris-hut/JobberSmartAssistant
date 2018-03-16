@@ -4,7 +4,7 @@
     {
         public static readonly string Any = "@sys.any";
         public static readonly string Number = "@sys.number";
-        public static readonly string DateTime = "@sys.datetime";
+        public static readonly string DateTime = "@sys.date-time";
 
     }
 }

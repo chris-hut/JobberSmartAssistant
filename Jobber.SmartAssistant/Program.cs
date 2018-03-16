@@ -24,10 +24,12 @@ namespace Jobber.SmartAssistant
             var intentRegistry = new DefaultIntentRegistry()
                 .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())
+                .WithIntentDefinition(new ClientSetCreateJobintentDefintion())
                 .WithIntentDefinition(new TennisIntentDefinition());
             
             var intentFulfiller = new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
+                .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());
 
             var dialogFlowConfig = new DialogFlowConfig

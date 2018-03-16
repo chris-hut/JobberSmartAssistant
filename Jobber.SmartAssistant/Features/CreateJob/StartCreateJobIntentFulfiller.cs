@@ -33,11 +33,6 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             }
         }
 
-        private static bool ContainsOnlyOneClient(ClientsResponse clientsResponse)
-        {
-            return clientsResponse.Clients.Any();
-        }
-        
         private static FulfillmentResponse BuildClientFoundResponse(Client client)
         {
             return FulfillmentResponseBuilder.Create()

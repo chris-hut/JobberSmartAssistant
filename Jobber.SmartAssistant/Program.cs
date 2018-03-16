@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Assistant.Sdk.BuiltIns;
+using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.CreateJob;
@@ -21,30 +22,44 @@ namespace Jobber.SmartAssistant
             var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .UseUrls($"http://0.0.0.0:{config.Port}");
 
-            var intentRegistry = new DefaultIntentRegistry()
+            await Assistant.Sdk.Assistant.Builder()
+                .UseWebHostBuilder(webHostBuilder)
+                .UseIntentRegistry(BuildIntentRegistry())
+                .UseIntentSynchronizer(BuildIntentSynchronizerFrom(config))
+                .UseIntentFulfiller(BuldIntentFulfiller())
+                .BuildAndRunAsync();
+        }
+
+        private static IIntentRegistry BuildIntentRegistry()
+        {
+            return new DefaultIntentRegistry()
                 .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())
                 .WithIntentDefinition(new ClientSetCreateJobintentDefintion())
                 .WithIntentDefinition(new TennisIntentDefinition());
-            
-            var intentFulfiller = new JobberSmartAssistantIntentFulfiller()
+        }
+
+        private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)
+        {
+            return new DialogFlowIntentSynchronizer(BuildDialogFlowServiceFrom(config));
+        }
+
+        private static IIntentFulfiller BuldIntentFulfiller()
+        {
+            return new  JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());
+        }
 
+        private static IDialogFlowService BuildDialogFlowServiceFrom(Configuration config)
+        {
             var dialogFlowConfig = new DialogFlowConfig
             {
                 ApiKey = config.DialogFlowApiKey
             };
 
-            var dialogFlowService = new DialogFlowServiceFactory(dialogFlowConfig).CreateDialogFlowService();
-            
-            await Assistant.Sdk.Assistant.Builder()
-                .UseWebHostBuilder(webHostBuilder)
-                .UseIntentRegistry(intentRegistry)
-                .UseIntentSynchronizer(new DialogFlowIntentSynchronizer(dialogFlowService))
-                .UseIntentFulfiller(intentFulfiller)
-                .BuildAndRunAsync();
+            return new DialogFlowServiceFactory(dialogFlowConfig).CreateDialogFlowService();
         }
 
         private static Configuration LoadConfiguration()

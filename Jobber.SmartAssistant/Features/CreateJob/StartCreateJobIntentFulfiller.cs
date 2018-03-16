@@ -14,12 +14,12 @@ namespace Jobber.SmartAssistant.Features.CreateJob
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.StartCreateJob);
+            return fulfillmentRequest.IsForAction(Constants.Intents.StartCreateJob);
         }
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
         {
-            var clientName = fulfillmentRequest.GetParameter(Constants.ClientNameVar);
+            var clientName = fulfillmentRequest.GetParameter(Constants.Variables.ClientName);
             var matchingClients = await jobberService.GetClientsAsync(clientName);
 
             if (matchingClients.Count == 1)
@@ -44,9 +44,9 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return FulfillmentResponseBuilder.Create()
                 .Speech($"Okay! What are going to do for {client.Name}?")
                 .WithContext(
-                    ContextBuilder.For(Constants.StartCreateJob)
+                    ContextBuilder.For(Constants.Intents.StartCreateJob)
                         .Lifespan(1)
-                        .WithParameter(Constants.ClientIdVar, client.Id.ToString())
+                        .WithParameter(Constants.Variables.ClientId, client.Id.ToString())
                 )
                 .Build();
         }

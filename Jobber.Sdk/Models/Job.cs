@@ -32,7 +32,7 @@ namespace Jobber.Sdk.Models
         public int Client { get; set; }
 
         [JsonProperty("quote")]
-        public int Quote { get; set; }
+        public double? Quote { get; set; }
 
         [JsonProperty("notes")]
         public IEnumerable<Note> Notes { get; set; }

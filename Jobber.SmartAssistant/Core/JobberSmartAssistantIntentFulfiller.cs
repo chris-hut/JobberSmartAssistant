@@ -28,7 +28,7 @@ namespace Jobber.SmartAssistant.Core
         {
             var jobberServer = _jobberServiceFactory.CreateJobberService(new JobberConfig
             {
-                ApiKey = $"Bearer {fulfillmentRequest.OriginalRequest.Data.User.AccessToken}"
+                ApiKey = fulfillmentRequest.OriginalRequest.Data.User.AccessToken
             });
 
             return await GetJobberIntentFulfillerFor(fulfillmentRequest).FulfillAsync(fulfillmentRequest, jobberServer);

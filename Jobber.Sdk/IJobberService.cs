@@ -14,6 +14,7 @@ namespace Jobber.Sdk
         Task ModifyQuoteAsync([AliasAs("quote_id")] string quote_Id, [Body] Quote quote);
 
         [Get("/jobs")]
+        [Headers("X-API-VERSION: 2.0.0")]
         Task<JobsResponse> GetJobsAsync();
 
         [Get("/quotes")]

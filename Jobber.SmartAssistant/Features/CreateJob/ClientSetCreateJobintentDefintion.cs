@@ -8,13 +8,13 @@ namespace Jobber.SmartAssistant.Features.CreateJob
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.CLIENT_SET_CREATE_JOB)
-                .RequiresContext(Constants.START_CREATE_JOB)
-                .TriggerOn($"[{Entity.Any}:{Constants.DESCRIPTION_VAR}:Mowing the lawn]")
-                .RequireParameter(ParameterBuilder.Of(Constants.DESCRIPTION_VAR, Entity.Any)
+            return IntentBuilder.For(Constants.ClientSetCreateJob)
+                .RequiresContext(Constants.StartCreateJob)
+                .TriggerOn($"[{Entity.Any}:{Constants.DescriptionVar}:Mowing the lawn]")
+                .RequireParameter(ParameterBuilder.Of(Constants.DescriptionVar, Entity.Any)
                     .WithPrompt("What is the description of the job?")
                 )
-                .RequireParameter(ParameterBuilder.Of(Constants.DATE_VAR, Entity.DateTime)
+                .RequireParameter(ParameterBuilder.Of(Constants.DateVar, Entity.DateTime)
                     .WithPrompt("What day is the job?")
                 )
                 .FulfillWithWebhook()

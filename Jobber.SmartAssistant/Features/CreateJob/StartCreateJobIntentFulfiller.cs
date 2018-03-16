@@ -11,7 +11,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.START_CREATE_JOB);
+            return fulfillmentRequest.IsForAction(Constants.StartCreateJob);
         }
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
@@ -19,9 +19,9 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return FulfillmentResponseBuilder.Create()
                 .Speech("Can you describe the job?")
                 .WithContext(
-                    ContextBuilder.For(Constants.START_CREATE_JOB)
+                    ContextBuilder.For(Constants.StartCreateJob)
                         .Lifespan(1)
-                        .WithParameter(Constants.CLIENT_VAR, "0")
+                        .WithParameter(Constants.ClientVar, "0")
                 )
                 .Build();
         }

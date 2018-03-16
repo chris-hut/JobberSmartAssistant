@@ -8,7 +8,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.START_CREATE_JOB)
+            return IntentBuilder.For(Constants.StartCreateJob)
                 .TriggerOn("I want to create a job")
                 .TriggerOn("Can you help me with setting up a job?")
                 .TriggerOn("I want to make a job")
@@ -16,8 +16,8 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .TriggerOn("New job")
                 .TriggerOn("Can you make a job?")
                 .TriggerOn("can you create a job?")
-                .TriggerOn($"I want to add a job for [{Entity.Any}:{Constants.CLIENT_VAR}:John Appleseed]")
-                .RequireParameter(ParameterBuilder.Of(Constants.CLIENT_VAR, Entity.Any)
+                .TriggerOn($"I want to add a job for [{Entity.Any}:{Constants.ClientVar}:John Appleseed]")
+                .RequireParameter(ParameterBuilder.Of(Constants.ClientVar, Entity.Any)
                     .WithPrompt("Who is this job for?")
                     .WithPrompt("Who needs the work done?")
                 )

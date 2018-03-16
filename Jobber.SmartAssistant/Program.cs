@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Jobber.SmartAssistant
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {
@@ -41,7 +41,7 @@ namespace Jobber.SmartAssistant
 
         private static IIntentFulfiller BuldIntentFulfiller()
         {
-            return new  JobberSmartAssistantIntentFulfiller()
+            return new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new TennisIntentFulfiller());

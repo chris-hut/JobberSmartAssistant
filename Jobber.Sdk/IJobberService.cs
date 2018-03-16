@@ -17,6 +17,9 @@ namespace Jobber.Sdk
         [Headers("X-API-VERSION: 2.0.0")]
         Task<JobsResponse> GetJobsAsync();
 
+        [Get("/clients?search={searchQuery}")]
+        Task<ClientsResponse> GetClientsAsync([AliasAs("searchQuery")] string searchQuery = "");
+
         [Get("/quotes")]
         Task<QuotesResponse> GetQuotesAsync();
 

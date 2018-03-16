@@ -5,6 +5,6 @@ namespace Jobber.Sdk.Responses
 {
     public class JobsResponse
     {
-        private IEnumerable<Job> Jobs { get; set; }
+        public IEnumerable<Job> Jobs { get; set; }
     }
 }

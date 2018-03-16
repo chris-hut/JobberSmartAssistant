@@ -24,6 +24,73 @@ Environment Variables:
 - `JSA_DIALOG_FLOW_KEY`: API key for the DialogFlow project where intents should be synchronized to
 - `PORT`: Defines the port the fulfillment server should be launched on
 
+## Adding to the Conversation
+
+### Intents
+
+DialogFlow uses intents to mark the entry point of a conversation and how that conversation is carried out. The following is an example of creating a simple intent that asks a user for their favorite number:
+
+```csharp
+var intent = IntentBuilder.For("FAVORITE_NUMBER")
+    .TriggerOn("Guess what my favorite number is?")
+    .TriggerOn("Ask me what is my favorite number.")
+    .RequireParameter(
+        ParameterBuilder.Of("num", Entity.Number)
+            .WithPrompt("What is your favorite number?")
+    )
+    .RespondsWith("Your favorite number is $num!")
+    .Build();
+```
+
+Above we defined multiple trigger statements. DialogFlow will train using these statements to determine what statements should trigger this conversation. Sometimes we want to run some custom logic to determine how to respond to an intent. In that case we should drop the `RespondsWith()` method above and use this method instead:
+
+```csharp
+.FulfillWithWebhook()
+```
+
+This tells dialog flow to call into our own service to handle the request.
+
+### Creating an Intent Definition
+
+To add a new intent to the JobberSmartAssistant we need to create an implementation of `IIntentDefinition`. All this interface does is return an intent. We can just return the intent defined above:
+
+```csharp
+public class FavoriteNumberIntentDefinition : IIntentDefinition
+{
+    public Intent DefineIntent()
+    {
+        return IntentBuilder.For("FAVORITE_NUMBER")
+            .TriggerOn("Guess what my favorite number is?")
+            .TriggerOn("Ask me what is my favorite number.")
+            .RequireParameter(
+                ParameterBuilder.Of("num", Entity.Number)
+                    .WithPrompt("What is your favorite number?")
+            )
+            .RespondsWith("Your favorite number is $num!")
+            .Build();
+    }
+}
+```
+
+Once this is done the intent should be registered in our main file as so:
+
+```csharp
+private static IIntentRegistry BuildIntentRegistry()
+{
+    return new DefaultIntentRegistry()
+        .WithIntentDefinition(new WelcomeIntentDefinition())
+        ...
+        ...
+        .WithIntentDefinition(new FavoriteNumberIntentDefinition());
+}
+```
+
+### Creating an IntentFulfiller
+
+If we specify that we want an intent to be fulfilled by a webhook we then need to define an IntentFulfiller that can handle that logic.
+
+
+
 
 # License
 

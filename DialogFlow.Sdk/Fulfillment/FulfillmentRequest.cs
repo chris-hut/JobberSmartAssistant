@@ -16,7 +16,7 @@ namespace DialogFlow.Sdk.Fulfillment
 
         public bool IsForAction(string actionName)
         {
-            return actionName.ToLower().Equals(ConversationResult.ActionName);
+            return actionName.ToLower().Equals(ConversationResult.ActionName.ToLower());
         }
     }
 }

@@ -22,16 +22,15 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             var clientName = fulfillmentRequest.GetParameter(Constants.Variables.ClientName);
             var matchingClients = await jobberService.GetClientsAsync(clientName);
 
-            if (matchingClients.Count == 1)
+            switch (matchingClients.Count)
             {
-                return BuildClientFoundResponse(matchingClients.Clients.First());
+               case 0:
+                   return BuildClientNotFoundResponse(clientName);
+               case 1:
+                   return BuildClientFoundResponse(matchingClients.Clients.First());
+               default:
+                   return BuildMultipleClientsFound(clientName);
             }
-            else if (matchingClients.Count > 1)
-            {
-                return BuildMultipleClientsFound(clientName);
-            }
-
-            return BuildClientNotFoundResponse(clientName);
         }
 
         private static bool ContainsOnlyOneClient(ClientsResponse clientsResponse)

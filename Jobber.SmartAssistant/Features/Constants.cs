@@ -24,6 +24,7 @@
         public static class Contexts
         {
             public const string CreateJobClientRequested = "CREATE_JOB_CLIENT_REQUESTED";
+            public const string CreateJobClientRePrompted = "CREATE_JOB_CLIENT_REPROMPTED";
             public const string CreateJobClientSet = "CREATE_JOB_CLIENT_SET";
         }
     }

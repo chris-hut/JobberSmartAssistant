@@ -10,11 +10,11 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.CreateJob
 {
-    public class StartCreateJobIntentFulfiller : IJobberIntentFulfiller
+    public class ClientRequestedJobIntentFulfiller : IJobberIntentFulfiller
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.Intents.StartCreateJob);
+            return fulfillmentRequest.IsForAction(Constants.Intents.ClientRequestedCreateJob);
         }
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
@@ -38,8 +38,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return FulfillmentResponseBuilder.Create()
                 .Speech($"Okay! What are you going to do for {client.Name}?")
                 .WithContext(
-                    ContextBuilder.For(Constants.Intents.StartCreateJob)
-                        .Lifespan(1)
+                    ContextBuilder.For(Constants.Contexts.CreateJobClientSet)
                         .WithParameter(Constants.Variables.ClientId, client.Id.ToString())
                 )
                 .Build();
@@ -48,7 +47,8 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         private static FulfillmentResponse BuildMultipleClientsFound(string clientName)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"I found multiple people with names similar to {clientName}. Could you be more specific next time?")
+                .Speech($"There a few people who have a smiliar name to {clientName}, can you be a bit more specific?")
+                .WithContext(ContextBuilder.For(Constants.Contexts.CreateJobClientRequested))    
                 .Build();
         }
 

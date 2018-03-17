@@ -35,14 +35,15 @@ namespace Jobber.SmartAssistant
             return new DefaultIntentRegistry()
                 .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())
-                .WithIntentDefinition(new ClientSetCreateJobintentDefintion())
+                .WithIntentDefinition(new ClientRequestedCreateJobIntentDefinition())
+                .WithIntentDefinition(new DescriptionRequestedCreateJobintentDefintion())
                 .WithIntentDefinition(new FavoriteNumberIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
         {
             return new JobberSmartAssistantIntentFulfiller()
-                .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
+                .WithJobberIntentFulfiller(new ClientRequestedJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller());
         }

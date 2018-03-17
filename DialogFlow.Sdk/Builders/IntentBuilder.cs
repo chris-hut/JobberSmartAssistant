@@ -70,6 +70,12 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
+        public IntentBuilder CreatesContext(ContextBuilder contextBuilder)
+        {
+            GetCurrentResponse().AffectedContexts.Add(contextBuilder.Build());
+            return this;
+        }
+
         public IntentBuilder FulfillWithWebhook()
         {
             _intent.WebhookUsed = true;

@@ -11,7 +11,7 @@ namespace DialogFlow.Sdk.Builders
             _context = new Context
             {
                 Name = name,
-                Lifespan = 3
+                Lifespan = 1
             };
         }
 

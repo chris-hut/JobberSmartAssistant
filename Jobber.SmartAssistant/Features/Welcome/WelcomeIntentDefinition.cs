@@ -8,7 +8,7 @@ namespace Jobber.SmartAssistant.Features.Welcome
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For("Welcome Intent")
+            return IntentBuilder.For(Constants.Intents.Welcome)
                 .RequiresEvent(Events.WELCOME_EVENT)
                 .TriggerOn($"Can I talk to {Constants.AssistantName}")
                 .TriggerOn("I need to organize my jobs")

@@ -6,6 +6,8 @@
 
         public static class Intents
         {
+            public const string Welcome = "WELCOME_INTENT";
+            public const string Fallback = "FALLBACK_INTENT";
             public const string StartCreateJob = "START_CREATE_JOB";
             public const string ClientRequestedCreateJob = "CLIENT_REQUESTED_CREATE_JOB"; 
             public const string DescritptionRequestedCreateJob = "DESCRIPTION_REQUESTED_CREATE_JOB";

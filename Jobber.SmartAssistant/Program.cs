@@ -6,6 +6,7 @@ using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.CreateJob;
+using Jobber.SmartAssistant.Features.Fallback;
 using Jobber.SmartAssistant.Features.FavoriteNumber;
 using Jobber.SmartAssistant.Features.Welcome;
 using Microsoft.AspNetCore;
@@ -34,6 +35,7 @@ namespace Jobber.SmartAssistant
         {
             return new DefaultIntentRegistry()
                 .WithIntentDefinition(new WelcomeIntentDefinition())
+                .WithIntentDefinition(new FallbackIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())
                 .WithIntentDefinition(new ClientRequestedCreateJobIntentDefinition())
                 .WithIntentDefinition(new DescriptionRequestedCreateJobintentDefintion())

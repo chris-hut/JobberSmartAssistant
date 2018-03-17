@@ -48,6 +48,12 @@ namespace DialogFlow.Sdk.Builders
             _intent.UserSays.Add(new TriggerStatementParser().Parse(triggerStatement));
             return this;
         }
+        
+        public IntentBuilder TriggerOnFallback()
+        {
+            _intent.FallbackIntent = true;
+            return this;
+        }
 
         public IntentBuilder WithPriority(int priority)
         {

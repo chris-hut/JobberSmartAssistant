@@ -22,7 +22,7 @@
         public static class Contexts
         {
             public const string CreateJobClientRequested = "CREATE_JOB_CLIENT_REQUESTED";
-            public const string CreateJobClientSet = "CRATE_JOB_CLIENT_SET";
+            public const string CreateJobClientSet = "CREATE_JOB_CLIENT_SET";
         }
     }
 }

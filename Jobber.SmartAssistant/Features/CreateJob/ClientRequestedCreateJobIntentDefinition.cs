@@ -10,7 +10,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         {
             return IntentBuilder.For(Constants.Intents.ClientRequestedCreateJob)
                 .RequiresContext(Constants.Contexts.CreateJobClientRequested)
-                .TriggerOn($"[{Entity.Any}:{Constants.Variables.JobDescription}:John Appleseed]")
+                .TriggerOn($"[{Entity.Any}:{Constants.Variables.ClientName}:John Appleseed]")
                 .RequireParameter(ParameterBuilder.Of(Constants.Variables.ClientName, Entity.Any)
                     .WithPrompt("Who is this job for?")
                 )

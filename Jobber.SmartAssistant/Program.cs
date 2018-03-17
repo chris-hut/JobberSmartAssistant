@@ -43,7 +43,7 @@ namespace Jobber.SmartAssistant
         private static IIntentFulfiller BuildIntentFulfiller()
         {
             return new JobberSmartAssistantIntentFulfiller()
-                .WithJobberIntentFulfiller(new ClientRequestedJobIntentFulfiller())
+                .WithJobberIntentFulfiller(new ClientRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller());
         }

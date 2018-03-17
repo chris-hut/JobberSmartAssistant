@@ -10,5 +10,7 @@
         public const string ClientVar = "CLIENT_ID";
         public const string DescriptionVar = "DESCRIPTION";
         public const string DateVar = "DATE";
+
+        public const string UnassignedVisits = "Unassigned_Visits";
     }
 }

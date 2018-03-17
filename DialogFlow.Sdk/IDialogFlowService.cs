@@ -15,5 +15,8 @@ namespace DialogFlow.Sdk
 
         [Put("/intents/{intentId}")]
         Task<IntentModificationResponse> UpdateIntentAsync([AliasAs("intentId")] string intentId, [Body] Intent intent);
+
+        [Delete("/intents/{intentId}")]
+        Task<IntentModificationResponse> DeleteIntentAsync([AliasAs("intentId")] string intentId);
     }
 }

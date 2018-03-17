@@ -19,6 +19,8 @@ namespace Assistant.Sdk.BuiltIns
         public async Task SynchronizeIntentsAsync(IEnumerable<Intent> intents)
         {
             var registeredIntents = await _dialogFlowService.GetIntentsAsync();
+            var namesOfIntentsToSync = intents.Select(i => i.Name).ToHashSet();
+            
             var nameKeyMap = new Dictionary<string, string>();
             registeredIntents.ToList().ForEach(i => nameKeyMap[i.Name] = i.Id);
 
@@ -30,7 +32,12 @@ namespace Assistant.Sdk.BuiltIns
                 .Where(i => nameKeyMap.ContainsKey(i.Name))
                 .Select(i => _dialogFlowService.UpdateIntentAsync(nameKeyMap[i.Name], i));
 
-            await Task.WhenAll(createTasks.Concat(updateTasks));
+            var deleteTasks = nameKeyMap
+                .Where(entry => !namesOfIntentsToSync.Contains(entry.Key))
+                .Select(entry => _dialogFlowService.DeleteIntentAsync(entry.Value));
+                
+
+            await Task.WhenAll(createTasks.Concat(updateTasks).Concat(deleteTasks));
         }
     }
 }

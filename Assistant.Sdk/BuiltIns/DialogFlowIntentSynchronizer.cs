@@ -18,6 +18,12 @@ namespace Assistant.Sdk.BuiltIns
 
         public async Task SynchronizeIntentsAsync(IEnumerable<Intent> intents)
         {
+            await UpsertRegisteredIntentsAsync(intents);
+            await DeleteUnregisteredIntentsAsync(intents);
+        }
+
+        private async Task UpsertRegisteredIntentsAsync(IEnumerable<Intent> intents)
+        {
             var registeredIntents = await _dialogFlowService.GetIntentsAsync();
             var namesOfIntentsToSync = intents.Select(i => i.Name).ToHashSet();
             
@@ -32,12 +38,23 @@ namespace Assistant.Sdk.BuiltIns
                 .Where(i => nameKeyMap.ContainsKey(i.Name))
                 .Select(i => _dialogFlowService.UpdateIntentAsync(nameKeyMap[i.Name], i));
 
+            await Task.WhenAll(createTasks.Concat(updateTasks));
+        }
+
+        private async Task DeleteUnregisteredIntentsAsync(IEnumerable<Intent> intents)
+        {
+            var registeredIntents = await _dialogFlowService.GetIntentsAsync();
+            var namesOfSyncedIntents = intents.Select(i => i.Name).ToHashSet();
+            
+            var nameKeyMap = new Dictionary<string, string>();
+            registeredIntents.ToList().ForEach(i => nameKeyMap[i.Name] = i.Id);
+
             var deleteTasks = nameKeyMap
-                .Where(entry => !namesOfIntentsToSync.Contains(entry.Key))
+                .Where(entry => !namesOfSyncedIntents.Contains(entry.Key))
                 .Select(entry => _dialogFlowService.DeleteIntentAsync(entry.Value));
                 
 
-            await Task.WhenAll(createTasks.Concat(updateTasks).Concat(deleteTasks));
+            await Task.WhenAll(deleteTasks);
         }
     }
 }

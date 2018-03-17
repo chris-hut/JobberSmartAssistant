@@ -10,8 +10,6 @@ namespace Jobber.Sdk.Responses
         [JsonProperty("visits")]
         public IEnumerable<Visit> Visits { get; set; } = new List<Visit>();
 
-        private bool IsEmpty(int i) { return i == 0; }
-
-        public int NumUnassigned => Visits.Where
+        public int NumUnassigned => Visits.Count(visit => visit.NotAssigned());
     }
 }

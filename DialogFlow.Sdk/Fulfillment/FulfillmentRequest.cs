@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace DialogFlow.Sdk.Fulfillment
@@ -25,10 +26,32 @@ namespace DialogFlow.Sdk.Fulfillment
         {
             return ConversationResult.Parameters[parameterName];
         }
-        
+
         public int GetParameterAsInt(string parameterName)
         {
-            return int.Parse(ConversationResult.Parameters[parameterName]);
+            return int.Parse(GetParameter(parameterName));
+        }
+
+        public DateTime GetParameterAsDateTime(string parameterName)
+        {
+            return DateTime.Parse(GetParameter(parameterName));
+        }
+        
+        public string GetContextParameter(string contextName, string parameterName)
+        {
+            return ConversationResult.Contexts
+                .First(c => c.Name == contextName)
+                .Parameters[parameterName];
+        }
+
+        public int GetContextParameterAsInt(string contextName, string parameterName)
+        {
+            return int.Parse(GetContextParameter(contextName, parameterName));
+        }
+
+        public DateTime GetContextParameterAsDateTime(string contextName, string parameterName)
+        {
+            return DateTime.Parse(GetContextParameter(contextName, parameterName));
         }
     }
 }

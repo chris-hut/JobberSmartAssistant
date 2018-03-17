@@ -8,8 +8,12 @@
 
         public static class Intents
         {
+            public const string Welcome = "WELCOME_INTENT";
+            public const string Fallback = "FALLBACK_INTENT";
             public const string StartCreateJob = "START_CREATE_JOB";
-            public const string ClientSetCreateJob = "CLIENT_SET_CREATE_JOB";
+            public const string ClientRequestedCreateJob = "CLIENT_REQUESTED_CREATE_JOB"; 
+            public const string DescritptionRequestedCreateJob = "DESCRIPTION_REQUESTED_CREATE_JOB";
+
             public const string UnassignedVisits = "Unassigned_Visits";
         }
 
@@ -17,8 +21,14 @@
         {
             public const string ClientName = "CLIENT_NAME";
             public const string ClientId = "CLIENT_ID";
-            public const string Description = "DESCRIPTION";
-            public const string Date = "DATE"; 
+            public const string JobDescription = "DESCRIPTION";
+            public const string JobDate = "DATE";
+        }
+
+        public static class Contexts
+        {
+            public const string CreateJobClientRequested = "CREATE_JOB_CLIENT_REQUESTED";
+            public const string CreateJobClientSet = "CREATE_JOB_CLIENT_SET";
         }
 
     }

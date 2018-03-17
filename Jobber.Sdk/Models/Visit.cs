@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -59,6 +60,11 @@ namespace Jobber.Sdk.Models
         public bool IsAssigned()
         {
             return this.AssignedTo.Any();
+        }
+
+        public bool NotAssigned()
+        {
+            return !this.AssignedTo.Any();
         }
 
 

@@ -16,12 +16,8 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .TriggerOn("New job")
                 .TriggerOn("Can you make a job?")
                 .TriggerOn("can you create a job?")
-                .TriggerOn($"I want to add a job for [{Entity.Any}:{Constants.Variables.ClientName}:John Appleseed]")
-                .RequireParameter(ParameterBuilder.Of(Constants.Variables.ClientName, Entity.Any)
-                    .WithPrompt("Who is this job for?")
-                    .WithPrompt("Who needs the work done?")
-                )
-                .FulfillWithWebhook()
+                .RespondsWith("Okay who is this job for?")
+                .CreatesContext(ContextBuilder.For(Constants.Contexts.CreateJobClientRequested))
                 .Build();
         }
     }

@@ -17,16 +17,17 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
         {
 
-            var unassignedVisits = await jobberService.GetClientsAsync();
+            var unassignedVisits = await jobberService.GetVisitsAsync();
+            var numOfUnassignedVisits = unassignedVisits.NumUnassigned;
 
-            switch (unassignedVisits.Count)
+            switch (numOfUnassignedVisits)
             {
                 case 0:
-                    return BuildClientNotFoundResponse(clientName);
+                    return BuildZeroUnassignedVisitsFoundResponse(numOfUnassignedVisits);
                 case 1:
-                    return BuildClientFoundResponse(matchingClients.Clients.First());
+                    return BuildSingleUnassignedVisitsFoundResponse(numOfUnassignedVisits);
                 default:
-                    return BuildMultipleClientsFound(clientName);
+                    return BuildMultipleUnassignedVisitsFoundResponse(numOfUnassignedVisits);
             }
         }
 
@@ -44,7 +45,7 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
                 .Build();
         }
 
-        private static FulfillmentResponse BuildClientNotFoundResponse(int unassginedVisits)
+        private static FulfillmentResponse BuildZeroUnassignedVisitsFoundResponse(int unassginedVisits)
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"There are no visits left to be assigned today!")

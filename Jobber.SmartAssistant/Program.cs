@@ -6,8 +6,10 @@ using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.CreateJob;
+using Jobber.SmartAssistant.Features.Fallback;
 using Jobber.SmartAssistant.Features.FavoriteNumber;
 using Jobber.SmartAssistant.Features.Welcome;
+using Jobber.SmartAssistant.Features.UnassignedVisits;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
@@ -34,17 +36,21 @@ namespace Jobber.SmartAssistant
         {
             return new DefaultIntentRegistry()
                 .WithIntentDefinition(new WelcomeIntentDefinition())
+                .WithIntentDefinition(new FallbackIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())
-                .WithIntentDefinition(new ClientSetCreateJobintentDefintion())
-                .WithIntentDefinition(new FavoriteNumberIntentDefinition());
+                .WithIntentDefinition(new ClientRequestedCreateJobIntentDefinition())
+                .WithIntentDefinition(new DescriptionRequestedCreateJobintentDefintion())
+                .WithIntentDefinition(new FavoriteNumberIntentDefinition())
+                .WithIntentDefinition(new UnassignedVisitsIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
         {
             return new JobberSmartAssistantIntentFulfiller()
-                .WithJobberIntentFulfiller(new StartCreateJobIntentFulfiller())
+                .WithJobberIntentFulfiller(new ClientRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
-                .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller());
+                .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller())
+                .WithJobberIntentFulfiller(new UnassignedVisitsFulfiller());
         }
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)

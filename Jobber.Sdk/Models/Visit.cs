@@ -56,6 +56,11 @@ namespace Jobber.Sdk.Models
         [JsonProperty("line_items")]
         public IEnumerable<LineItem> LineItems { get; set; }
 
+        public bool IsAssigned()
+        {
+            return this.AssignedTo.Any();
+        }
+
 
     }
 }

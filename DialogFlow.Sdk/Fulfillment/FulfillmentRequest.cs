@@ -13,12 +13,19 @@ namespace DialogFlow.Sdk.Fulfillment
         public string Language { get; set; }
         [JsonProperty("result")]
         public ConversationResult ConversationResult { get; set; }
+        [JsonProperty("originalRequest")]
+        public OriginalRequest OriginalRequest { get; set; }
 
         public bool IsForAction(string actionName)
         {
             return actionName.ToLower().Equals(ConversationResult.ActionName.ToLower());
         }
 
+        public string GetParameter(string parameterName)
+        {
+            return ConversationResult.Parameters[parameterName];
+        }
+        
         public int GetParameterAsInt(string parameterName)
         {
             return int.Parse(ConversationResult.Parameters[parameterName]);

@@ -74,7 +74,7 @@ public class FavoriteNumberIntentDefinition : IIntentDefinition
 
 ### Creating an Intent Fulfiller
 
-If we specify that we want an intent to be fulfilled by a webhook we then need to define an IntentFulfiller that can handle that logic. An IntentFulfiller should be able to answer if a fulfillment request belongs to that intent. If sho it should also define logic that handles the fulfillment request. We can make one for the favorite number intent as follows:
+If we specify that we want an intent to be fulfilled by a webhook we then need to define an IntentFulfiller that can handle that logic. An IntentFulfiller should be able to answer if a fulfillment request belongs to that intent. It should also define logic that handles the fulfillment request. We can make one for the favorite number intent as follows:
 
 ```csharp
 public class FavoriteNumberIntentFulfiller : IJobberIntentFulfiller

@@ -24,11 +24,11 @@ namespace Jobber.SmartAssistant.Core
             return this;
         }
         
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, Authentication authentication)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest)
         {
             var jobberServer = _jobberServiceFactory.CreateJobberService(new JobberConfig
             {
-                ApiKey = $"Bearer {authentication.AuthenticationString}"
+                ApiKey = fulfillmentRequest.OriginalRequest.Data.User.AccessToken
             });
 
             return await GetJobberIntentFulfillerFor(fulfillmentRequest).FulfillAsync(fulfillmentRequest, jobberServer);

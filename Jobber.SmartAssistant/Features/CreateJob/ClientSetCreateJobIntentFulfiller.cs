@@ -10,7 +10,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.ClientSetCreateJob);
+            return fulfillmentRequest.IsForAction(Constants.Intents.ClientSetCreateJob);
         }
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)

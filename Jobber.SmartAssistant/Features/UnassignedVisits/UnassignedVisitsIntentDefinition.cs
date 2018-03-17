@@ -8,7 +8,7 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.UnassignedVisits)
+            return IntentBuilder.For(Constants.Intents.UnassignedVisits)
                 .TriggerOn("How many visits do I still need to assign today?")
                 .FulfillWithWebhook()
                 .Build();

@@ -24,7 +24,7 @@ namespace DialogFlow.Sdk.Intents
         [JsonProperty("priority")]
         public int Priority { get; set; } = 500000;
 
-        [JsonProperty("event")]
+        [JsonProperty("events")]
         public IList<Event> Events { get; set; } = new List<Event>();
         
         [JsonProperty("userSays")]

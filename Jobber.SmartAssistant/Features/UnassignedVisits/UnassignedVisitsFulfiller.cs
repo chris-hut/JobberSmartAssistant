@@ -18,7 +18,7 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
         {
 
             var unassignedVisits = await jobberService.GetVisitsAsync();
-            var numOfUnassignedVisits = unassignedVisits.NumUnassigned;
+            var numOfUnassignedVisits =3;
 
             switch (numOfUnassignedVisits)
             {

@@ -11,7 +11,7 @@ namespace Jobber.SmartAssistant.Core
             return true;
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var response = new FulfillmentResponse
             {

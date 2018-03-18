@@ -9,12 +9,12 @@ namespace Jobber.SmartAssistant.Core
 {
     public class JobberSmartAssistantIntentFulfiller : IIntentFulfiller
     {
-        private readonly JobberServiceFactory _jobberServiceFactory;
+        private readonly JobberClientFactory _jobberClientFactory;
         private readonly IList<IJobberIntentFulfiller> _jobberIntentFulfillers;
         
         public JobberSmartAssistantIntentFulfiller()
         {
-            _jobberServiceFactory = new JobberServiceFactory();   
+            _jobberClientFactory = new JobberClientFactory();   
             _jobberIntentFulfillers = new List<IJobberIntentFulfiller> { new DefaultJobberIntentFulfiller() };
         }
 
@@ -26,7 +26,7 @@ namespace Jobber.SmartAssistant.Core
         
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest)
         {
-            var jobberServer = _jobberServiceFactory.CreateJobberService(new JobberConfig
+            var jobberServer = _jobberClientFactory.CreateJobberClient(new JobberConfig
             {
                 ApiKey = fulfillmentRequest.OriginalRequest.Data.User.AccessToken
             });

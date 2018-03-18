@@ -14,9 +14,9 @@ namespace Jobber.SmartAssistant.Features.ConvertableQuotes
             return fulfillmentRequest.IsForAction(Constants.Intents.ConvertibleQuotes);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-            var Quotes = await jobberService.GetQuotesAsync();
+            var Quotes = await jobberClient.GetQuotesAsync();
             var numOfConvertableQuotes = Quotes.NumConvertable;
 
             switch (numOfConvertableQuotes)

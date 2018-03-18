@@ -16,10 +16,10 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return fulfillmentRequest.IsForAction(Constants.Intents.ClientRequestedCreateJob);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var clientName = fulfillmentRequest.GetParameter(Constants.Variables.ClientName);
-            var matchingClients = await jobberService.GetClientsAsync(clientName);
+            var matchingClients = await jobberClient.GetClientsAsync(clientName);
 
             switch (matchingClients.Count)
             {

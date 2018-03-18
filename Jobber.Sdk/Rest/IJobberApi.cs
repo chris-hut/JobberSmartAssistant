@@ -1,23 +1,20 @@
 ﻿using System.Threading.Tasks;
-using Jobber.Sdk.Models;
 using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
 using Refit;
 
-namespace Jobber.Sdk
+namespace Jobber.Sdk.Rest
 {
-    public interface IJobberService
+    public interface IJobberApi
     {
         [Post("/jobs")]
-        [Headers("X-API-VERSION: 2.0.0")]
         Task<JobCollection> CreateJobAsync([Body] Job job);
 
         [Put("/quotes/{quote_id}")]
         Task ModifyQuoteAsync([AliasAs("quote_id")] string quote_Id, [Body] Quote quote);
 
         [Get("/jobs")]
-        [Headers("X-API-VERSION: 2.0.0")]
         Task<JobCollection> GetJobsAsync();
 
         [Get("/clients?search={searchQuery}")]

@@ -19,7 +19,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return fulfillmentRequest.IsForAction(Constants.Intents.DescritptionRequestedCreateJob);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var jobDateTimeRange = GetDateTimeRangeForJobFrom(fulfillmentRequest);
 
@@ -32,7 +32,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             };
 
             var req = JsonConvert.SerializeObject(job);
-            await jobberService.CreateJobAsync(job);
+            await jobberClient.CreateJobAsync(job);
 
             return FulfillmentResponseBuilder.Create()
                 .Speech("Okay I created the job for you!")

@@ -24,7 +24,7 @@ namespace DialogFlow.Sdk
             catch (ApiException ex)
             {
                 var error = $"Failed to get intents";
-                throw ConverToDialogFlowException(ex, error);
+                throw ConvertToDialogFlowException(ex, error);
             }
         }
 
@@ -37,7 +37,7 @@ namespace DialogFlow.Sdk
             catch (ApiException ex)
             {
                 var error = $"Failed to create intent with name: {intent.Name}";
-                throw ConverToDialogFlowException(ex, error);
+                throw ConvertToDialogFlowException(ex, error);
             }
         }
 
@@ -50,7 +50,7 @@ namespace DialogFlow.Sdk
             catch (ApiException ex)
             {
                 var error = $"Failed to update intent with name: {intent.Name} and id: {intent.Id}";
-                throw ConverToDialogFlowException(ex, error);
+                throw ConvertToDialogFlowException(ex, error);
             }
         }
 
@@ -63,14 +63,14 @@ namespace DialogFlow.Sdk
             catch (ApiException ex)
             {
                 var error = $"Failed to delete intent with id: {intentId}";
-                throw ConverToDialogFlowException(ex, error);
+                throw ConvertToDialogFlowException(ex, error);
             }
         }
 
-        private Exception ConverToDialogFlowException(ApiException ex, string errorMessage)
+        private Exception ConvertToDialogFlowException(ApiException ex, string errorMessage)
         {
             var content = ex.GetContentAs<IntentStatusResponse>();
-            throw new DialogFlowException(errorMessage, content);
+            return new DialogFlowException(errorMessage, content);
         }
     }
 }

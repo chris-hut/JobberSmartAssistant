@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Jobber.Sdk.Models.Clients;
 using Newtonsoft.Json;
 
 namespace Jobber.Sdk.Models.Jobs
@@ -11,6 +10,9 @@ namespace Jobber.Sdk.Models.Jobs
 
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        [JsonProperty("job_type")] 
+        public string JobType { get; set; } = JobTypes.OneOff;
 
         [JsonProperty("closed")]
         public bool Closed { get; set; }
@@ -33,14 +35,14 @@ namespace Jobber.Sdk.Models.Jobs
         [JsonProperty("client")]
         public int Client { get; set; }
 
+        [JsonProperty("property")] 
+        public long? Property { get; set; }
+
         [JsonProperty("quote")]
         public double? Quote { get; set; }
 
         [JsonProperty("notes")]
         public IEnumerable<Note> Notes { get; set; }
-
-        [JsonProperty("properties")]
-        public IEnumerable<Properties> Properties { get; set; }
 
         [JsonProperty("line_items")]
         public IEnumerable<int> LineItems { get; set; }

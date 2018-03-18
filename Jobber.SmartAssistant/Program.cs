@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Assistant.Sdk.BuiltIns;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
+using DialogFlow.Sdk.Rest;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.CreateJob;
 using Jobber.SmartAssistant.Features.Fallback;
@@ -55,17 +56,17 @@ namespace Jobber.SmartAssistant
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)
         {
-            return new DialogFlowIntentSynchronizer(BuildDialogFlowServiceFrom(config));
+            return new DialogFlowIntentSynchronizer(BuildDialogFlowClientFrom(config));
         }
 
-        private static IDialogFlowService BuildDialogFlowServiceFrom(Configuration config)
+        private static IDialogFlowClient BuildDialogFlowClientFrom(Configuration config)
         {
             var dialogFlowConfig = new DialogFlowConfig
             {
                 ApiKey = config.DialogFlowApiKey
             };
 
-            return new DialogFlowServiceFactory(dialogFlowConfig).CreateDialogFlowService();
+            return new DialogFlowClientFactory().CreateDialogFlowClient(dialogFlowConfig);
         }
 
         private static Configuration LoadConfiguration()

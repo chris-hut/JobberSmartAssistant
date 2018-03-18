@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
-using DialogFlow.Sdk.Fulfillment;
+using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.SmartAssistant.Core;
 

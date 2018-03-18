@@ -1,6 +1,5 @@
 ﻿using System;
-using DialogFlow.Sdk.Fulfillment;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Fulfillment;
 
 namespace DialogFlow.Sdk.Builders
 {

@@ -1,6 +1,6 @@
 ﻿using Assistant.Sdk.BuiltIns;
 using DialogFlow.Sdk.Builders;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Intents;
 
 namespace Jobber.SmartAssistant.Features.Welcome
 {

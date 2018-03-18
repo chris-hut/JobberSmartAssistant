@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DialogFlow.Sdk.Fulfillment;
+using DialogFlow.Sdk.Models.Fulfillment;
 
 namespace Assistant.Sdk.Core
 {

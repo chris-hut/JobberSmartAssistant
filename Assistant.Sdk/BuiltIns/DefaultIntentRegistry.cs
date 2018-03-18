@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assistant.Sdk.Core;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Intents;
 
 namespace Assistant.Sdk.BuiltIns
 {

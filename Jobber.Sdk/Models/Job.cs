@@ -8,7 +8,10 @@ namespace Jobber.Sdk.Models
     public class Job
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         [JsonProperty("closed")]
         public bool Closed { get; set; }
@@ -20,15 +23,15 @@ namespace Jobber.Sdk.Models
         public string UpdatedAt { get; set; }
 
         [JsonProperty("start_at")]
-        public int StartAt { get; set; }
+        public long StartAt { get; set; }
 
         [JsonProperty("end_at")]
-        public int EndAt { get; set; }
+        public long EndAt { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        [JsonProperty("client:id")]
+        [JsonProperty("client")]
         public int Client { get; set; }
 
         [JsonProperty("quote")]

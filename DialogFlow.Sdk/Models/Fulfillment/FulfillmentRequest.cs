@@ -52,7 +52,7 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public string GetContextParameter(string contextName, string parameterName)
         {
             return ConversationResult.Contexts
-                .First(c => c.Name == contextName)
+                .First(c => c.Name.ToLower() == contextName.ToLower())
                 .Parameters[parameterName];
         }
 

@@ -11,12 +11,12 @@ namespace DialogFlow.Sdk.Rest
         Task<IEnumerable<Intent>> GetIntentsAsync();
         
         [Post("/intents")]
-        Task<IntentStatusResponse> CreateIntentAsync([Body] Intent intent);
+        Task<DialogFlowStatusResponse> CreateIntentAsync([Body] Intent intent);
 
         [Put("/intents/{intentId}")]
-        Task<IntentStatusResponse> UpdateIntentAsync([AliasAs("intentId")] string intentId, [Body] Intent intent);
+        Task<DialogFlowStatusResponse> UpdateIntentAsync([AliasAs("intentId")] string intentId, [Body] Intent intent);
 
         [Delete("/intents/{intentId}")]
-        Task<IntentStatusResponse> DeleteIntentAsync([AliasAs("intentId")] string intentId);
+        Task<DialogFlowStatusResponse> DeleteIntentAsync([AliasAs("intentId")] string intentId);
     }
 }

@@ -70,7 +70,7 @@ namespace DialogFlow.Sdk
 
         private Exception ConvertToDialogFlowException(ApiException ex, string errorMessage)
         {
-            var content = ex.GetContentAs<IntentStatusResponse>();
+            var content = ex.GetContentAs<DialogFlowStatusResponse>();
             return new DialogFlowException(errorMessage, content);
         }
     }

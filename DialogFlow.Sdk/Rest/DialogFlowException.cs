@@ -4,12 +4,12 @@ namespace DialogFlow.Sdk.Rest
 {
     public class DialogFlowException : Exception
     {
-        public DialogFlowException(string errorDescription, IntentStatusResponse intentStatusResponse)
-            : base(BuildErrorMessageFor(errorDescription, intentStatusResponse)) { }
+        public DialogFlowException(string errorDescription, DialogFlowStatusResponse dialogFlowStatusResponse)
+            : base(BuildErrorMessageFor(errorDescription, dialogFlowStatusResponse)) { }
 
-        private static string BuildErrorMessageFor(string errorDescription, IntentStatusResponse intentStatusResponse)
+        private static string BuildErrorMessageFor(string errorDescription, DialogFlowStatusResponse dialogFlowStatusResponse)
         {
-            return $"{errorDescription} because of {intentStatusResponse.ErrorMessage}";
+            return $"{errorDescription} because of {dialogFlowStatusResponse.ErrorMessage}";
         }
     }
 }

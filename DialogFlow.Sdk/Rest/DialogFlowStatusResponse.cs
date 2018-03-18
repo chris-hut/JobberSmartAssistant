@@ -2,17 +2,17 @@
 
 namespace DialogFlow.Sdk.Rest
 {
-    public class IntentStatusResponse
+    public class DialogFlowStatusResponse
     {
         [JsonProperty("id")]
         public string Id { get; set; }
         [JsonProperty("status")]
-        public IntentStatus Status { get; set; }
+        public Status Status { get; set; }
 
         public string ErrorMessage => $"{Status.ErrorType}; {Status.ErrorDetails}";
     }
 
-    public class IntentStatus
+    public class Status
     {
         [JsonProperty("code")]
         public int Code { get; set; }

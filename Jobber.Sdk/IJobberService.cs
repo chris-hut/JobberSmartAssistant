@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Jobber.Sdk.Models;
+using Jobber.Sdk.Models.Jobs;
 using Jobber.Sdk.Responses;
 using Refit;
 

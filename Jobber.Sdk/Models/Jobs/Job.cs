@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Jobber.Sdk.Models.Clients;
 using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Models
+namespace Jobber.Sdk.Models.Jobs
 {
     public class Job
     {
@@ -45,6 +44,5 @@ namespace Jobber.Sdk.Models
 
         [JsonProperty("line_items")]
         public IEnumerable<int> LineItems { get; set; }
-
     }
 }

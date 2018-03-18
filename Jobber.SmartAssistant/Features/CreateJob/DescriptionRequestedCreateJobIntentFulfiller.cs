@@ -5,6 +5,7 @@ using DialogFlow.Sdk.Models.Common;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
+using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 using Newtonsoft.Json;

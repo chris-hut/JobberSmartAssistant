@@ -4,6 +4,7 @@ using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
+using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Responses;
 using Jobber.SmartAssistant.Core;
 

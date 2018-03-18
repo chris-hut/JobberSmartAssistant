@@ -2,6 +2,7 @@
 using Jobber.Sdk.Models;
 using Newtonsoft.Json;
 using System.Linq;
+using Jobber.Sdk.Models.Jobs;
 
 namespace Jobber.Sdk.Responses
 {

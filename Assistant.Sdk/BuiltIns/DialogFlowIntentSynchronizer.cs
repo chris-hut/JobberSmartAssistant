@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Intents;
 
 namespace Assistant.Sdk.BuiltIns
 {

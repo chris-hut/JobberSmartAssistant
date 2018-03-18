@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Common;
 using Newtonsoft.Json;
 
-namespace DialogFlow.Sdk.Fulfillment
+namespace DialogFlow.Sdk.Models.Fulfillment
 {
     public class FulfillmentResponse
     {

@@ -1,7 +1,6 @@
 ﻿using System;
-using DialogFlow.Sdk.Intents;
 
-namespace DialogFlow.Sdk
+namespace DialogFlow.Sdk.Rest
 {
     public class DialogFlowException : Exception
     {

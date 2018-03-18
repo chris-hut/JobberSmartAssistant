@@ -1,4 +1,4 @@
-﻿using DialogFlow.Sdk.Intents;
+﻿using DialogFlow.Sdk.Models.Intents;
 using NUnit.Framework;
 
 namespace DialogFlow.Sdk.Tests.Utils

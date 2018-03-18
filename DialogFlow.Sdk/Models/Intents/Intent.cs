@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using DialogFlow.Sdk.Models.Common;
 using Newtonsoft.Json;
 
-namespace DialogFlow.Sdk.Intents
+namespace DialogFlow.Sdk.Models.Intents
 {
     public class Intent
     {

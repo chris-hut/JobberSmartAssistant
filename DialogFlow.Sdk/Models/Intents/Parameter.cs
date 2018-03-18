@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace DialogFlow.Sdk.Intents
+namespace DialogFlow.Sdk.Models.Intents
 {
     public class Parameter
     {

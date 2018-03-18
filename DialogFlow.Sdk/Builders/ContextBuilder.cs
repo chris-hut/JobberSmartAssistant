@@ -1,4 +1,4 @@
-﻿using DialogFlow.Sdk.Intents;
+﻿using DialogFlow.Sdk.Models.Common;
 
 namespace DialogFlow.Sdk.Builders
 {

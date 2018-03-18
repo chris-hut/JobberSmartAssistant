@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Intents;
 
 namespace Assistant.Sdk.Core
 {

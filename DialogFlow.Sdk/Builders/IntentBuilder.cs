@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Common;
+using DialogFlow.Sdk.Models.Intents;
+using DialogFlow.Sdk.Models.Messages;
 
 namespace DialogFlow.Sdk.Builders
 {

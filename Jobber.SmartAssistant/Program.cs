@@ -5,6 +5,7 @@ using Assistant.Sdk.BuiltIns;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk;
 using DialogFlow.Sdk.Rest;
+using Jobber.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Features.CreateJob;
 using Jobber.SmartAssistant.Features.Fallback;

@@ -25,7 +25,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
 
             var job = new Job
             {
-                Client = fulfillmentRequest.GetContextParameterAsInt(Constants.Contexts.CreateJobClientSet, Constants.Variables.ClientId),
+                //Client = fulfillmentRequest.GetContextParameterAsInt(Constants.Contexts.CreateJobClientSet, Constants.Variables.ClientId),
                 StartAt = jobDateTimeRange.Start.ToUnixTime(),
                 EndAt = jobDateTimeRange.End.ToUnixTime(),
                 Description = fulfillmentRequest.GetParameter(Constants.Variables.JobDescription)

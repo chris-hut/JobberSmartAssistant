@@ -30,9 +30,6 @@ namespace Jobber.Sdk.Rest
         [Get("/transactions")]
         Task<TransactionCollection> GetTransactionsAsync();
 
-        [Get("/expenses")]
-        Task<ExpenseCollection> GetExpensesAsync();
-
         [Get("/visits")]
         Task<VisitsCollections> GetVisitsAsync();
     }

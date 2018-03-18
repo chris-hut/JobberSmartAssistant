@@ -24,10 +24,10 @@ namespace Jobber.Sdk.Models.Financials
         public int UpdatedAt { get; set; }
 
         [JsonProperty("quote")]
-        public int Quote { get; set; }
+        public int? Quote { get; set; }
 
         [JsonProperty("invoice")]
-        public int Invoice { get; set; }
+        public int? Invoice { get; set; }
 
         [JsonProperty("client")]
         public int ClientId { get; set; }

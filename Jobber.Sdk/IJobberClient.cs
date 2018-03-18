@@ -13,10 +13,9 @@ namespace Jobber.Sdk
         Task<JobCollection> GetJobsAsync();
         Task UpdateQuoteAsync(string quoteId, Quote quote);
         Task<QuotesCollection> GetQuotesAsync();
-        Task<ClientCollection> GetClientsAsync([AliasAs("searchQuery")] string searchQuery = "");
+        Task<ClientCollection> GetClientsAsync(string searchQuery = "");
         Task<InvoicesCollection> GetInvoicesAsync();
         Task<TransactionCollection> GetTransactionsAsync();
-        Task<ExpenseCollection> GetExpensesAsync();
         Task<VisitsCollections> GetVisitsAsync();
     }
 }

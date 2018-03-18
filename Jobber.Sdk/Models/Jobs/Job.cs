@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Jobber.Sdk.Models.Clients;
 using Newtonsoft.Json;
 
 namespace Jobber.Sdk.Models.Jobs
@@ -33,13 +34,13 @@ namespace Jobber.Sdk.Models.Jobs
         public string Status { get; set; }
 
         [JsonProperty("client")]
-        public int? Client { get; set; }
+        public Client Client { get; set; }
 
-        [JsonProperty("property")] 
-        public long? Property { get; set; }
+        [JsonProperty("properties")] 
+        public IEnumerable<Properties> Property { get; set; }
 
         [JsonProperty("quote")]
-        public double? Quote { get; set; }
+        public Quote Quote { get; set; }
 
         [JsonProperty("notes")]
         public IEnumerable<Note> Notes { get; set; }

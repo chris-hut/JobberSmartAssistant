@@ -83,11 +83,6 @@ namespace Jobber.Sdk
             return await HandleErrorsIn(_jobberApi.GetTransactionsAsync, "Failed while getting transcations");
         }
 
-        public async Task<ExpenseCollection> GetExpensesAsync()
-        {
-            return await HandleErrorsIn(_jobberApi.GetExpensesAsync, "Failed while getting expenses");
-        }
-
         public async Task<VisitsCollections> GetVisitsAsync()
         {
             return await HandleErrorsIn(_jobberApi.GetVisitsAsync, "Failed while getting visits");

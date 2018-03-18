@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using DialogFlow.Sdk.Models.Common;
 using Newtonsoft.Json;
 
-namespace DialogFlow.Sdk.Fulfillment
+namespace DialogFlow.Sdk.Models.Fulfillment
 {
     public class FulfillmentRequest
     {
@@ -31,10 +33,20 @@ namespace DialogFlow.Sdk.Fulfillment
         {
             return int.Parse(GetParameter(parameterName));
         }
-
+        
+        public bool IsParameterDateRange(string parameter)
+        {
+            return DateTimeRange.IsParsable(GetParameter(parameter));
+        }
+        
         public DateTime GetParameterAsDateTime(string parameterName)
         {
             return DateTime.Parse(GetParameter(parameterName));
+        }
+
+        public DateTimeRange GetParemterAsDateTimeRange(string parameterName)
+        {
+            return DateTimeRange.Parse(GetParameter(parameterName));
         }
         
         public string GetContextParameter(string contextName, string parameterName)
@@ -49,9 +61,19 @@ namespace DialogFlow.Sdk.Fulfillment
             return int.Parse(GetContextParameter(contextName, parameterName));
         }
 
+        public bool IsContextParameterDateRange(string contextName, string parameter)
+        {
+            return DateTimeRange.IsParsable(GetContextParameter(contextName, parameter));
+        }
+
         public DateTime GetContextParameterAsDateTime(string contextName, string parameterName)
         {
             return DateTime.Parse(GetContextParameter(contextName, parameterName));
         }
+
+        public DateTimeRange GetContextParameterAsDateTimeRange(string contextName, string parameterName)
+        {
+            return DateTimeRange.Parse(GetContextParameter(contextName, parameterName));
+        }     
     }
 }

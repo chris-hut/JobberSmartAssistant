@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DialogFlow.Sdk.Intents;
+using DialogFlow.Sdk.Models.Intents;
 
 namespace Assistant.Sdk.Core
 {

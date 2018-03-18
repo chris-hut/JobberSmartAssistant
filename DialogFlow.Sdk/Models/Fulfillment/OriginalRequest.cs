@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DialogFlow.Sdk.Fulfillment
+namespace DialogFlow.Sdk.Models.Fulfillment
 {
     public class OriginalRequest
     {

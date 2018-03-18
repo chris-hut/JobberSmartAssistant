@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
-using DialogFlow.Sdk.Fulfillment;
+using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 
 namespace Jobber.SmartAssistant.Core

@@ -1,6 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 using DialogFlow.Sdk.Builders;
-using DialogFlow.Sdk.Intents;
 using DialogFlow.Sdk.Tests.Utils;
 using NUnit.Framework;
 

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DialogFlow.Sdk.Intents
+namespace DialogFlow.Sdk.Models.Messages
 {
     public class SpeechMessage : Message
     {

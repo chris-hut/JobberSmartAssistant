@@ -1,4 +1,4 @@
-﻿namespace DialogFlow.Sdk.Intents
+﻿namespace DialogFlow.Sdk.Models.Common
 {
     public static class Entity
     {

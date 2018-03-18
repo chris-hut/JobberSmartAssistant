@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Builders;
-using DialogFlow.Sdk.Fulfillment;
+using DialogFlow.Sdk.Models.Fulfillment;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

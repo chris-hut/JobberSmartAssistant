@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using DialogFlow.Sdk.Rest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -9,18 +10,13 @@ using Refit;
 
 namespace DialogFlow.Sdk
 {
-    public class DialogFlowServiceFactory
+    public class DialogFlowClientFactory
     {
-        private readonly HttpClient _httpClient;
-
-        public DialogFlowServiceFactory(DialogFlowConfig dialogFlowConfig)
+        public IDialogFlowClient CreateDialogFlowClient(DialogFlowConfig dialogFlowConfig)
         {
-            _httpClient = BuildAuthenticatingHttpClientFrom(dialogFlowConfig);
-        }
-     
-        public IDialogFlowService CreateDialogFlowService()
-        {
-            return RestService.For<IDialogFlowService>(_httpClient);
+            var httpClient = BuildAuthenticatingHttpClientFrom(dialogFlowConfig);
+            var dialogFlowApi = RestService.For<IDialogFlowApi>(httpClient);
+            return new DialogFlowClient(dialogFlowApi);
         }
 
         private static HttpClient BuildAuthenticatingHttpClientFrom(DialogFlowConfig dialogFlowConfig)

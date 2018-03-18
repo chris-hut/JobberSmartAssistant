@@ -35,28 +35,7 @@ namespace Jobber.Sdk
                 throw ConvertToJobberException("Failed when creating", ex);
             }
         }
-
-        private void GuardAgainstMissingFieldsIn(Job job)
-        {
-            var errors = new List<string>();
-            
-            if (job.Client == null) errors.Add("Client Id should be set");
-            if (job.JobType == null) errors.Add("JobType should be set. Use the JobTypes class to see the different types");
-            if (job.Property == null) errors.Add("Property Id should be set");
-
-            if (errors.Any())
-            {
-                var rawErrorList = JsonConvert.SerializeObject(errors, Formatting.Indented);
-                var errorCause = $"Job is missing required parameters:\n{rawErrorList}";
-                throw new JobberException("Failed to validate job", errorCause);
-            }
-        }
         
-        public async Task<JobCollection> GetJobsAsync()
-        {
-            return await HandleErrorsIn(_jobberApi.GetJobsAsync, "Failed while getting jobs");
-        }
-
         public async Task UpdateQuoteAsync(string quoteId, Quote quote)
         {
             try
@@ -70,12 +49,7 @@ namespace Jobber.Sdk
                 throw ConvertToJobberException(errorMessage, ex);
             }
         }
-
-        public async Task<QuotesCollection> GetQuotesAsync()
-        {
-            return await HandleErrorsIn(_jobberApi.GetQuotesAsync, "Failed while getting quotes");
-        }
-
+        
         public async Task<ClientCollection> GetClientsAsync(string searchQuery = "")
         {
             try
@@ -87,6 +61,16 @@ namespace Jobber.Sdk
                 var errorMessage = $"Failed while getting clients with query: \"{searchQuery}\"";
                 throw ConvertToJobberException(errorMessage, ex);
             }
+        }
+        
+        public async Task<JobCollection> GetJobsAsync()
+        {
+            return await HandleErrorsIn(_jobberApi.GetJobsAsync, "Failed while getting jobs");
+        }
+
+        public async Task<QuotesCollection> GetQuotesAsync()
+        {
+            return await HandleErrorsIn(_jobberApi.GetQuotesAsync, "Failed while getting quotes");
         }
 
         public async Task<InvoicesCollection> GetInvoicesAsync()
@@ -109,6 +93,22 @@ namespace Jobber.Sdk
             return await HandleErrorsIn(_jobberApi.GetVisitsAsync, "Failed while getting visits");
         }
 
+        private static void GuardAgainstMissingFieldsIn(Job job)
+        {
+            var errors = new List<string>();
+            
+            if (job.Client == null) errors.Add("Client Id should be set");
+            if (job.JobType == null) errors.Add("JobType should be set. Use the JobTypes class to see the different types");
+            if (job.Property == null) errors.Add("Property Id should be set");
+
+            if (errors.Any())
+            {
+                var rawErrorList = JsonConvert.SerializeObject(errors, Formatting.Indented);
+                var errorCause = $"Job is missing required parameters:\n{rawErrorList}";
+                throw new JobberException("Failed to validate job", errorCause);
+            }
+        }
+        
         private static async Task<T> HandleErrorsIn<T>(Func<Task<T>> function, string messageInCaseOfError)
         {
             try

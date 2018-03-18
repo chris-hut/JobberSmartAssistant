@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
@@ -21,6 +22,8 @@ namespace Jobber.Sdk
         
         public async Task CreateJobAsync(Job job)
         {
+            GuardAgainstMissingFieldsIn(job);
+            
             try
             {
                 var requestBody = JobberRequestUtils.CreateRequestBodyFor("job", job);
@@ -33,6 +36,22 @@ namespace Jobber.Sdk
             }
         }
 
+        private void GuardAgainstMissingFieldsIn(Job job)
+        {
+            var errors = new List<string>();
+            
+            if (job.Client == null) errors.Add("Client Id should be set");
+            if (job.JobType == null) errors.Add("JobType should be set. Use the JobTypes class to see the different types");
+            if (job.Property == null) errors.Add("Property Id should be set");
+
+            if (errors.Any())
+            {
+                var rawErrorList = JsonConvert.SerializeObject(errors, Formatting.Indented);
+                var errorCause = $"Job is missing required parameters:\n{rawErrorList}";
+                throw new JobberException("Failed to validate job", errorCause);
+            }
+        }
+        
         public async Task<JobCollection> GetJobsAsync()
         {
             return await HandleErrorsIn(_jobberApi.GetJobsAsync, "Failed while getting jobs");

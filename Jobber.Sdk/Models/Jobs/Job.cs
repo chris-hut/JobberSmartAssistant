@@ -33,7 +33,7 @@ namespace Jobber.Sdk.Models.Jobs
         public string Status { get; set; }
 
         [JsonProperty("client")]
-        public int Client { get; set; }
+        public int? Client { get; set; }
 
         [JsonProperty("property")] 
         public long? Property { get; set; }

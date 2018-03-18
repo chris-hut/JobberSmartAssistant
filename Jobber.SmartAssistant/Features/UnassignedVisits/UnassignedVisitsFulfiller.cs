@@ -17,8 +17,8 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
         {
 
-            var unassignedVisits = await jobberService.GetVisitsAsync();
-            var numOfUnassignedVisits =3;
+            var Visits = await jobberService.GetVisitsAsync();
+            var numOfUnassignedVisits = Visits.NumUnassigned;
 
             switch (numOfUnassignedVisits)
             {
@@ -41,14 +41,14 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
         private static FulfillmentResponse BuildSingleUnassignedVisitsFoundResponse(int unassignedVisits)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have 1 visit left to be assigned today.")
+                .Speech("You have 1 visit left to be assigned today.")
                 .Build();
         }
 
         private static FulfillmentResponse BuildZeroUnassignedVisitsFoundResponse(int unassginedVisits)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"There are no visits left to be assigned today!")
+                .Speech("There are no visits left to be assigned today!")
                 .Build();
         }
     }

@@ -59,12 +59,12 @@ namespace Jobber.Sdk.Models
 
         public bool IsAssigned()
         {
-            return this.AssignedTo.Any();
+            return AssignedTo.Any();
         }
 
         public bool NotAssigned()
         {
-            return !this.AssignedTo.Any();
+            return !AssignedTo.Any();
         }
 
 

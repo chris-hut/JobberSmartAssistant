@@ -11,6 +11,7 @@ using Jobber.SmartAssistant.Features.Fallback;
 using Jobber.SmartAssistant.Features.FavoriteNumber;
 using Jobber.SmartAssistant.Features.Welcome;
 using Jobber.SmartAssistant.Features.UnassignedVisits;
+using Jobber.SmartAssistant.Features.ConvertableQuotes;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
@@ -42,7 +43,8 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new ClientRequestedCreateJobIntentDefinition())
                 .WithIntentDefinition(new DescriptionRequestedCreateJobintentDefintion())
                 .WithIntentDefinition(new FavoriteNumberIntentDefinition())
-                .WithIntentDefinition(new UnassignedVisitsIntentDefinition());
+                .WithIntentDefinition(new UnassignedVisitsIntentDefinition())
+                .WithIntentDefinition(new ConvertableQuoteIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
@@ -51,7 +53,8 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new ClientRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new DescriptionRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller())
-                .WithJobberIntentFulfiller(new UnassignedVisitsFulfiller());
+                .WithJobberIntentFulfiller(new UnassignedVisitsFulfiller())
+                .WithJobberIntentFulfiller(new ConvertableQuoteIntentFulfiller());
         }
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)

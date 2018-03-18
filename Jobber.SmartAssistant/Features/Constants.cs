@@ -15,6 +15,7 @@
             public const string DescritptionRequestedCreateJob = "DESCRIPTION_REQUESTED_CREATE_JOB";
 
             public const string UnassignedVisits = "UNASSIGNED_VISITS";
+            public const string ConvertableQuotes = "CONVERTABLE_QUOTES"; 
         }
 
         public static class Variables

@@ -47,5 +47,10 @@ namespace Jobber.Sdk.Models
         [JsonProperty("property")]
         public Properties Property { get; set; }
 
+        public bool Convertable()
+        {
+            return ApprovedAt > 0;
+        }
+
     }
 }

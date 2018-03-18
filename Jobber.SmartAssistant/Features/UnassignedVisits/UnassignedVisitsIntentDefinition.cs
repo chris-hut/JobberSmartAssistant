@@ -10,6 +10,9 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
         {
             return IntentBuilder.For(Constants.Intents.UnassignedVisits)
                 .TriggerOn("How many visits do I still need to assign today?")
+                .TriggerOn("How many visits are unassigned today?")
+                .TriggerOn("Unassigned visits")
+                .RespondsWith("Okay, getting unassigned visits.")
                 .FulfillWithWebhook()
                 .Build();
         }

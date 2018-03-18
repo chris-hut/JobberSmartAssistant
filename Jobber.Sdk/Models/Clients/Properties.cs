@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Models
+namespace Jobber.Sdk.Models.Clients
 {
     public class Properties
     {
-
         [JsonProperty("id")]
         public int Id { get; set; }
 
@@ -27,10 +23,10 @@ namespace Jobber.Sdk.Models
         public string Country { get; set; }
 
         [JsonProperty("latitude")]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         [JsonProperty("longitude")]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         [JsonProperty("map_address")]
         public string MapAddress { get; set; }

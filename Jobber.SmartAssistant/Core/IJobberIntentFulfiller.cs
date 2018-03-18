@@ -7,6 +7,6 @@ namespace Jobber.SmartAssistant.Core
     public interface IJobberIntentFulfiller
     {
         bool CanFulfill(FulfillmentRequest fulfillmentRequest);
-        Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService);
+        Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient);
     }
 }

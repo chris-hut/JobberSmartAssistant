@@ -14,10 +14,10 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
             return fulfillmentRequest.IsForAction(Constants.Intents.UnassignedVisits);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
 
-            var Visits = await jobberService.GetVisitsAsync();
+            var Visits = await jobberClient.GetVisitsAsync();
             var numOfUnassignedVisits = Visits.NumUnassigned;
 
             switch (numOfUnassignedVisits)

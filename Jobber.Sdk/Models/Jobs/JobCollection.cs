@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using Jobber.Sdk.Models;
 using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Responses
+namespace Jobber.Sdk.Models.Jobs
 {
-    public class JobsResponse
+    public class JobCollection
     {
         [JsonProperty("jobs")]
         public IEnumerable<Job> Jobs { get; set; }

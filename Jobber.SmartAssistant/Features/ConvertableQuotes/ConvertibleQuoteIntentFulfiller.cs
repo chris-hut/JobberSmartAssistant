@@ -3,7 +3,6 @@ using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
-using Jobber.Sdk.Responses;
 using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.ConvertableQuotes
@@ -15,9 +14,9 @@ namespace Jobber.SmartAssistant.Features.ConvertableQuotes
             return fulfillmentRequest.IsForAction(Constants.Intents.ConvertibleQuotes);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-            var Quotes = await jobberService.GetQuotesAsync();
+            var Quotes = await jobberClient.GetQuotesAsync();
             var numOfConvertableQuotes = Quotes.NumConvertable;
 
             switch (numOfConvertableQuotes)

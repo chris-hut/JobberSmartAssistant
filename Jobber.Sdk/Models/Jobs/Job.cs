@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Jobber.Sdk.Models.Clients;
 using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Models
+namespace Jobber.Sdk.Models.Jobs
 {
     public class Job
     {
@@ -12,6 +11,9 @@ namespace Jobber.Sdk.Models
 
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        [JsonProperty("job_type")] 
+        public string JobType { get; set; } = JobTypes.OneOff;
 
         [JsonProperty("closed")]
         public bool Closed { get; set; }
@@ -32,19 +34,18 @@ namespace Jobber.Sdk.Models
         public string Status { get; set; }
 
         [JsonProperty("client")]
-        public int Client { get; set; }
+        public Client Client { get; set; }
+
+        [JsonProperty("properties")] 
+        public IEnumerable<Properties> Property { get; set; }
 
         [JsonProperty("quote")]
-        public double? Quote { get; set; }
+        public Quote Quote { get; set; }
 
         [JsonProperty("notes")]
         public IEnumerable<Note> Notes { get; set; }
 
-        [JsonProperty("properties")]
-        public IEnumerable<Properties> Properties { get; set; }
-
         [JsonProperty("line_items")]
         public IEnumerable<int> LineItems { get; set; }
-
     }
 }

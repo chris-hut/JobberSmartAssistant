@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Models
+namespace Jobber.Sdk.Models.Financials
 {
     public class Transaction
     {
@@ -27,10 +24,10 @@ namespace Jobber.Sdk.Models
         public int UpdatedAt { get; set; }
 
         [JsonProperty("quote")]
-        public int Quote { get; set; }
+        public int? Quote { get; set; }
 
         [JsonProperty("invoice")]
-        public int Invoice { get; set; }
+        public int? Invoice { get; set; }
 
         [JsonProperty("client")]
         public int ClientId { get; set; }

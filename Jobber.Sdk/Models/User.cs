@@ -7,7 +7,6 @@ namespace Jobber.Sdk.Models
 {
     public class User
     {
-
         [JsonProperty("id")]
         public int Id { get; set; }
 

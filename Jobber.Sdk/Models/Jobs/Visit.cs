@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Jobber.Sdk.Models.Clients;
+using Jobber.Sdk.Models.Financials;
 using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Models
+namespace Jobber.Sdk.Models.Jobs
 {
     public class Visit
     {

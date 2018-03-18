@@ -1,4 +1,4 @@
-﻿namespace Jobber.Sdk
+﻿namespace Jobber.Sdk.Rest
 {
     public class JobberConfig
     {

@@ -13,7 +13,7 @@ namespace Jobber.SmartAssistant.Features.FavoriteNumber
             return fulfillmentRequest.IsForAction("FAVORITE_NUMBER");
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var num = fulfillmentRequest.GetParameterAsInt("num");
 

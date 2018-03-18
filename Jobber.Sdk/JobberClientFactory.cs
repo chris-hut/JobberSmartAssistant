@@ -2,38 +2,41 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Jobber.Sdk.Rest;
 using Refit;
 
 namespace Jobber.Sdk
 {
-    public class JobberServiceFactory
+    public class JobberClientFactory
     {
-        public IJobberService CreateJobberService(JobberConfig jobberConfig)
+        public IJobberClient CreateJobberClient(JobberConfig jobberConfig)
         {
-            var httpClient = BuildAuthenticatingHttpClientFrom(jobberConfig);
-            return RestService.For<IJobberService>(httpClient);
+            var httpClient = BuildJobberHttpClientFrom(jobberConfig);
+            var jobberApi = RestService.For<IJobberApi>(httpClient);
+            return new JobberClient(jobberApi);
         }
 
-        private static HttpClient BuildAuthenticatingHttpClientFrom(JobberConfig jobberConfig)
+        private static HttpClient BuildJobberHttpClientFrom(JobberConfig jobberConfig)
         {
-            return new HttpClient(new AuthenticatingHttpClientHandler(jobberConfig.ApiKey))
+            return new HttpClient(new JobberHttpClient(jobberConfig.ApiKey))
             {
                 BaseAddress = new Uri(jobberConfig.BaseApiUrl)
             };
         }
     }
 
-    public class AuthenticatingHttpClientHandler : HttpClientHandler
+    public class JobberHttpClient : HttpClientHandler
     {
         private readonly string _apiToken;
 
-        public AuthenticatingHttpClientHandler(string apiToken)
+        public JobberHttpClient(string apiToken)
         {
             _apiToken = apiToken;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            request.Headers.Add("X-API-VERSION", "5.0.0");
             request.Headers.Add("Authorization", $"Bearer {_apiToken}");
             return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
         }

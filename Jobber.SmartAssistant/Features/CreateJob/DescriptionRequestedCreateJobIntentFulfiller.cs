@@ -5,6 +5,8 @@ using DialogFlow.Sdk.Models.Common;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
+using Jobber.Sdk.Models.Jobs;
+using Jobber.Sdk.Rest.Requests;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 using Newtonsoft.Json;
@@ -18,20 +20,19 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return fulfillmentRequest.IsForAction(Constants.Intents.DescritptionRequestedCreateJob);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var jobDateTimeRange = GetDateTimeRangeForJobFrom(fulfillmentRequest);
 
-            var job = new Job
+            var createJobRequest = new CreateJobRequest
             {
-                Client = fulfillmentRequest.GetContextParameterAsInt(Constants.Contexts.CreateJobClientSet, Constants.Variables.ClientId),
+                ClientId = fulfillmentRequest.GetContextParameterAsInt(Constants.Contexts.CreateJobClientSet, Constants.Variables.ClientId),
                 StartAt = jobDateTimeRange.Start.ToUnixTime(),
                 EndAt = jobDateTimeRange.End.ToUnixTime(),
                 Description = fulfillmentRequest.GetParameter(Constants.Variables.JobDescription)
             };
 
-            var req = JsonConvert.SerializeObject(job);
-            await jobberService.CreateJobAsync(job);
+            await jobberClient.CreateJobAsync(createJobRequest);
 
             return FulfillmentResponseBuilder.Create()
                 .Speech("Okay I created the job for you!")

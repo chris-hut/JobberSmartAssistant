@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Jobber.Sdk.Models;
 using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Responses
+namespace Jobber.Sdk.Models.Clients
 {
-    public class ClientsResponse
+    public class ClientCollection
     {
         [JsonProperty("clients")] 
         public IEnumerable<Client> Clients { get; set; } = new List<Client>();

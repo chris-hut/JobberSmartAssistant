@@ -4,7 +4,7 @@ using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
-using Jobber.Sdk.Responses;
+using Jobber.Sdk.Models.Clients;
 using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.CreateJob
@@ -16,10 +16,10 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return fulfillmentRequest.IsForAction(Constants.Intents.ClientRequestedCreateJob);
         }
 
-        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)
+        public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var clientName = fulfillmentRequest.GetParameter(Constants.Variables.ClientName);
-            var matchingClients = await jobberService.GetClientsAsync(clientName);
+            var matchingClients = await jobberClient.GetClientsAsync(clientName);
 
             switch (matchingClients.Count)
             {

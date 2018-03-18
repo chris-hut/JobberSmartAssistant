@@ -8,11 +8,11 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.ConvertableQuotes
 {
-    class ConvertableQuoteIntentFulfiller : IJobberIntentFulfiller
+    class ConvertibleQuoteIntentFulfiller : IJobberIntentFulfiller
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.Intents.ConvertableQuotes);
+            return fulfillmentRequest.IsForAction(Constants.Intents.ConvertibleQuotes);
         }
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberService jobberService)

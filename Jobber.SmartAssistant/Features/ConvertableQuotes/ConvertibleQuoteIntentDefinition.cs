@@ -5,17 +5,17 @@ using DialogFlow.Sdk.Models.Intents;
 
 namespace Jobber.SmartAssistant.Features.ConvertableQuotes
 {
-    class ConvertableQuoteIntentDefinition : IIntentDefinition
+    class ConvertibleQuoteIntentDefinition : IIntentDefinition
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.Intents.ConvertableQuotes)
+            return IntentBuilder.For(Constants.Intents.ConvertibleQuotes)
                .TriggerOn("How many quotes are ready to be turned into jobs?")
                .TriggerOn("How many quotes are ready?")
                .TriggerOn("How many quotes are approved?")
                .TriggerOn("How many quotes can become jobs?")
                .TriggerOn("Ready quotes")
-               .TriggerOn("Convertable quotes")
+               .TriggerOn("Convertible quotes")
                .FulfillWithWebhook()
                .Build();
         }

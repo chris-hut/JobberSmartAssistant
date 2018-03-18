@@ -44,7 +44,7 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new DescriptionRequestedCreateJobintentDefintion())
                 .WithIntentDefinition(new FavoriteNumberIntentDefinition())
                 .WithIntentDefinition(new UnassignedVisitsIntentDefinition())
-                .WithIntentDefinition(new ConvertableQuoteIntentDefinition());
+                .WithIntentDefinition(new ConvertibleQuoteIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
@@ -54,7 +54,7 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new DescriptionRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller())
                 .WithJobberIntentFulfiller(new UnassignedVisitsFulfiller())
-                .WithJobberIntentFulfiller(new ConvertableQuoteIntentFulfiller());
+                .WithJobberIntentFulfiller(new ConvertibleQuoteIntentFulfiller());
         }
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)

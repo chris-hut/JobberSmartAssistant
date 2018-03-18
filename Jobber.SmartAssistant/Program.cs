@@ -58,14 +58,14 @@ namespace Jobber.SmartAssistant
             return new DialogFlowIntentSynchronizer(BuildDialogFlowServiceFrom(config));
         }
 
-        private static IDialogFlowService BuildDialogFlowServiceFrom(Configuration config)
+        private static IDialogFlowClient BuildDialogFlowServiceFrom(Configuration config)
         {
             var dialogFlowConfig = new DialogFlowConfig
             {
                 ApiKey = config.DialogFlowApiKey
             };
 
-            return new DialogFlowServiceFactory(dialogFlowConfig).CreateDialogFlowService();
+            return new DialogFlowServiceFactory().CreateDialogFlowService(dialogFlowConfig);
         }
 
         private static Configuration LoadConfiguration()

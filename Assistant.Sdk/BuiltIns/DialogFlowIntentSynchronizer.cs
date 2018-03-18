@@ -9,11 +9,11 @@ namespace Assistant.Sdk.BuiltIns
 {
     public class DialogFlowIntentSynchronizer : IIntentSynchronizer
     {
-        private readonly IDialogFlowService _dialogFlowService;
+        private readonly IDialogFlowClient _dialogFlowClient;
 
-        public DialogFlowIntentSynchronizer(IDialogFlowService dialogFlowService)
+        public DialogFlowIntentSynchronizer(IDialogFlowClient dialogFlowClient)
         {
-            _dialogFlowService = dialogFlowService;
+            _dialogFlowClient = dialogFlowClient;
         }
 
         public async Task SynchronizeIntentsAsync(IEnumerable<Intent> intents)
@@ -24,7 +24,7 @@ namespace Assistant.Sdk.BuiltIns
 
         private async Task UpsertRegisteredIntentsAsync(IEnumerable<Intent> intents)
         {
-            var registeredIntents = await _dialogFlowService.GetIntentsAsync();
+            var registeredIntents = await _dialogFlowClient.GetIntentsAsync();
             var namesOfIntentsToSync = intents.Select(i => i.Name).ToHashSet();
             
             var nameKeyMap = new Dictionary<string, string>();
@@ -32,18 +32,18 @@ namespace Assistant.Sdk.BuiltIns
 
             var createTasks = intents
                 .Where(i => !nameKeyMap.ContainsKey(i.Name))
-                .Select(i => _dialogFlowService.CreateIntentAsync(i));
+                .Select(i => _dialogFlowClient.CreateIntentAsync(i));
             
             var updateTasks = intents
                 .Where(i => nameKeyMap.ContainsKey(i.Name))
-                .Select(i => _dialogFlowService.UpdateIntentAsync(nameKeyMap[i.Name], i));
+                .Select(i => _dialogFlowClient.UpdateIntentAsync(nameKeyMap[i.Name], i));
 
             await Task.WhenAll(createTasks.Concat(updateTasks));
         }
 
         private async Task DeleteUnregisteredIntentsAsync(IEnumerable<Intent> intents)
         {
-            var registeredIntents = await _dialogFlowService.GetIntentsAsync();
+            var registeredIntents = await _dialogFlowClient.GetIntentsAsync();
             var namesOfSyncedIntents = intents.Select(i => i.Name).ToHashSet();
             
             var nameKeyMap = new Dictionary<string, string>();
@@ -51,7 +51,7 @@ namespace Assistant.Sdk.BuiltIns
 
             var deleteTasks = nameKeyMap
                 .Where(entry => !namesOfSyncedIntents.Contains(entry.Key))
-                .Select(entry => _dialogFlowService.DeleteIntentAsync(entry.Value));
+                .Select(entry => _dialogFlowClient.DeleteIntentAsync(entry.Value));
                 
 
             await Task.WhenAll(deleteTasks);

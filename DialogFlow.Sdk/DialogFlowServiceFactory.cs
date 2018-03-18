@@ -11,16 +11,11 @@ namespace DialogFlow.Sdk
 {
     public class DialogFlowServiceFactory
     {
-        private readonly HttpClient _httpClient;
-
-        public DialogFlowServiceFactory(DialogFlowConfig dialogFlowConfig)
+        public IDialogFlowClient CreateDialogFlowService(DialogFlowConfig dialogFlowConfig)
         {
-            _httpClient = BuildAuthenticatingHttpClientFrom(dialogFlowConfig);
-        }
-     
-        public IDialogFlowService CreateDialogFlowService()
-        {
-            return RestService.For<IDialogFlowService>(_httpClient);
+            var httpClient = BuildAuthenticatingHttpClientFrom(dialogFlowConfig);
+            var dialogFlowApi = RestService.For<IDialogFlowApi>(httpClient);
+            return new DialogFlowClient(dialogFlowApi);
         }
 
         private static HttpClient BuildAuthenticatingHttpClientFrom(DialogFlowConfig dialogFlowConfig)

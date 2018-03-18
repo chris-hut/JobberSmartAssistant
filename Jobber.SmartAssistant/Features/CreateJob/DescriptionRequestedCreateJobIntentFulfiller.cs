@@ -6,7 +6,7 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.CreateJob
 {
-    public class ClientSetCreateJobIntentFulfiller : IJobberIntentFulfiller
+    public class DescriptionRequestedCreateJobIntentFulfiller : IJobberIntentFulfiller
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {

@@ -49,7 +49,7 @@ namespace Jobber.SmartAssistant
         {
             return new JobberSmartAssistantIntentFulfiller()
                 .WithJobberIntentFulfiller(new ClientRequestedCreateJobIntentFulfiller())
-                .WithJobberIntentFulfiller(new ClientSetCreateJobIntentFulfiller())
+                .WithJobberIntentFulfiller(new DescriptionRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller())
                 .WithJobberIntentFulfiller(new UnassignedVisitsFulfiller());
         }

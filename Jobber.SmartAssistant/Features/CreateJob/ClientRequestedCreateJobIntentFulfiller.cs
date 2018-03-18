@@ -39,6 +39,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .WithContext(
                     ContextBuilder.For(Constants.Contexts.CreateJobClientSet)
                         .WithParameter(Constants.Variables.ClientId, client.Id.ToString())
+                        .WithParameter(Constants.Variables.PropertyId, client.MyProperties.First().Id.ToString())
                 )
                 .Build();
         }

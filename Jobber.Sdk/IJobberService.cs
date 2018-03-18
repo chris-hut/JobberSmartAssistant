@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Jobber.Sdk.Models;
+using Jobber.Sdk.Models.Clients;
+using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
-using Jobber.Sdk.Responses;
 using Refit;
 
 namespace Jobber.Sdk
@@ -10,31 +11,31 @@ namespace Jobber.Sdk
     {
         [Post("/jobs")]
         [Headers("X-API-VERSION: 2.0.0")]
-        Task<JobsResponse> CreateJobAsync([Body] Job job);
+        Task<JobCollection> CreateJobAsync([Body] Job job);
 
         [Put("/quotes/{quote_id}")]
         Task ModifyQuoteAsync([AliasAs("quote_id")] string quote_Id, [Body] Quote quote);
 
         [Get("/jobs")]
         [Headers("X-API-VERSION: 2.0.0")]
-        Task<JobsResponse> GetJobsAsync();
+        Task<JobCollection> GetJobsAsync();
 
         [Get("/clients?search={searchQuery}")]
-        Task<ClientsResponse> GetClientsAsync([AliasAs("searchQuery")] string searchQuery = "");
+        Task<ClientCollection> GetClientsAsync([AliasAs("searchQuery")] string searchQuery = "");
 
         [Get("/quotes")]
-        Task<QuotesResponse> GetQuotesAsync();
+        Task<QuotesCollection> GetQuotesAsync();
 
         [Get("/invoices")]
-        Task<InvoicesResponse> GetInvoicesAsync();
+        Task<InvoicesCollection> GetInvoicesAsync();
 
         [Get("/transactions")]
-        Task<TransactionsResponse> GetTransactionsAsync();
+        Task<TransactionCollection> GetTransactionsAsync();
 
         [Get("/expenses")]
-        Task<ExpensesResponse> GetExpensesAsync();
+        Task<ExpenseCollection> GetExpensesAsync();
 
         [Get("/visits")]
-        Task<VisitsResponse> GetVisitsAsync();
+        Task<VisitsCollections> GetVisitsAsync();
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using Jobber.Sdk.Models;
-using Jobber.Sdk.Models.Financials;
 using Newtonsoft.Json;
 
-namespace Jobber.Sdk.Responses
+namespace Jobber.Sdk.Models.Financials
 {
-    public class ExpensesResponse
+    public class ExpenseCollection
     {
         [JsonProperty("expenses")]
         public IEnumerable<Expense> Expenses { get; set; } = new List<Expense>();

@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using Jobber.Sdk.Models;
-using Jobber.Sdk.Models.Financials;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
-namespace Jobber.Sdk.Responses
+namespace Jobber.Sdk.Models.Financials
 {
-    public class TransactionsResponse
+    public class TransactionCollection
     {
         [JsonProperty("transactions")]
         public IEnumerable<Transaction> Transactions { get; set; }

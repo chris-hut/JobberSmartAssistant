@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.Sdk.Rest;
+using Refit;
 
 namespace Jobber.Sdk
 {
@@ -17,8 +20,16 @@ namespace Jobber.Sdk
         
         public async Task CreateJobAsync(Job job)
         {
-            var requestBody = JobberRequestUtils.CreateRequestBodyFor("job", job);
-            await _jobberApi.CreateJobAsync(requestBody);
+            try
+            {
+                var requestBody = JobberRequestUtils.CreateRequestBodyFor("job", job);
+                await _jobberApi.CreateJobAsync(requestBody);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Failed when creating job with description: {job.Description}";
+                throw ConvertToJobberException("Failed when creating", ex);
+            }
         }
 
         public async Task<JobCollection> GetJobsAsync()
@@ -60,6 +71,17 @@ namespace Jobber.Sdk
         public async Task<VisitsCollections> GetVisitsAsync()
         {
             return await _jobberApi.GetVisitsAsync();
+        }
+
+        private static JobberException ConvertToJobberException(string errorMessage, Exception ex)
+        {
+            switch (ex)
+            {
+                case ApiException apiException:
+                    return new JobberException(errorMessage, apiException.Content);
+                default:
+                    return new JobberException(errorMessage, ex.Message);
+            }
         }
     }
 }

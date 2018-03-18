@@ -91,7 +91,7 @@ namespace Assistant.Sdk
             }
             catch(Exception ex)
             {
-                _logger.LogError($"Encountered an exception [{ex.GetType().Name}: {ex.Message}] while handling request.");
+                _logger.LogError($"Encountered an exception: {ex.GetType().Name}: {ex.Message}");
                 
                 var response = FulfillmentResponseBuilder.Create()
                     .Speech("Sorry something went wrong. Try asking me again later.")

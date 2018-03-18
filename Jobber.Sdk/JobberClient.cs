@@ -8,56 +8,58 @@ namespace Jobber.Sdk
 {
     public class JobberClient : IJobberClient
     {
-        private IJobberApi _jobberApi;
+        private readonly IJobberApi _jobberApi;
 
         public JobberClient(IJobberApi jobberApi)
         {
             _jobberApi = jobberApi;
         }
         
-        public Task CreateJobAsync(Job job)
+        public async Task CreateJobAsync(Job job)
         {
-            throw new System.NotImplementedException();
+            var requestBody = JobberRequestUtils.CreateRequestBodyFor("job", job);
+            await _jobberApi.CreateJobAsync(requestBody);
         }
 
-        public Task<JobCollection> GetJobsAsync()
+        public async Task<JobCollection> GetJobsAsync()
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetJobsAsync();
         }
 
-        public Task ModifyQuoteAsync(string quoteId, Quote quote)
+        public async Task UpdateQuoteAsync(string quoteId, Quote quote)
         {
-            throw new System.NotImplementedException();
+            var requestBody = JobberRequestUtils.CreateRequestBodyFor("quote", quote);
+            await _jobberApi.UpdateQuoteAsync(quoteId, requestBody);
         }
 
-        public Task<QuotesCollection> GetQuotesAsync()
+        public async Task<QuotesCollection> GetQuotesAsync()
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetQuotesAsync();
         }
 
-        public Task<ClientCollection> GetClientsAsync(string searchQuery = "")
+        public async Task<ClientCollection> GetClientsAsync(string searchQuery = "")
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetClientsAsync(searchQuery);
         }
 
-        public Task<InvoicesCollection> GetInvoicesAsync()
+        public async Task<InvoicesCollection> GetInvoicesAsync()
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetInvoicesAsync();
         }
 
-        public Task<TransactionCollection> GetTransactionsAsync()
+        public async Task<TransactionCollection> GetTransactionsAsync()
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetTransactionsAsync();
         }
 
-        public Task<ExpenseCollection> GetExpensesAsync()
+        public async Task<ExpenseCollection> GetExpensesAsync()
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetExpensesAsync();
         }
 
-        public Task<VisitsCollections> GetVisitsAsync()
+        public async Task<VisitsCollections> GetVisitsAsync()
         {
-            throw new System.NotImplementedException();
+            return await _jobberApi.GetVisitsAsync();
         }
     }
 }

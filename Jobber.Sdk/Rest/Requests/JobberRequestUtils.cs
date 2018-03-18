@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Jobber.Sdk.Rest
+namespace Jobber.Sdk.Rest.Requests
 {
     public static class JobberRequestUtils
     {

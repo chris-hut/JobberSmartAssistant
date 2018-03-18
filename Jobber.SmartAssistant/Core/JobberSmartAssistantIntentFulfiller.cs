@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
+using Jobber.Sdk.Rest;
 
 namespace Jobber.SmartAssistant.Core
 {

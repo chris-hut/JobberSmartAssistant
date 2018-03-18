@@ -6,6 +6,7 @@ using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.Sdk.Rest;
+using Jobber.Sdk.Rest.Requests;
 using Newtonsoft.Json;
 using Refit;
 
@@ -20,18 +21,18 @@ namespace Jobber.Sdk
             _jobberApi = jobberApi;
         }
         
-        public async Task CreateJobAsync(Job job)
+        public async Task CreateJobAsync(CreateJobRequest createJobRequest)
         {
-            GuardAgainstMissingFieldsIn(job);
+            GuardAgainstMissingFieldsIn(createJobRequest);
             
             try
             {
-                var requestBody = JobberRequestUtils.CreateRequestBodyFor("job", job);
+                var requestBody = JobberRequestUtils.CreateRequestBodyFor("job", createJobRequest);
                 await _jobberApi.CreateJobAsync(requestBody);
             }
             catch (Exception ex)
             {
-                var errorMessage = $"Failed when creating job with description: {job.Description}";
+                var errorMessage = $"Failed when creating job with description: {createJobRequest.Description}";
                 throw ConvertToJobberException("Failed when creating", ex);
             }
         }
@@ -88,13 +89,13 @@ namespace Jobber.Sdk
             return await HandleErrorsIn(_jobberApi.GetVisitsAsync, "Failed while getting visits");
         }
 
-        private static void GuardAgainstMissingFieldsIn(Job job)
+        private static void GuardAgainstMissingFieldsIn(CreateJobRequest createJobRequest)
         {
             var errors = new List<string>();
             
-            if (job.Client == null) errors.Add("Client Id should be set");
-            if (job.JobType == null) errors.Add("JobType should be set. Use the JobTypes class to see the different types");
-            if (job.Property == null) errors.Add("Property Id should be set");
+            if (createJobRequest.ClientId == null) errors.Add("Client Id should be set");
+            if (createJobRequest.JobType == null) errors.Add("JobType should be set. Use the JobTypes class to see the different types");
+            if (createJobRequest.PropertyId == null) errors.Add("Property Id should be set");
 
             if (errors.Any())
             {

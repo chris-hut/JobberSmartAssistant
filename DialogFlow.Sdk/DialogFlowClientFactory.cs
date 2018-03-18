@@ -9,9 +9,9 @@ using Refit;
 
 namespace DialogFlow.Sdk
 {
-    public class DialogFlowServiceFactory
+    public class DialogFlowClientFactory
     {
-        public IDialogFlowClient CreateDialogFlowService(DialogFlowConfig dialogFlowConfig)
+        public IDialogFlowClient CreateDialogFlowClient(DialogFlowConfig dialogFlowConfig)
         {
             var httpClient = BuildAuthenticatingHttpClientFrom(dialogFlowConfig);
             var dialogFlowApi = RestService.For<IDialogFlowApi>(httpClient);

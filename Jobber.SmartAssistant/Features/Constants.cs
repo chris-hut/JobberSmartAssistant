@@ -17,6 +17,7 @@
             public const string UnassignedVisits = "UNASSIGNED_VISITS";
             public const string ConvertibleQuotes = "CONVERTIBLE_QUOTES";
             public const string SendableInvoices = "SENDABLE_INVOICES";
+            public const string GetRevenue = "GET_REVENUE";
         }
 
         public static class Variables

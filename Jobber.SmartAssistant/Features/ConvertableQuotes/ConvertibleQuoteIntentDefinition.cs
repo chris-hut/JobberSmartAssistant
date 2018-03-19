@@ -5,7 +5,7 @@ using DialogFlow.Sdk.Models.Intents;
 
 namespace Jobber.SmartAssistant.Features.ConvertableQuotes
 {
-    class ConvertibleQuoteIntentDefinition : IIntentDefinition
+    public class ConvertibleQuoteIntentDefinition : IIntentDefinition
     {
         public Intent DefineIntent()
         {

@@ -7,7 +7,7 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.ConvertableQuotes
 {
-    class ConvertibleQuoteIntentFulfiller : IJobberIntentFulfiller
+    public class ConvertibleQuoteIntentFulfiller : IJobberIntentFulfiller
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {

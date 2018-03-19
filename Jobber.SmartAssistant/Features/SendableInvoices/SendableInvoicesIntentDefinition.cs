@@ -8,7 +8,7 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.Intents.ConvertibleQuotes)
+            return IntentBuilder.For(Constants.Intents.SendableInvoices)
                .TriggerOn("How many invoices are ready to be sent?")
                .TriggerOn("Ready invoices?")
                .TriggerOn("Sendable invoices")

@@ -16,7 +16,7 @@ namespace DialogFlow.Sdk.Models.Intents
         [JsonProperty("parameters")]
         public IList<Parameter> Parameters { get; set; } = new List<Parameter>();
         [JsonProperty("messages")]
-        public IList<Message> Messages { get; set; } = new List<Message>();
+        public IList<IMessage> Messages { get; set; } = new List<IMessage>();
         [JsonProperty("affectedContexts")]
         public IList<Context> AffectedContexts { get; set; } = new List<Context>();
     }

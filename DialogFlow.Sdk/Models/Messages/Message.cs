@@ -2,12 +2,17 @@
 
 namespace DialogFlow.Sdk.Models.Messages
 {
-    public class Message
+    public interface IMessage
+    {
+        
+    }
+    
+    public class Message<T> : IMessage
     {
         [JsonProperty("type")]
-        public int Type { get; }
+        public T Type { get; }
 
-        public Message(int type)
+        public Message(T type)
         {
             Type = type;
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DialogFlow.Sdk.Models.Common;
+using DialogFlow.Sdk.Models.Messages;
 using Newtonsoft.Json;
 
 namespace DialogFlow.Sdk.Models.Fulfillment
@@ -12,9 +13,10 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public string DisplayText { get; set; }
         [JsonProperty("contextOut")]
         public List<Context> ContextOut { get; set; } = new List<Context>();
+        [JsonProperty("messages")]
+        public IList<IMessage> Messages { get; set; } = new List<IMessage>();
         [JsonProperty("data")]
         public IFulfillmentData Data { get; set; }
-        
     }
 
     public interface IFulfillmentData

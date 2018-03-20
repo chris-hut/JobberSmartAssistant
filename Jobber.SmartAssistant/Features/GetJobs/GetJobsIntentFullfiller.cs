@@ -21,10 +21,6 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         {
             var jobs = await jobberClient.GetJobsAsync();
             
-            return FulfillmentResponseBuilder.Create()
-                .Speech($"Your jobs today are laundry and mowing.")
-                .Build();
-            
             switch (jobs.Count)
             {
                 case 0:
@@ -46,7 +42,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         private static FulfillmentResponse BuildJobFoundResponse(Job job) 
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have one job today. Here's the description: Tada")
+                .Speech($"You have one job today. Here's the description: {job.Description}")
                 .Build();
         }
 

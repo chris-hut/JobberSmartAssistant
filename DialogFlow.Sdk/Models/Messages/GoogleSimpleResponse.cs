@@ -2,7 +2,7 @@
 
 namespace DialogFlow.Sdk.Models.Messages
 {
-    public class GoogleSimpleResponse : Message<string>
+    public class GoogleSimpleResponse : GoogleMessage
     {
         [JsonProperty("platform")]
         public string Platform { get; } = "google";

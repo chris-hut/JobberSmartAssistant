@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace DialogFlow.Sdk.Models.Messages
 {
-    public class GoogleCardMessage : Message<string>
+    public class GoogleCardMessage : GoogleMessage
     {
         [JsonProperty("platform")] 
         public string Platform { get; } = "google";

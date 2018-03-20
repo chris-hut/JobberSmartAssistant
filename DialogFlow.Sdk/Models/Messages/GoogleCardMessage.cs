@@ -29,6 +29,10 @@ namespace DialogFlow.Sdk.Models.Messages
     {
         [JsonProperty("accessibilityText")]
         public string AccessibilityText { get; set; }
+        [JsonProperty("width")]
+        public int Width { get; set; }
+        [JsonProperty("height")]
+        public int Height { get; set; }
     }
 
     public class UrlContainer

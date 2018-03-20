@@ -8,7 +8,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.Intents.GetJobs)
+            return IntentBuilder.For(Constants.Intents.GetLengthWorkDay)
                 .TriggerOn("How long is my work today.")
                 .TriggerOn("How long do I have work today.")
                 .TriggerOn("How long are my jobs today.")

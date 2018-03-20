@@ -18,11 +18,17 @@ namespace DialogFlow.Sdk.Models.Messages
         [JsonProperty("formattedText")]
         public string FormattedText { get; set; }
         [JsonProperty("image")]
-        public UrlContainer Image { get; set; } = new UrlContainer();
+        public Image Image { get; set; } = new Image();
         [JsonProperty("buttons")]
         public IList<GoogleCardButton> Buttons { get; set; } = new List<GoogleCardButton>();
 
         public GoogleCardMessage() : base("basic_card") { }
+    }
+
+    public class Image : UrlContainer
+    {
+        [JsonProperty("accessibility_text")]
+        public string AccessibilityText { get; set; }
     }
 
     public class UrlContainer

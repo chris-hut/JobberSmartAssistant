@@ -35,9 +35,10 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
-        public GoogleCardBuilder Image(string imageUrl)
+        public GoogleCardBuilder Image(string imageUrl, string accesibilityText)
         {
             _googleCardMessage.Image.Url = imageUrl;
+            _googleCardMessage.Image.AccessibilityText = accesibilityText;
             return this;
         }
 

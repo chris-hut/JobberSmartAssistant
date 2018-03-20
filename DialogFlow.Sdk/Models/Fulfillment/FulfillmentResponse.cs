@@ -16,7 +16,7 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         [JsonProperty("messages")]
         public IList<IMessage> Messages { get; set; } = new List<IMessage>();
         [JsonProperty("data")]
-        public IFulfillmentData Data { get; set; }
+        public Dictionary<string, IFulfillmentData> Data { get; set; } = new Dictionary<string, IFulfillmentData>();
     }
 
     public interface IFulfillmentData

@@ -32,7 +32,7 @@ namespace DialogFlow.Sdk.Builders
 
         public FulfillmentResponseBuilder MarkEndOfAssistantConversation()
         {
-            _fulfillmentResponse.Data = GoogleFulfillmentData.MarkEndOfConversation;
+            _fulfillmentResponse.Data["google"] = GoogleFulfillmentData.MarkEndOfConversation;
             return this;
         }
         

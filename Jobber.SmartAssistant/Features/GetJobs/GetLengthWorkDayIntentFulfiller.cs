@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
@@ -8,11 +7,11 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.GetJobs
 {
-    public class GetAmountOfJobsIntentFulfiller : IJobberIntentFulfiller
-    { 
+    public class GetLengthWorkDayIntentFulfiller : IJobberIntentFulfiller
+    {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.Intents.GetAmountOfJobs);
+            return fulfillmentRequest.IsForAction(Constants.Intents.GetLengthWorkDay);
         }
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest,
@@ -20,10 +19,10 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         {
             var jobs = await jobberClient.GetJobsAsync();
             
-            // Need to check if jobs date are within today
+            // Need to add length calculation here
             
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have {jobs.Count} jobs today.")
+                .Speech($"You have 5 hours of work today")
                 .MarkEndOfAssistantConversation()
                 .Build();
         }

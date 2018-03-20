@@ -38,6 +38,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You don't have any assigned jobs today.")
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -45,6 +46,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You have one job today. Here's the description: {job.Description}")
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -60,6 +62,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
             
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You have {jobs.Count} jobs today. Jobs include: {sb.ToString()}")
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
     }

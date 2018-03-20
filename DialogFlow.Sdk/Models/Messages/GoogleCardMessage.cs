@@ -27,7 +27,7 @@ namespace DialogFlow.Sdk.Models.Messages
 
     public class Image : UrlContainer
     {
-        [JsonProperty("accessibility_text")]
+        [JsonProperty("accessibilityText")]
         public string AccessibilityText { get; set; }
     }
 

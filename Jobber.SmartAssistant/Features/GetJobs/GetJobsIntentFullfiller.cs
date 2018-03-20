@@ -19,7 +19,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest,
             IJobberClient jobberClient)
         {
-            // var jobs = await jobberClient.GetJobsAsync();
+            var jobs = await jobberClient.GetJobsAsync();
             
             return FulfillmentResponseBuilder.Create()
                 .Speech($"Your jobs today are laundry and mowing.")

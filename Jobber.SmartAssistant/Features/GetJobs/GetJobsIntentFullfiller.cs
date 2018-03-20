@@ -21,11 +21,10 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         {
             var jobs = await jobberClient.GetJobsAsync();
             
-            return FulfillmentResponseBuilder.Create()
-                .Speech($"Your jobs today are laundry and mowing.")
-                .Build();
+            // return FulfillmentResponseBuilder.Create()
+            //    .Speech($"Your jobs today are laundry and mowing.")
+            //    .Build();
             
-            /*
             switch (jobs.Count)
             {
                 case 0:
@@ -35,7 +34,6 @@ namespace Jobber.SmartAssistant.Features.GetJobs
                 default:
                     return buildMultipleJobsFoundResponse(jobs);
             }
-            */
         }
 
         private static FulfillmentResponse BuildNoJobResponse()
@@ -55,7 +53,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         private static FulfillmentResponse buildMultipleJobsFoundResponse(JobCollection jobs)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have tada jobs today.")
+                .Speech($"You have {jobs.Count} jobs today.")
                 .Build();
         }
     }

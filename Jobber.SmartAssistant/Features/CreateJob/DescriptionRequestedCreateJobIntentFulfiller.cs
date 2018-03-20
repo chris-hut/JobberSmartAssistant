@@ -44,6 +44,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return FulfillmentResponseBuilder.Create()
                 .Speech(BuildResponseFrom(fulfillmentRequest))
                 .WithMessage(BuildGoogleCardFrom(createJobContext, createJobDescription))
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
 

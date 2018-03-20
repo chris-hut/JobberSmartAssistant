@@ -30,6 +30,12 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
+        public FulfillmentResponseBuilder MarkEndOfAssistantConversation()
+        {
+            _fulfillmentResponse.Data = GoogleFulfillmentData.MarkEndOfConversation;
+            return this;
+        }
+        
         public FulfillmentResponseBuilder WithMessage(IMessage message)
         {
             _fulfillmentResponse.Messages.Add(message);

@@ -42,14 +42,14 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         private static FulfillmentResponse BuildJobFoundResponse(Job job) 
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have one job today. Here's the description: {job.Description}")
+                .Speech($"You have one job today. Here's the description: Tada")
                 .Build();
         }
 
         private static FulfillmentResponse buildMultipleJobsFoundResponse(JobCollection jobs)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have {jobs.Count} jobs today.")
+                .Speech($"You have tada jobs today.")
                 .Build();
         }
     }

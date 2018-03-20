@@ -24,6 +24,11 @@ namespace DialogFlow.Sdk.Models.Fulfillment
             return actionName.ToLower().Equals(ConversationResult.ActionName.ToLower());
         }
 
+        public bool DoesRequestingDeviceHaveAScreen()
+        {
+            return ConversationResult.Contexts.Any(c => c.Name == "actions_capability_screen_output");
+        }
+
         public string GetParameter(string parameterName)
         {
             return ConversationResult.Parameters[parameterName];

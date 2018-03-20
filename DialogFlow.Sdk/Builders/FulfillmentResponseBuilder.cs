@@ -21,11 +21,6 @@ namespace DialogFlow.Sdk.Builders
         public FulfillmentResponseBuilder Speech(string speech)
         {
             _fulfillmentResponse.Speech = speech;
-            _fulfillmentResponse.Messages.Add(new SpeechMessage
-            {
-                Speech = speech
-            });
-            
             return this;
         }
 
@@ -53,6 +48,11 @@ namespace DialogFlow.Sdk.Builders
             {
                 _fulfillmentResponse.DisplayText = _fulfillmentResponse.Speech;
             }
+
+            _fulfillmentResponse.Messages.Insert(0, new GoogleSimpleResponse
+            {
+                Speech = _fulfillmentResponse.Speech
+            });
             
             return _fulfillmentResponse;
         }

@@ -62,7 +62,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return GoogleCardBuilder.Create()
                 .Title($"New Job for {createJobContext.Client.Name}")
                 .Content(description)
-                .Image(mapImage, "Map of job location.")
+                .Image("http://www.antonious.ca/media/icons/github-1024.png", "Map of job location.")
                 .WithButton("Open Map", mapLink)
                 .Build();
         }

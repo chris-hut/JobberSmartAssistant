@@ -19,12 +19,13 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest,
             IJobberClient jobberClient)
         {
-            var jobs = await jobberClient.GetJobsAsync();
+            // var jobs = await jobberClient.GetJobsAsync();
+            
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You don't have any assigned jobs today.")
+                .Speech($"You 4 jobs today.")
                 .Build();
             
-            
+            /*
             switch (jobs.Count)
             {
                 case 0:
@@ -34,6 +35,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
                 default:
                     return buildMultipleJobsFoundResponse(jobs);
             }
+            */
         }
 
         private static FulfillmentResponse BuildNoJobResponse()

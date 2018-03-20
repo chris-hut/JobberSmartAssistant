@@ -22,7 +22,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
             var jobs = await jobberClient.GetJobsAsync();
             
             return FulfillmentResponseBuilder.Create()
-                .Speech($"Your jobs today are laundry and mowing. Job count is {jobs.Count}")
+                .Speech($"Your jobs today are laundry and mowing.")
                 .Build();
             
             switch (jobs.Count)

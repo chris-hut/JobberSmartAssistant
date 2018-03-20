@@ -46,7 +46,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .Speech($"Okay! What are you going to do for {client.Name}?")
                 .WithContext(
                     ContextBuilder.For(Constants.Contexts.CreateJobClientSet)
-                        .WithParameter(Constants.Variables.CreateJobContext, client)
+                        .WithParameter(Constants.Variables.CreateJobContext, context)
                 )
                 .Build();
         }

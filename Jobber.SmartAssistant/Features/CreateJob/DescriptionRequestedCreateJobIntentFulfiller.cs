@@ -55,7 +55,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             return GoogleCardBuilder.Create()
                 .Title($"New Job for {createJobContext.Client.Name}")
                 .Content(description)
-                .Image(GoogleMapsHelper.GetStaticMapLinkFor(createJobContext.Property.MapAddress))
+                .Image(mapImage)
                 .WithButton("Open Map", mapLink)
                 .Build();
         }

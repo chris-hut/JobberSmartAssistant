@@ -12,7 +12,7 @@
                    "maptype=roadmap" +
                    "&format=png" +
                    "&visual_refresh=true" +
-                   $"&markers=size:mid%7Ccolor:0xb848ff%7Clabel:1%7C{address}";
+                   $"&markers=size:mid%7Ccolor:0xb848ff%7Clabel:%7C{address}";
         }
 
         public static string GetGoogleMapsLinkFor(string address)

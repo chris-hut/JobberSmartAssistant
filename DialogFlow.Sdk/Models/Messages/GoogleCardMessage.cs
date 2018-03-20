@@ -18,7 +18,7 @@ namespace DialogFlow.Sdk.Models.Messages
         [JsonProperty("formattedText")]
         public string FormattedText { get; set; }
         [JsonProperty("image")]
-        public UrlContainer Image { get; set; }
+        public UrlContainer Image { get; set; } = new UrlContainer();
         [JsonProperty("buttons")]
         public IList<GoogleCardButton> Buttons { get; set; } = new List<GoogleCardButton>();
 
@@ -33,8 +33,8 @@ namespace DialogFlow.Sdk.Models.Messages
 
     public class GoogleCardButton
     {
-        [JsonProperty("openUrlAction")]
-        public UrlContainer Url { get; set; }
+        [JsonProperty("openUrlAction")] 
+        public UrlContainer Url { get; set; } = new UrlContainer();
         [JsonProperty("title")]
         public string Label { get; set; }
     }

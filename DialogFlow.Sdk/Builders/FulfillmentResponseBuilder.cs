@@ -21,6 +21,11 @@ namespace DialogFlow.Sdk.Builders
         public FulfillmentResponseBuilder Speech(string speech)
         {
             _fulfillmentResponse.Speech = speech;
+            _fulfillmentResponse.Messages.Add(new SpeechMessage
+            {
+                Speech = speech
+            });
+            
             return this;
         }
 

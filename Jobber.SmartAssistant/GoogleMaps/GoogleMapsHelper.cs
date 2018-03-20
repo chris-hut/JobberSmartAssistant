@@ -16,7 +16,7 @@ namespace Jobber.SmartAssistant.GoogleMaps
                    "maptype=roadmap" +
                    "&format=png" +
                    "&visual_refresh=true" +
-                   $"&markers=size:mid|color:0xb848ff|label:|{urlEncodedAddress}";
+                   $"&markers=size:mid%7Ccolor:0xb848ff%7Clabel:%7C{urlEncodedAddress}";
         }
 
         public static string GetGoogleMapsLinkFor(string address)

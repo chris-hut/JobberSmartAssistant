@@ -6,17 +6,17 @@ namespace Jobber.SmartAssistant.GoogleMaps
     {
         public static string GetStaticMapLinkFor(string address)
         {
-            var urlEncodedAddress = Uri.EscapeDataString(address);
-            
-            return "https://maps.googleapis.com/maps/api/staticmap?" +
-                   "center=&" +
-                   "zoom=14&" +
-                   "scale=2&" +
-                   "size=600x300&" +
-                   "maptype=roadmap" +
-                   "&format=png" +
-                   "&visual_refresh=true" +
-                   $"&markers=size:mid%7Ccolor:0xb848ff%7Clabel:%7C{urlEncodedAddress}";
+            var url = "https://maps.googleapis.com/maps/api/staticmap?" +
+                  "center=&" +
+                  "zoom=14&" +
+                  "scale=2&" +
+                  "size=600x300&" +
+                  "maptype=roadmap" +
+                  "&format=png" +
+                  "&visual_refresh=true" +
+                  $"&markers=size:mid|color:0xb848ff|label:|{address}";
+
+            return Uri.EscapeUriString(url);
         }
 
         public static string GetGoogleMapsLinkFor(string address)

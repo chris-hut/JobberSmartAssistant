@@ -1,9 +1,13 @@
-﻿namespace Jobber.SmartAssistant.GoogleMaps
+﻿using System;
+
+namespace Jobber.SmartAssistant.GoogleMaps
 {
     public static class GoogleMapsHelper
     {
         public static string GetStaticMapLinkFor(string address)
         {
+            var urlEncodedAddress = Uri.EscapeDataString(address);
+            
             return "https://maps.googleapis.com/maps/api/staticmap?" +
                    "center=&" +
                    "zoom=14&" +
@@ -12,12 +16,13 @@
                    "maptype=roadmap" +
                    "&format=png" +
                    "&visual_refresh=true" +
-                   $"&markers=size:mid%7Ccolor:0xb848ff%7Clabel:%7C{address}";
+                   $"&markers=size:mid|color:0xb848ff|label:|{urlEncodedAddress}";
         }
 
         public static string GetGoogleMapsLinkFor(string address)
         {
-            return $"https://maps.google.com/?q={address}";
+            var urlEncodedAddress = Uri.EscapeDataString(address);
+            return $"https://maps.google.com/?q={urlEncodedAddress}";
         }
     }
 }

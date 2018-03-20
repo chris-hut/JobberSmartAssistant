@@ -20,7 +20,11 @@ namespace Jobber.SmartAssistant.Features.GetJobs
             IJobberClient jobberClient)
         {
             var jobs = await jobberClient.GetJobsAsync();
-
+            return FulfillmentResponseBuilder.Create()
+                .Speech($"You don't have any assigned jobs today.")
+                .Build();
+            
+            
             switch (jobs.Count)
             {
                 case 0:

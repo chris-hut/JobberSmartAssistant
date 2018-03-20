@@ -74,6 +74,12 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public DateTimeRange GetContextParameterAsDateTimeRange(string contextName, string parameterName)
         {
             return DateTimeRange.Parse(GetContextParameter(contextName, parameterName));
-        }     
+        }
+
+        public T GetContextParameterAs<T>(string contextName, string paramerterName)
+        {
+            var rawParameter = GetContextParameter(contextName, paramerterName);
+            return JsonConvert.DeserializeObject<T>(rawParameter);
+        }
     }
 }

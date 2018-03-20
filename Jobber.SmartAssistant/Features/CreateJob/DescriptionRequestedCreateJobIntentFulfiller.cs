@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Common;
 using DialogFlow.Sdk.Models.Fulfillment;
+using DialogFlow.Sdk.Models.Messages;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.Sdk.Rest.Requests;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
+using Jobber.SmartAssistant.GoogleMaps;
 using Newtonsoft.Json;
 
 namespace Jobber.SmartAssistant.Features.CreateJob
@@ -23,23 +26,40 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var jobDateTimeRange = GetDateTimeRangeForJobFrom(fulfillmentRequest);
-
+            var createJobDescription = fulfillmentRequest.GetParameter(Constants.Variables.JobDescription);
+            var createJobContext = fulfillmentRequest.GetContextParameterAs<CreateJobContext>
+                (Constants.Contexts.CreateJobClientSet, Constants.Variables.CreateJobContext);
+            
             var createJobRequest = new CreateJobRequest
             {
-                ClientId = fulfillmentRequest.GetContextParameterAsInt(Constants.Contexts.CreateJobClientSet, Constants.Variables.ClientId),
-                PropertyId = fulfillmentRequest.GetContextParameterAsInt(Constants.Contexts.CreateJobClientSet, Constants.Variables.PropertyId),
+                ClientId = createJobContext.Client.Id,
+                PropertyId = createJobContext.Property.Id,
                 StartAt = jobDateTimeRange.Start.ToUnixTime(),
                 EndAt = jobDateTimeRange.End.ToUnixTime(),
-                Description = fulfillmentRequest.GetParameter(Constants.Variables.JobDescription)
+                Description = createJobDescription
             };
 
             await jobberClient.CreateJobAsync(createJobRequest);
 
             return FulfillmentResponseBuilder.Create()
-                .Speech("Okay I created the job for you!")
+                .Speech("Okay I created the job. I sent some details about it to your phone. ")
+                .WithMessage(BuildGoogleCardFrom(createJobContext, createJobDescription))
                 .Build();
         }
 
+        private static GoogleCardMessage BuildGoogleCardFrom(CreateJobContext createJobContext, string description)
+        {
+            var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(createJobContext.Property.MapAddress);
+            var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(createJobContext.Property.MapAddress);
+            
+            return GoogleCardBuilder.Create()
+                .Title($"New Job for {createJobContext.Client.Name}")
+                .Content(description)
+                .Image(GoogleMapsHelper.GetStaticMapLinkFor(createJobContext.Property.MapAddress))
+                .WithButton("Open Map", mapLink)
+                .Build();
+        }
+        
         private static DateTimeRange GetDateTimeRangeForJobFrom(FulfillmentRequest fulfillmentRequest)
         {
             if (fulfillmentRequest.IsParameterDateRange(Constants.Variables.JobDate))

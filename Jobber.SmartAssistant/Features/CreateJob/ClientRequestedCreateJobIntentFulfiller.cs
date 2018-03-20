@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
@@ -6,6 +7,7 @@ using Jobber.Sdk;
 using Jobber.Sdk.Models;
 using Jobber.Sdk.Models.Clients;
 using Jobber.SmartAssistant.Core;
+using Remotion.Linq.Clauses.ResultOperators;
 
 namespace Jobber.SmartAssistant.Features.CreateJob
 {
@@ -34,12 +36,17 @@ namespace Jobber.SmartAssistant.Features.CreateJob
 
         private static FulfillmentResponse BuildClientFoundResponse(Client client)
         {
+            var context = new CreateJobContext
+            {
+                Client = client,
+                Property = client.MyProperties.First()
+            };
+            
             return FulfillmentResponseBuilder.Create()
                 .Speech($"Okay! What are you going to do for {client.Name}?")
                 .WithContext(
                     ContextBuilder.For(Constants.Contexts.CreateJobClientSet)
-                        .WithParameter(Constants.Variables.ClientId, client.Id.ToString())
-                        .WithParameter(Constants.Variables.PropertyId, client.MyProperties.First().Id.ToString())
+                        .WithParameter(Constants.Variables.CreateJobContext, client)
                 )
                 .Build();
         }

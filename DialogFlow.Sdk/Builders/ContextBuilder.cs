@@ -1,4 +1,5 @@
 ﻿using DialogFlow.Sdk.Models.Common;
+using Newtonsoft.Json;
 
 namespace DialogFlow.Sdk.Builders
 {
@@ -29,6 +30,13 @@ namespace DialogFlow.Sdk.Builders
         public ContextBuilder WithParameter(string key, string value)
         {
             _context.Parameters[key] = value;
+            return this;
+        }
+
+        public ContextBuilder WithParameter<T>(string key, T value)
+        {
+            var serializedValue = JsonConvert.SerializeObject(value);
+            _context.Parameters[key] = serializedValue;
             return this;
         }
 

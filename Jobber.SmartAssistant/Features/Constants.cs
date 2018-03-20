@@ -23,8 +23,7 @@
         public static class Variables
         {
             public const string ClientName = "CLIENT_NAME";
-            public const string ClientId = "CLIENT_ID";
-            public const string PropertyId = "PROPERTY_ID";
+            public const string CreateJobContext = "CREATE_JOB_CONTEXT";
             public const string JobDescription = "DESCRIPTION";
             public const string JobDate = "DATE";
         }

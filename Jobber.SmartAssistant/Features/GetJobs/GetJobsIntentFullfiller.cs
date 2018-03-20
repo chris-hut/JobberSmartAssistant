@@ -1,10 +1,12 @@
 ﻿using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
+using Microsoft.EntityFrameworkCore.Storage;
 
 
 namespace Jobber.SmartAssistant.Features.GetJobs
@@ -48,8 +50,16 @@ namespace Jobber.SmartAssistant.Features.GetJobs
 
         private static FulfillmentResponse buildMultipleJobsFoundResponse(JobCollection jobs)
         {
+            // This is temporary, need to specify date range
+            var first5_job = jobs.Jobs.Take(5);
+            StringBuilder sb = new StringBuilder();
+            foreach (Job job in first5_job)
+            {
+                sb.Append(job.Description + ". ");
+            }
+            
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have {jobs.Count} jobs today.")
+                .Speech($"You have {jobs.Count} jobs today. Jobs include: {sb.ToString()}")
                 .Build();
         }
     }

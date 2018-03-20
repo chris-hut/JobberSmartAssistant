@@ -1,5 +1,6 @@
 ﻿using System;
 using DialogFlow.Sdk.Models.Fulfillment;
+using DialogFlow.Sdk.Models.Messages;
 
 namespace DialogFlow.Sdk.Builders
 {
@@ -29,6 +30,12 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
+        public FulfillmentResponseBuilder WithMessage(IMessage message)
+        {
+            _fulfillmentResponse.Messages.Add(message);
+            return this;
+        }
+        
         public FulfillmentResponseBuilder WithContext(ContextBuilder contextBuilder)
         {
             _fulfillmentResponse.ContextOut.Add(contextBuilder.Build());

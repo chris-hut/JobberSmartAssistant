@@ -42,11 +42,18 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             await jobberClient.CreateJobAsync(createJobRequest);
 
             return FulfillmentResponseBuilder.Create()
-                .Speech("Okay I created the job. I sent some details about it to your phone. ")
+                .Speech(BuildResponseFrom(fulfillmentRequest))
                 .WithMessage(BuildGoogleCardFrom(createJobContext, createJobDescription))
                 .Build();
         }
 
+        private static string BuildResponseFrom(FulfillmentRequest fulfillmentRequest)
+        {
+            return fulfillmentRequest.DoesRequestingDeviceHaveAScreen() ?
+                "Okay I created the job. See the details below." :
+                "Okay I created the job. I sent some details about it to your phone.";
+        }
+        
         private static GoogleCardMessage BuildGoogleCardFrom(CreateJobContext createJobContext, string description)
         {
             var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(createJobContext.Property.MapAddress);

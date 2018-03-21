@@ -19,6 +19,8 @@
             public const string SendableInvoices = "SENDABLE_INVOICES";
             public const string GetRevenue = "GET_REVENUE";
             public const string GetJobs = "GET_JOBS";
+            public const string GetAmountOfJobs = "GET_AMOUNT_OF_JOBS";
+            public const string GetLengthWorkDay = "GET_LENGTH_WORK_DAY";
         }
 
         public static class Variables

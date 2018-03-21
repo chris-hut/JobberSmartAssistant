@@ -27,11 +27,11 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             switch (matchingClients.Count)
             {
                case 0:
-                   return BuildClientNotFoundResponse(clientName, matchingClients);
+                   return BuildClientNotFoundResponse(clientName);
                case 1:
                    return BuildClientFoundResponse(matchingClients.Clients.First());
                default:
-                   return BuildMultipleClientsFound(clientName);
+                   return BuildMultipleClientsFound(clientName, matchingClients);
             }
         }
 

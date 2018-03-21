@@ -19,18 +19,15 @@ namespace Jobber.SmartAssistant.Features.ConvertableQuotes
             var Quotes = await jobberClient.GetQuotesAsync();
             var numOfConvertableQuotes = Quotes.NumConvertable;
 
-            //switch (numOfConvertableQuotes)
-            //{
-            //    case 0:
-            //        return BuildNoConvertableQuotesFoundResponse();
-            //    case 1:
-            //        return BuildSingleConvertableQuotesFoundResponse();
-            //    default:
-            //        return BuildMultipleConvertableQuotesFoundResponse(numOfConvertableQuotes);
-            //}
-            return FulfillmentResponseBuilder.Create()
-                .Speech($"There are {numOfConvertableQuotes} jobs ready to be converted into jobs")
-                .Build();
+            switch (numOfConvertableQuotes)
+            {
+                case 0:
+                    return BuildNoConvertableQuotesFoundResponse();
+                case 1:
+                    return BuildSingleConvertableQuotesFoundResponse();
+                default:
+                    return BuildMultipleConvertableQuotesFoundResponse(numOfConvertableQuotes);
+            }
 
 
         }

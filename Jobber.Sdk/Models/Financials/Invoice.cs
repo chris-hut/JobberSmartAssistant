@@ -44,9 +44,9 @@ namespace Jobber.Sdk.Models.Financials
         [JsonProperty("client")]
         public Client MyClient { get; set; }
 
-        public bool IsSendable()
+        public bool NotYetSent()
         {
-            return IssuedDate > 0;
+            return Draft == true;
         }
 
 

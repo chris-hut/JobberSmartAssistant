@@ -64,7 +64,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             
             return FulfillmentResponseBuilder.Create()
                 .Speech($"There a few people who have a smiliar name to {clientName}, can you be a bit more specific?")
-                .WithContext(ContextBuilder.For(Constants.Contexts.CreateJobClientRequested))
+                .WithContext(ContextBuilder.For(Constants.Contexts.CreateJobClientRequested).Lifespan(2))
                 .WithMessage(chipSuggestionMessage)
                 .Build();
         }

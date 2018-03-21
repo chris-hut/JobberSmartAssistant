@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
+using DialogFlow.Sdk.Models.Messages;
 using Jobber.Sdk;
 using Jobber.Sdk.Models;
 using Jobber.Sdk.Models.Clients;
@@ -26,7 +27,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
             switch (matchingClients.Count)
             {
                case 0:
-                   return BuildClientNotFoundResponse(clientName);
+                   return BuildClientNotFoundResponse(clientName, matchingClients);
                case 1:
                    return BuildClientFoundResponse(matchingClients.Clients.First());
                default:
@@ -51,11 +52,20 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .Build();
         }
         
-        private static FulfillmentResponse BuildMultipleClientsFound(string clientName)
+        private static FulfillmentResponse BuildMultipleClientsFound(string clientName, ClientCollection clientCollection)
         {
+            var chipSuggestionMessage = new GoogleChipMessage()
+            {
+                Suggestions = clientCollection
+                    .Clients
+                    .Select(c => new SuggestionChip {Title = c.Name})
+                    .ToList()
+            };
+            
             return FulfillmentResponseBuilder.Create()
                 .Speech($"There a few people who have a smiliar name to {clientName}, can you be a bit more specific?")
-                .WithContext(ContextBuilder.For(Constants.Contexts.CreateJobClientRequested))    
+                .WithContext(ContextBuilder.For(Constants.Contexts.CreateJobClientRequested))
+                .WithMessage(chipSuggestionMessage)
                 .Build();
         }
 

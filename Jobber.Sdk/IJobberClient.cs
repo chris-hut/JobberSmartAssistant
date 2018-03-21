@@ -18,5 +18,6 @@ namespace Jobber.Sdk
         Task<InvoicesCollection> GetInvoicesAsync();
         Task<TransactionCollection> GetTransactionsAsync();
         Task<VisitsCollections> GetVisitsAsync();
+        Task<VisitsCollections> GetTodaysVisitsAsync(int start, int end);
     }
 }

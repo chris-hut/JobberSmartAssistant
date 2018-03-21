@@ -9,6 +9,6 @@ namespace Jobber.Sdk.Models.Financials
         [JsonProperty("invoices")]
         public IEnumerable<Invoice> Invoices = new List<Invoice>();
 
-        public int NumSendable() => Invoices.Count(invoice => invoice.IsSendable());
+        public int NumSendable() => Invoices.Count(invoice => invoice.NotYetSent());
     }
 }

@@ -8,9 +8,6 @@ namespace DialogFlow.Sdk.Models.Messages
 {
     public class GoogleCardMessage : GoogleMessage
     {
-        [JsonProperty("platform")] 
-        public string Platform { get; } = "google";
-        
         [JsonProperty("title")]
         public string Title { get; set; }
         [JsonProperty("subtitle")]

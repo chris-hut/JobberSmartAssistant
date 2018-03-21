@@ -23,6 +23,9 @@ namespace DialogFlow.Sdk.Models.Messages
         [JsonProperty("type")]
         public string Type { get; }
 
+        [JsonProperty("platform")] 
+        public string Platform { get; } = "google";
+
         public GoogleMessage(string type)
         {
             Type = type;

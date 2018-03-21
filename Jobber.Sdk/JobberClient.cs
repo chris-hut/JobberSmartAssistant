@@ -63,7 +63,12 @@ namespace Jobber.Sdk
                 throw ConvertToJobberException(errorMessage, ex);
             }
         }
-        
+
+        public async Task<VisitsCollections> GetTodaysVisitsAsync(int start, int end)
+        {
+            return await HandleErrorsIn(_jobberApi.GetVisitsAsync, "Failed while getting today's visits");
+        }
+
         public async Task<JobCollection> GetJobsAsync()
         {
             return await HandleErrorsIn(_jobberApi.GetJobsAsync, "Failed while getting jobs");

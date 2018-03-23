@@ -10,5 +10,6 @@ namespace Jobber.Sdk.Models.Jobs
         public IEnumerable<Visit> Visits { get; set; } = new List<Visit>();
 
         public int NumUnassigned => Visits.Count(visit => visit.NotAssigned());
+        public int NumCompletable => Visits.Count(v => v.Completable);
     }
 }

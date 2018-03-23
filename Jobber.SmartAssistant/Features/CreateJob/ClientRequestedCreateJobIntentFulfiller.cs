@@ -54,13 +54,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         
         private static FulfillmentResponse BuildMultipleClientsFound(string clientName, ClientCollection clientCollection)
         {
-            var chipSuggestionMessage = new GoogleChipMessage()
-            {
-                Suggestions = clientCollection
-                    .Clients
-                    .Select(c => new SuggestionChip {Title = c.Name})
-                    .ToList()
-            };
+            var chipSuggestionMessage = GoogleChipMessage.From(clientCollection.Clients.Select(c => c.Name));
             
             return FulfillmentResponseBuilder.Create()
                 .Speech($"There a few people who have a smiliar name to {clientName}, can you be a bit more specific?")

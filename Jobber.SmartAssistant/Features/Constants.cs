@@ -1,4 +1,6 @@
-﻿namespace Jobber.SmartAssistant.Features
+﻿using Newtonsoft.Json;
+
+namespace Jobber.SmartAssistant.Features
 {
     public static class Constants
     {
@@ -14,6 +16,7 @@
             public const string ClientRequestedCreateJob = "CLIENT_REQUESTED_CREATE_JOB"; 
             public const string DescritptionRequestedCreateJob = "DESCRIPTION_REQUESTED_CREATE_JOB";
 
+            public const string GetCompletableVisits = "GET_COMPLETEABLE_VISITS";
             public const string UnassignedVisits = "UNASSIGNED_VISITS";
             public const string ConvertibleQuotes = "CONVERTIBLE_QUOTES";
             public const string SendableInvoices = "SENDABLE_INVOICES";

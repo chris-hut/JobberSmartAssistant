@@ -95,6 +95,7 @@ namespace Assistant.Sdk
                 
                 var response = FulfillmentResponseBuilder.Create()
                     .Speech("Sorry something went wrong. Try asking me again later.")
+                    .MarkEndOfAssistantConversation()
                     .Build();
 
                 await WriteFulfillmentResponseAsync(response, httpContext);

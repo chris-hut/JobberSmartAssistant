@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Jobber.Sdk.Extensions;
 using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
@@ -64,15 +65,17 @@ namespace Jobber.Sdk
             }
         }
 
-        public async Task<VisitsCollections> GetTodaysVisitsAsync(int start, int end)
+        public async Task<VisitsCollections> GetTodaysVisitsAsync()
         {
             try
             {
-                return await _jobberApi.GetTodaysVisitsAsync(start, end);
+                var today = DateTime.Today.ToUnixTime();
+                var tomorrow = DateTime.Today.AddDays(1).ToUnixTime();
+                return await _jobberApi.GetTodaysVisitsAsync(today, tomorrow);
             }
             catch (Exception ex)
             {
-                var errorMessage = $"Failed while getting visits with start: {start} and end: {end}";
+                var errorMessage = "Failed while getting todays visits.";
                 throw ConvertToJobberException(errorMessage, ex);
             }
         }

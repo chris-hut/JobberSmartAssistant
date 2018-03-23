@@ -77,6 +77,19 @@ namespace Jobber.Sdk
             }
         }
 
+        public async Task<VisitsCollections> GetRangedTransactionsAsync(long start, long end)
+        {
+            try
+            {
+                return await _jobberApi.GetRangedTransactionsAsync(start, end);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Failed while getting transactions with start: {start} and end: {end}";
+                throw ConvertToJobberException(errorMessage, ex);
+            }
+        }
+
         public async Task<JobCollection> GetJobsAsync()
         {
             try

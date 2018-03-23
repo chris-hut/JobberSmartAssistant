@@ -9,7 +9,7 @@ namespace Jobber.Sdk.Models.Jobs
         [JsonProperty("id")]
         public int? Id { get; set; }
 
-        [JsonProperty("description")]
+        [JsonProperty("scheduling_details")]
         public string Description { get; set; }
 
         [JsonProperty("job_type")] 

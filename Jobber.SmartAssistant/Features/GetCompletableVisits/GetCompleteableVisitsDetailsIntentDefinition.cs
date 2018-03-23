@@ -5,7 +5,7 @@ using DialogFlow.Sdk.Models.Intents;
 
 namespace Jobber.SmartAssistant.Features.GetCompletableVisits
 {
-    public class GetCompleteableDetailsIntentDefinition : IIntentDefinition
+    public class GetCompleteableVisitsDetailsIntentDefinition : IIntentDefinition
     {
         public Intent DefineIntent()
         {

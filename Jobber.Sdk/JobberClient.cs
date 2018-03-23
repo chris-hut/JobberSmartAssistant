@@ -80,7 +80,7 @@ namespace Jobber.Sdk
             }
         }
 
-        public async Task<VisitsCollections> GetRangedTransactionsAsync()
+        public async Task<TransactionCollection> GetRangedTransactionsAsync()
         {
             long lastSunday = DateTime.Today.AddDays(-(int)DateTime.Now.DayOfWeek).ToUnixTime();
             long lastMonday = DateTime.Today.AddDays(-(int)DateTime.Now.DayOfWeek - 6).ToUnixTime();

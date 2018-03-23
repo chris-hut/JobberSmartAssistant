@@ -38,6 +38,6 @@ namespace Jobber.Sdk.Rest
         Task<VisitsCollections> GetTodaysVisitsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
 
         [Get("/transactions?where=[created_at>={start},created_at<={end}]")]
-        Task<VisitsCollections> GetRangedTransactionsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
+        Task<TransactionCollection> GetRangedTransactionsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
     }
 }

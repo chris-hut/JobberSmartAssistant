@@ -31,5 +31,11 @@ namespace Jobber.Sdk.Models.Financials
 
         [JsonProperty("client")]
         public int ClientId { get; set; }
+
+        public double GetAmountValue()
+        {
+            double.TryParse(Amount, out double amountValue);
+            return amountValue;
+        }
     }
 }

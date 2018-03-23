@@ -5,6 +5,7 @@ using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
+using System.Linq;
 
 namespace Jobber.SmartAssistant.Features.GetRevenue
 {
@@ -19,8 +20,7 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
         {
 
             var Transactions = await jobberClient.GetRangedTransactionsAsync();
-
-            var revenue = 1;
+            double revenue = Transactions.GetTotal();
 
             return FulfillmentResponseBuilder.Create()
                 .Speech($"We made {revenue} dollar")

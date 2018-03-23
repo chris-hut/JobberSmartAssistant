@@ -8,4 +8,7 @@
     <ProjectReference Include="..\Assistant.Sdk\Assistant.Sdk.csproj" />
     <ProjectReference Include="..\Jobber.Sdk\Jobber.Sdk.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\CompletableVisits" />
+  </ItemGroup>
 </Project>

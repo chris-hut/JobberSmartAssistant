@@ -11,7 +11,7 @@ namespace DialogFlow.Sdk.Builders
         {
             _context = new Context
             {
-                Name = name,
+                Name = name.ToLower(),
                 Lifespan = 1
             };
         }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace DialogFlow.Sdk.Models.Fulfillment
 {
@@ -12,6 +13,8 @@ namespace DialogFlow.Sdk.Models.Fulfillment
     {
         [JsonProperty("user")]
         public User User { get; set; }
+        [JsonProperty("Inputs")]
+        public IEnumerable<Inputs> Inputs { get; set; }
     }
     
     public class User
@@ -20,5 +23,17 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public string UserId { get; set; }
         [JsonProperty("accessToken")]
         public string AccessToken { get; set; }
+    }
+
+    public class Inputs
+    {
+        [JsonProperty("rawInputs")]
+        public IEnumerable<RawInputs> RawInputs { get; set; }
+    }
+
+    public class RawInputs
+    {
+        [JsonProperty("query")]
+        public string Query { get; set; }
     }
 }

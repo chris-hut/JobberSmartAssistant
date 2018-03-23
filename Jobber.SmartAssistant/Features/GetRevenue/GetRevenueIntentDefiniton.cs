@@ -10,7 +10,14 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
         {
             return IntentBuilder.For(Constants.Intents.GetRevenue)
                .TriggerOn("Get revenue")
+               .TriggerOn("Get revenue from last week")
+               .TriggerOn("Get revenue from last month")
                .TriggerOn("How much money we made")
+               .TriggerOn("How much money we made last week")
+               .TriggerOn("How much money we made last month")
+               .TriggerOn("How much were we paid")
+               .TriggerOn("How much were we paid last week")
+               .TriggerOn("How much were we paid last month")
                .FulfillWithWebhook()
                .Build();
         }

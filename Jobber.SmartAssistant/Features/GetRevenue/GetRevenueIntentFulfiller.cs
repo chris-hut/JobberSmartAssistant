@@ -19,11 +19,17 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
 
-            var Transactions = await jobberClient.GetRangedTransactionsAsync();
+            string lastTextInput = fulfillmentRequest.OriginalRequest.Data.Inputs.FirstOrDefault().RawInputs.FirstOrDefault().Query.Split(" ").Last();
+            var Transactions = await jobberClient.GetRangedTransactionsAsync(lastTextInput);
             double revenue = Transactions.GetTotal();
 
+            if (lastTextInput.ToLower() != "month" && lastTextInput.ToLower() != "year")
+            {
+                lastTextInput = "week";
+            }
+
             return FulfillmentResponseBuilder.Create()
-                .Speech($"We made ${revenue}")
+                .Speech($"We made ${revenue} last {lastTextInput}")
                 .Build();
         }
     }

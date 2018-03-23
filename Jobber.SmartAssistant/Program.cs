@@ -13,6 +13,7 @@ using Jobber.SmartAssistant.Features.FavoriteNumber;
 using Jobber.SmartAssistant.Features.Welcome;
 using Jobber.SmartAssistant.Features.UnassignedVisits;
 using Jobber.SmartAssistant.Features.ConvertableQuotes;
+using Jobber.SmartAssistant.Features.GetCompletableVisits;
 using Jobber.SmartAssistant.Features.GetJobs;
 using Jobber.SmartAssistant.Features.SendableInvoices;
 using Jobber.SmartAssistant.Features.GetRevenue;
@@ -53,7 +54,8 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new GetRevenueIntentDefiniton())
                 .WithIntentDefinition(new GetJobsIntentDefinition())
                 .WithIntentDefinition(new GetAmountOfJobsIntentDefinition())
-                .WithIntentDefinition(new GetLengthWorkDayIntentDefinition());
+                .WithIntentDefinition(new GetLengthWorkDayIntentDefinition())
+                .WithIntentDefinition(new GetCompletableVisitsIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
@@ -68,7 +70,8 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new GetRevenueIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetJobsIntentFullfiller())
                 .WithJobberIntentFulfiller(new GetAmountOfJobsIntentFulfiller())
-                .WithJobberIntentFulfiller(new GetLengthWorkDayIntentFulfiller());
+                .WithJobberIntentFulfiller(new GetLengthWorkDayIntentFulfiller())
+                .WithJobberIntentFulfiller(new GetCompletableVisitsIntentFulfiller());
         }
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)

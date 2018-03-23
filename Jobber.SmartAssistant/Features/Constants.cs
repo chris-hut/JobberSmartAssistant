@@ -18,6 +18,7 @@ namespace Jobber.SmartAssistant.Features
 
             public const string GetCompletableVisits = "GET_COMPLETEABLE_VISITS";
             public const string GetCompletableVisitsDetails = "GET_COMPLETEABLE_VISITS_DETAILS";
+            public const string DontGetCompletableVisitsDetails = "DONT_GET_COMPLETEABLE_VISITS_DETAILS";
             public const string UnassignedVisits = "UNASSIGNED_VISITS";
             public const string ConvertibleQuotes = "CONVERTIBLE_QUOTES";
             public const string SendableInvoices = "SENDABLE_INVOICES";

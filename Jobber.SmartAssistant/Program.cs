@@ -56,7 +56,8 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new GetAmountOfJobsIntentDefinition())
                 .WithIntentDefinition(new GetLengthWorkDayIntentDefinition())
                 .WithIntentDefinition(new GetCompletableVisitsIntentDefinition())
-                .WithIntentDefinition(new GetCompleteableVisitsDetailsIntentDefinition());
+                .WithIntentDefinition(new GetCompleteableVisitsDetailsIntentDefinition())
+                .WithIntentDefinition(new DontGetCompletableDetailsIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()

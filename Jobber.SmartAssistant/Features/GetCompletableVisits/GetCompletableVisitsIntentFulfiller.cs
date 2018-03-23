@@ -33,6 +33,7 @@ namespace Jobber.SmartAssistant.Features.GetCompletableVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You have {numCompletableVisits} visits that are ready to be completed.")
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -40,6 +41,7 @@ namespace Jobber.SmartAssistant.Features.GetCompletableVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech("You have one visit that are ready to be completed.")
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -47,6 +49,7 @@ namespace Jobber.SmartAssistant.Features.GetCompletableVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech("No visits need to be completed right now.")
+                .MarkEndOfAssistantConversation()
                 .Build();
         }
     }

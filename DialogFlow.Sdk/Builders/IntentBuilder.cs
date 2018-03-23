@@ -30,6 +30,36 @@ namespace DialogFlow.Sdk.Builders
             return new IntentBuilder(name);
         }
 
+        public static IntentBuilder YesRequestFor(string name)
+        {
+            return IntentBuilder.For(name)
+                .TriggerOn("Yes")
+                .TriggerOn("Confirm")
+                .TriggerOn("Ok")
+                .TriggerOn("Of course")
+                .TriggerOn("Sure")
+                .TriggerOn("I don't mind")
+                .TriggerOn("Yaaaas")
+                .TriggerOn("That's correct")
+                .TriggerOn("I agree")
+                .TriggerOn("Do it")
+                .TriggerOn("Exactly")
+                .TriggerOn("Sounds good");
+        }
+
+        public static IntentBuilder NoRequestFor(string name)
+        {
+            return IntentBuilder.For(name)
+                .TriggerOn("No")
+                .TriggerOn("I don't want that")
+                .TriggerOn("I disagree")
+                .TriggerOn("I don't think so")
+                .TriggerOn("not really")
+                .TriggerOn("not interested")
+                .TriggerOn("definitely not")
+                .TriggerOn("duh no");
+        }
+
         public IntentBuilder RequiresContext(string contextName)
         {
             _intent.Contexts.Add(contextName);

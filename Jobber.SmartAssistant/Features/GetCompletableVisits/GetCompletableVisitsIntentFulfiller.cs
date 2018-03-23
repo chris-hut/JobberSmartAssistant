@@ -31,9 +31,12 @@ namespace Jobber.SmartAssistant.Features.GetCompletableVisits
         
         private static FulfillmentResponse BuildMultipleCompleteableVisitsResponse(int numCompletableVisits)
         {
+            var speech = $"You have {numCompletableVisits} visits that are ready to be completed." +
+                         "Do you want me to list a few?";
+            
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have {numCompletableVisits} visits that are ready to be completed.")
-                .MarkEndOfAssistantConversation()
+                .Speech(speech)
+                .WithContext(ContextBuilder.For(Constants.Contexts.AskedIfUserWantsCompletableDetails))
                 .Build();
         }
 

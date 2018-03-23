@@ -1,0 +1,18 @@
+﻿using System.Collections.Generic;
+using Assistant.Sdk.BuiltIns;
+using DialogFlow.Sdk.Builders;
+using DialogFlow.Sdk.Models.Intents;
+
+namespace Jobber.SmartAssistant.Features.GetCompletableVisits
+{
+    public class GetCompleteableDetailsIntentDefinition : IIntentDefinition
+    {
+        public Intent DefineIntent()
+        {
+            return IntentBuilder.YesRequestFor(Constants.Intents.GetCompletableVisitsDetails)
+                .RequiresContext(Constants.Contexts.AskedIfUserWantsCompletableDetails)
+                .FulfillWithWebhook()
+                .Build();
+        }
+    }
+}

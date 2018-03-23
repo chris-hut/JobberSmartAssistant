@@ -23,7 +23,7 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
             double revenue = Transactions.GetTotal();
 
             return FulfillmentResponseBuilder.Create()
-                .Speech($"We made {revenue} dollar")
+                .Speech($"We made ${revenue}")
                 .Build();
         }
     }

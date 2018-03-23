@@ -11,7 +11,9 @@ namespace Jobber.Sdk.Models.Financials
 
         public double GetTotal()
         {
-            return Transactions.Sum(transaction => transaction.GetAmountValue());
+            return Transactions
+                .Where(transaction => transaction.IsInvoice())
+                .Sum(transaction => transaction.GetAmountValue());
         }
     }
 }

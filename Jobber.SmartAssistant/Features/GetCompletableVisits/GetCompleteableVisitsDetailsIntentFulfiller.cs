@@ -41,7 +41,7 @@ namespace Jobber.SmartAssistant.Features.GetCompletableVisits
 
         private static FulfillmentResponse BuildMultipleVisitsResponseFor(VisitsCollections visitsCollection)
         {
-            var visitDescriptions = visitsCollection.CompletableVisits.Select(BuildDescriptionFor);
+            var visitDescriptions = visitsCollection.CompletableVisits.Select(BuildDescriptionFor).Take(3);
             var joinedDescriptions = String.Join(" ", visitDescriptions);
 
             return FulfillmentResponseBuilder.Create()

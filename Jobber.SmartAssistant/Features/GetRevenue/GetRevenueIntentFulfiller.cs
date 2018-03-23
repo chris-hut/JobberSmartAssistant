@@ -18,13 +18,7 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
 
-            var lastSunday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
-            var lastMonday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek-6);
-
-            var lastSundayEpoch = DateTimeExtensions.ToUnixTime(lastSunday);
-            var lastMondayEpoch = DateTimeExtensions.ToUnixTime(lastMonday);
-
-            var Transactions = await jobberClient.GetRangedTransactionsAsync(lastMondayEpoch, lastSundayEpoch);
+            var Transactions = await jobberClient.GetRangedTransactionsAsync();
 
             var revenue = 1;
 

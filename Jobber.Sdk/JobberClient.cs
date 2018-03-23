@@ -80,6 +80,24 @@ namespace Jobber.Sdk
             }
         }
 
+        public async Task<TransactionCollection> GetRangedTransactionsAsync()
+        {
+            long lastSunday = DateTime.Today.AddDays(-(int)DateTime.Now.DayOfWeek).ToUnixTime();
+            long lastMonday = DateTime.Today.AddDays(-(int)DateTime.Now.DayOfWeek - 6).ToUnixTime();
+
+            long start = 1520467200;
+            long end = 1520553600;
+            try
+            {
+                return await _jobberApi.GetRangedTransactionsAsync(start, end);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Failed while getting transactions with start: {lastMonday} and end: {lastSunday}";
+                throw ConvertToJobberException(errorMessage, ex);
+            }
+        }
+
         public async Task<JobCollection> GetJobsAsync()
         {
             try

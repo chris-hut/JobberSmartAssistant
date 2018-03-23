@@ -11,6 +11,9 @@ namespace Jobber.Sdk.Models.Financials
         [JsonProperty("amount")]
         public string Amount { get; set; }
 
+        [JsonProperty("adjustment_type")]
+        public string Type { get; set; }
+
         [JsonProperty("bad_debt")]
         public bool BadDebt { get; set; }
 
@@ -31,5 +34,17 @@ namespace Jobber.Sdk.Models.Financials
 
         [JsonProperty("client")]
         public int ClientId { get; set; }
+
+        public double GetAmountValue()
+        {
+            double.TryParse(Amount, out double amountValue);
+            return amountValue;
+        }
+
+        public bool IsInvoice()
+        {
+            return Type == "Invoice";
+        }
+
     }
 }

@@ -29,9 +29,16 @@ namespace DialogFlow.Sdk.Models.Fulfillment
             return ConversationResult.Contexts.Any(c => c.Name == "actions_capability_screen_output");
         }
 
-        public string GetParameter(string parameterName)
+        public string GetParameter(string parameterName, string defaultValue = null)
         {
-            return ConversationResult.Parameters[parameterName];
+            try
+            {
+                return ConversationResult.Parameters[parameterName];
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
 
         public int GetParameterAsInt(string parameterName)

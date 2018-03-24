@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Jobber.Sdk.Extensions;
 using Jobber.Sdk.Models.Clients;
@@ -79,7 +81,7 @@ namespace Jobber.Sdk
                 throw ConvertToJobberException(errorMessage, ex);
             }
         }
-
+        
         public async Task<TransactionCollection> GetRangedTransactionsAsync(string timeUnit)
         {
             long start = 0;
@@ -124,6 +126,37 @@ namespace Jobber.Sdk
             }
         }
 
+        public async Task<JobCollection> GetRangedJobsAsync(string timeUnit)
+        {
+            long start = 0;
+            long end = 0;
+            switch (timeUnit.ToLower())
+            {
+                case "month":
+                    var tillStartOfNextMonth = (int) DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month) -
+                                               (int) DateTime.Today.Day + 1;
+                    var lengthOfNextMonth = (int) DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.AddDays(tillStartOfNextMonth).Month);
+                    start = DateTime.Today.AddDays(tillStartOfNextMonth).ToUnixTime();
+                    end = DateTime.Today.AddDays(tillStartOfNextMonth + lengthOfNextMonth).ToUnixTime();
+                    break;
+                default:
+                    var tillStartOfNextWeek = 7 - (int) DateTime.Today.DayOfWeek + 1;
+                    start = DateTime.Today.AddDays(tillStartOfNextWeek).ToUnixTime();
+                    end = DateTime.Today.AddDays(7).ToUnixTime();
+                    break;
+            }
+
+            try
+            {
+                return await _jobberApi.GetRangedJobsAsync(start, end);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Failed while getting jobs for next {timeUnit} with start: {start} and end: {end}";
+                throw ConvertToJobberException(errorMessage, ex);
+            }
+        }     
+      
         public async Task<QuotesCollection> GetQuotesAsync()
         {
             return await HandleErrorsIn(_jobberApi.GetQuotesAsync, "Failed while getting quotes");

@@ -98,6 +98,14 @@ namespace DialogFlow.Sdk.Builders
             GetCurrentResponse().Parameters.Add(parameterBuilder.Build());
             return this;
         }
+        
+        public IntentBuilder WithOptionalParameter(ParameterBuilder parameterBuilder)
+        {
+            var parameter = parameterBuilder.Build();
+            parameter.Required = false;
+            GetCurrentResponse().Parameters.Add(parameter);
+            return this;
+        }
 
         public IntentBuilder RespondsWith(string responseString)
         {

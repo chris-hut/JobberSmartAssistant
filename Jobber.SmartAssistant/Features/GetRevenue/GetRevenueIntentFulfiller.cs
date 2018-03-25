@@ -18,7 +18,6 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-
             string lastTextInput = fulfillmentRequest.OriginalRequest.Data.Inputs.FirstOrDefault().RawInputs.FirstOrDefault().Query.Split(" ").Last();
             var Transactions = await jobberClient.GetRangedTransactionsAsync(lastTextInput);
             double revenue = Transactions.GetTotal();

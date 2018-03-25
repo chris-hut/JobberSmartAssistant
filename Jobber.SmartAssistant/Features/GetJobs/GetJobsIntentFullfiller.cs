@@ -37,7 +37,7 @@ namespace Jobber.SmartAssistant.Features.GetJobs
         private static FulfillmentResponse BuildNoJobResponse()
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You don't have any assigned jobs today.")
+                .Speech($"You don't have any assigned visits today.")
                 .MarkEndOfAssistantConversation()
                 .Build();
         }

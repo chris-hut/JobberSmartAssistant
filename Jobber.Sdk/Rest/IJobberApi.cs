@@ -37,6 +37,9 @@ namespace Jobber.Sdk.Rest
         [Get("/visits?where=[start_at>={start},start_at<={end}]")]
         Task<VisitsCollections> GetTodaysVisitsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
 
+        [Get("/jobs?where=[start_at>={start}, start_at<={end}]")]
+        Task<JobCollection> GetRangedJobsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
+        
         [Get("/transactions?where=[created_at>={start},created_at<={end}]")]
         Task<TransactionCollection> GetRangedTransactionsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
     }

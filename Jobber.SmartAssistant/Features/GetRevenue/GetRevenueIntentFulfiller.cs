@@ -6,6 +6,8 @@ using Jobber.Sdk;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 using System.Linq;
+using DialogFlow.Sdk.Models.Common;
+using Jobber.Sdk.Rest.Requests;
 
 namespace Jobber.SmartAssistant.Features.GetRevenue
 {
@@ -18,18 +20,49 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-            string lastTextInput = fulfillmentRequest.OriginalRequest.Data.Inputs.FirstOrDefault().RawInputs.FirstOrDefault().Query.Split(" ").Last();
-            var Transactions = await jobberClient.GetRangedTransactionsAsync(lastTextInput);
-            double revenue = Transactions.GetTotal();
+            //string lastTextInput = fulfillmentRequest.OriginalRequest.Data.Inputs.FirstOrDefault().RawInputs.FirstOrDefault().Query.Split(" ").Last();
+            var datePeriod = GetDatePeriodForRevenueFrom(fulfillmentRequest);
+            var timeUnit = fulfillmentRequest.GetParameter(Constants.Variables.TimeUnitOriginal);
 
-            if (lastTextInput.ToLower() != "month" && lastTextInput.ToLower() != "year")
+            if (timeUnit == null)
             {
-                lastTextInput = "week";
+                timeUnit = "week";
             }
 
+            if (timeUnit.ToLower() != "month" && timeUnit.ToLower() != "year")
+            {
+                timeUnit = "week";
+            }
+
+            var getTransactionRequest = new GetTransactionRequest
+            {
+                Start = datePeriod.Start,
+                End = datePeriod.End,
+                TimeUnit = timeUnit
+            };
+
+            var Transactions = await jobberClient.GetRangedTransactionsAsync(getTransactionRequest);
+            double revenue = Transactions.GetTotal();
+
+
+
             return FulfillmentResponseBuilder.Create()
-                .Speech($"We made ${revenue} last {lastTextInput}")
+                .Speech($"We made ${revenue} last {timeUnit}")
                 .Build();
+        }
+
+        private static DatePeriod GetDatePeriodForRevenueFrom(FulfillmentRequest fulfillmentRequest)
+        {
+            if (fulfillmentRequest.IsParameterDatePeriod(Constants.Variables.TimeUnit))
+            {
+                return fulfillmentRequest.GetParemterAsDatePeriod(Constants.Variables.TimeUnit);
+            }
+
+            return new DatePeriod
+            {
+                End = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek),
+                Start = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - 6)
+            };
         }
     }
 }

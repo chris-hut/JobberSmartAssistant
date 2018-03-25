@@ -1,6 +1,7 @@
 ﻿using Assistant.Sdk.BuiltIns;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Intents;
+using DialogFlow.Sdk.Models.Common;
 
 namespace Jobber.SmartAssistant.Features.GetRevenue
 {
@@ -10,17 +11,12 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
         {
             return IntentBuilder.For(Constants.Intents.GetRevenue)
                .TriggerOn("Get revenue")
-               .TriggerOn("Get revenue from last week")
-               .TriggerOn("Get revenue from last month")
-               .TriggerOn("Get revenue from last year")
+               .TriggerOn($"Get revenue from last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
                .TriggerOn("How much money we made")
-               .TriggerOn("How much money we made last week")
-               .TriggerOn("How much money we made last month")
-               .TriggerOn("How much money we made last year")
+               .TriggerOn($"How much money we made last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
                .TriggerOn("How much were we paid")
-               .TriggerOn("How much were we paid last week")
-               .TriggerOn("How much were we paid last month")
-               .TriggerOn("How much were we paid last year")
+               .TriggerOn($"How much were we paid last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
+               .WithOptionalParameter(ParameterBuilder.Of(Constants.Variables.TimeUnit, Entity.DatePeriod))
                .FulfillWithWebhook()
                .Build();
         }

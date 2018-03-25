@@ -93,5 +93,15 @@ namespace DialogFlow.Sdk.Models.Fulfillment
             var rawParameter = GetContextParameter(contextName, paramerterName);
             return JsonConvert.DeserializeObject<T>(rawParameter);
         }
+
+        public bool IsParameterDatePeriod(string parameter)
+        {
+            return DatePeriod.IsParsable(GetParameter(parameter));
+        }
+
+        public DatePeriod GetParemterAsDatePeriod(string parameterName)
+        {
+            return DatePeriod.Parse(GetParameter(parameterName));
+        }
     }
 }

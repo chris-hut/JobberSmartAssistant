@@ -82,25 +82,26 @@ namespace Jobber.Sdk
             }
         }
         
-        public async Task<TransactionCollection> GetRangedTransactionsAsync(string timeUnit)
+        public async Task<TransactionCollection> GetRangedTransactionsAsync(GetTransactionRequest getTransactionRequest)
         {
-            long start = 0;
-            long end = 0;
-            switch (timeUnit.ToLower())
-            {
-                case "month":
-                    end = DateTime.Today.AddDays(-(int)DateTime.Today.Day).ToUnixTime();
-                    start = DateTime.Today.AddDays(-(int)DateTime.Today.Day - (int)DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month-1) + 1).ToUnixTime();
-                    break;
-                case "year":
-                    end = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfYear).ToUnixTime();
-                    start = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfYear - (int)(DateTime.IsLeapYear(DateTime.Today.Year - 1) ? 365 : 364)).ToUnixTime();
-                    break;
-                default:
-                    end = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - 1).ToUnixTime();
-                    start = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - 7).ToUnixTime();
-                    break;
-            }
+            long start = getTransactionRequest.Start.ToUnixTime();
+            long end = getTransactionRequest.End.ToUnixTime();
+            string timeUnit = getTransactionRequest.TimeUnit;
+            //switch (timeUnit.TimeUnit.ToLower())
+            //{
+            //    case "month":
+            //        end = DateTime.Today.AddDays(-(int)DateTime.Today.Day).ToUnixTime();
+            //        start = DateTime.Today.AddDays(-(int)DateTime.Today.Day - (int)DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month-1) + 1).ToUnixTime();
+            //        break;
+            //    case "year":
+            //        end = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfYear).ToUnixTime();
+            //        start = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfYear - (int)(DateTime.IsLeapYear(DateTime.Today.Year - 1) ? 365 : 364)).ToUnixTime();
+            //        break;
+            //    default:
+            //        end = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - 1).ToUnixTime();
+            //        start = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - 7).ToUnixTime();
+            //        break;
+            //}
 
             try
             {

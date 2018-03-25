@@ -20,16 +20,10 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-            //string lastTextInput = fulfillmentRequest.OriginalRequest.Data.Inputs.FirstOrDefault().RawInputs.FirstOrDefault().Query.Split(" ").Last();
             var datePeriod = GetDatePeriodForRevenueFrom(fulfillmentRequest);
             var timeUnit = fulfillmentRequest.GetParameter(Constants.Variables.TimeUnitOriginal);
 
             if (timeUnit == null)
-            {
-                timeUnit = "week";
-            }
-
-            if (timeUnit.ToLower() != "month" && timeUnit.ToLower() != "year")
             {
                 timeUnit = "week";
             }

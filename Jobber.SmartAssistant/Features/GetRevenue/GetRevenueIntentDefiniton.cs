@@ -11,13 +11,13 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
         {
             return IntentBuilder.For(Constants.Intents.GetRevenue)
                .TriggerOn("Get revenue")
-               .TriggerOn($"Get revenue from last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
+               .TriggerOn($"Get revenue from [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
                .TriggerOn("How much money we made")
-               .TriggerOn($"How much money we made last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
+               .TriggerOn($"How much money we made [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
                .TriggerOn("How much were we paid")
-               .TriggerOn($"How much were we paid last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
+               .TriggerOn($"How much were we paid [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
                .WithOptionalParameter(ParameterBuilder.Of(Constants.Variables.TimeUnit, Entity.DatePeriod))
-               .WithOptionalParameter(ParameterBuilder.Of(Constants.Variables.TimeUnitOriginal, Entity.DatePeriod, ".original"))
+               .WithOptionalParameter(ParameterBuilder.Of(Constants.Variables.TimeUnitOriginal, Entity.DatePeriod, Constants.Variables.TimeUnit))
                .FulfillWithWebhook()
                .Build();
         }

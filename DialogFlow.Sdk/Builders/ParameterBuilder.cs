@@ -6,20 +6,20 @@ namespace DialogFlow.Sdk.Builders
     {
         private readonly Parameter _parameter;
 
-        private ParameterBuilder(string name, string dataType)
+        private ParameterBuilder(string name, string dataType, string extension = "")
         {
             _parameter = new Parameter
             {
                 Name = name,
                 DataType = dataType,
-                Value = $"${name}",
+                Value = $"${name}{extension}",
                 Required = true
             };
         }
 
-        public static ParameterBuilder Of(string name, string dataType)
+        public static ParameterBuilder Of(string name, string dataType, string extension = "")
         {
-            return new ParameterBuilder(name, dataType);
+            return new ParameterBuilder(name, dataType, extension);
         }
 
         public ParameterBuilder WithPrompt(string prompt)

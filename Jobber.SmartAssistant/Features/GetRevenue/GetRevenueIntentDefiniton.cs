@@ -17,6 +17,7 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
                .TriggerOn("How much were we paid")
                .TriggerOn($"How much were we paid last [{Entity.DatePeriod}:{Constants.Variables.TimeUnit}:month]")
                .WithOptionalParameter(ParameterBuilder.Of(Constants.Variables.TimeUnit, Entity.DatePeriod))
+               .WithOptionalParameter(ParameterBuilder.Of(Constants.Variables.TimeUnitOriginal, Entity.DatePeriod, ".original"))
                .FulfillWithWebhook()
                .Build();
         }

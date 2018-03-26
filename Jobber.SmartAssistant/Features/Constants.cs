@@ -35,7 +35,7 @@ namespace Jobber.SmartAssistant.Features
             public const string JobDescription = "DESCRIPTION";
             public const string JobDate = "DATE";
             public const string TimeUnit = "TIME_UNIT";
-            public const string TimeUnitOriginal = "TIME_UNIT.original";
+            public const string TimeUnitOriginal = "TIME_UNIT_ORIGINAL";
         }
 
         public static class Contexts

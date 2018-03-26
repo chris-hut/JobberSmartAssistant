@@ -13,6 +13,7 @@ using Jobber.SmartAssistant.Features.FavoriteNumber;
 using Jobber.SmartAssistant.Features.Welcome;
 using Jobber.SmartAssistant.Features.UnassignedVisits;
 using Jobber.SmartAssistant.Features.ConvertableQuotes;
+using Jobber.SmartAssistant.Features.EasterEggs;
 using Jobber.SmartAssistant.Features.GetCompletableVisits;
 using Jobber.SmartAssistant.Features.GetJobs;
 using Jobber.SmartAssistant.Features.SendableInvoices;
@@ -42,6 +43,7 @@ namespace Jobber.SmartAssistant
         private static IIntentRegistry BuildIntentRegistry()
         {
             return new DefaultIntentRegistry()
+                .WithIntentDefinition(new ThankYouIntentDefiniton())
                 .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new FallbackIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())

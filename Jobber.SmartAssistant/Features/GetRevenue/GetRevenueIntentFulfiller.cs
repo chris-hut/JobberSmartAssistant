@@ -23,9 +23,9 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
             var datePeriod = GetDatePeriodForRevenueFrom(fulfillmentRequest);
             var timeUnit = fulfillmentRequest.GetParameter(Constants.Variables.TimeUnitOriginal);
 
-            if (timeUnit == null)
+            if (string.IsNullOrEmpty(timeUnit))
             {
-                timeUnit = "week";
+                timeUnit = "last week";
             }
 
             var getTransactionRequest = new GetTransactionRequest
@@ -41,7 +41,7 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
 
 
             return FulfillmentResponseBuilder.Create()
-                .Speech($"We made ${revenue} last {timeUnit}")
+                .Speech($"We made ${revenue} in {timeUnit}")
                 .Build();
         }
 

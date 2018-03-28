@@ -4,15 +4,15 @@ using DialogFlow.Sdk.Models.Intents;
 
 namespace Jobber.SmartAssistant.Features.GetAssignedVisits
 {
-    public class GetAmountVisitsIntentDefinition : IIntentDefinition
+    public class GetLengthWorkdayIntentDefinition : IIntentDefinition
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.For(Constants.Intents.GetAmountVisits)
-                .TriggerOn("How many visits do I have today?")
-                .TriggerOn("How many work for me today.")
+            return IntentBuilder.For(Constants.Intents.GetLengthWorkday)
+                .TriggerOn("How long is my work today?")
+                .TriggerOn("How much work do I have today?")
                 .FulfillWithWebhook()
                 .Build();
-        }   
+        }
     }
 }

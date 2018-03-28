@@ -6,8 +6,6 @@ namespace Jobber.SmartAssistant.Features
     {
         public const string AssistantName = "Jobber Bot";
 
-
-
         public static class Intents
         {
             public const string Welcome = "WELCOME_INTENT";
@@ -25,6 +23,8 @@ namespace Jobber.SmartAssistant.Features
             public const string GetRevenue = "GET_REVENUE";
             public const string GetAssignedVisits = "GET_ASSIGNED_VISITS";
             public const string GetAmountVisits = "GET_AMOUNT_VISITS";
+            public const string GetLengthWorkday = "GET_LENGTH_WORKDAY";
+            public const string GetNextVisit = "GET_NEXT_VISIT";
         }
 
         public static class Variables

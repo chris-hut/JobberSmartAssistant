@@ -59,8 +59,7 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
             foreach (Visit visit in first2_visits)
             {
                 sb.Append(visit.Description + ". ");
-            }
-            
+            }  
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You have {visits.Count} visits today. Visits include: {sb.ToString()}")
                 .MarkEndOfAssistantConversation()

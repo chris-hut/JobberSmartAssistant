@@ -8,6 +8,7 @@ using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
+using Jobber.SmartAssistant.Extensions;
 
 namespace Jobber.SmartAssistant.Features.GetAssignedVisits
 {
@@ -22,10 +23,8 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
             IJobberClient jobberClient)
         {
             // Get user_id
-            var token = fulfillmentRequest.OriginalRequest.Data.User.AccessToken;
-            var decoded = new JwtSecurityToken(jwtEncodedString: token);
-            var user_id = (long) Convert.ToDouble(decoded.Claims.First(c => c.Type == "user_id").Value);
-            var visits = await jobberClient.GetTodayAssignedVisitsAsync(user_id);
+            var userId = fulfillmentRequest.GetCurrentUserId();
+            var visits = await jobberClient.GetTodayAssignedVisitsAsync(userId);
             
             switch (visits.Count)
             {

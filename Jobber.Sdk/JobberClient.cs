@@ -67,13 +67,16 @@ namespace Jobber.Sdk
             }
         }
 
-        public async Task<VisitsCollections> GetTodayAssignedVisitsAsync(long userId)
+        public async Task<VisitsCollections> GetTodayAssignedVisitsAsync(long userId, long start=0)
         {
             try
             {
-                var today = DateTime.Today.ToUnixTime();
+                if (start == 0)
+                {
+                    start = DateTime.Today.ToUnixTime();    
+                }
                 var tomorrow = DateTime.Today.AddDays(1).ToUnixTime();
-                return await _jobberApi.GetAssignedVisitsAsync(today, tomorrow, userId);
+                return await _jobberApi.GetAssignedVisitsAsync(start, tomorrow, userId);
             }
             catch (Exception ex)
             {

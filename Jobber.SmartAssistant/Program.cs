@@ -55,6 +55,9 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new SendableInvoicesIntentDefinition())
                 .WithIntentDefinition(new GetRevenueIntentDefiniton())
                 .WithIntentDefinition(new GetAssignedVisitsIntentDefinition())
+                .WithIntentDefinition(new GetAmountVisitsIntentDefinition())
+                .WithIntentDefinition(new GetLengthWorkdayIntentDefinition())
+                .WithIntentDefinition(new GetNextVisitIntentDefinition())
                 .WithIntentDefinition(new GetCompletableVisitsIntentDefinition())
                 .WithIntentDefinition(new GetCompleteableVisitsDetailsIntentDefinition())
                 .WithIntentDefinition(new DontGetCompletableDetailsIntentDefinition());
@@ -71,6 +74,9 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new SendableInvoivesIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetRevenueIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetAssignedVisitsIntentFulfiller())
+                .WithJobberIntentFulfiller(new GetAmountVisitsIntentFulfiller())
+                .WithJobberIntentFulfiller(new GetLengthWorkdayIntentFulfiller())
+                .WithJobberIntentFulfiller(new GetNextVisitIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetCompletableVisitsIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetCompleteableVisitsDetailsIntentFulfiller());
         }

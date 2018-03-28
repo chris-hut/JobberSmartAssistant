@@ -8,5 +8,11 @@ jobs:
       - run: dotnet restore
       - run: dotnet build
       - run: dotnet test DialogFlow.Sdk.Tests/DialogFlow.Sdk.Tests.csproj --no-build --logger:nunit
+      - run:
+          name: Collect test results
+          command: |
+            mkdir -p ~/TestResults/
+            find . -type f -regex ".*xml" -exec cp {} ~/TestResults/ \;
+          when: always
       - store_test_results:
-          path: ~/**/TestResults/*.xml
+          path: ~/TestResults/

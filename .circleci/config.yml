@@ -12,7 +12,7 @@ jobs:
           name: Collect test results
           command: |
             mkdir -p ~/TestResults/
-            find . -type f -regex ".*xml" -exec cp {} ~/TestResults/ \;
+            find . -type f -regex ".*TestResults.xml" -exec cp {} ~/TestResults/ \;
           when: always
       - store_test_results:
           path: ~/TestResults/

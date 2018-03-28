@@ -67,6 +67,21 @@ namespace Jobber.Sdk
             }
         }
 
+        public async Task<VisitsCollections> GetTodayAssignedVisitsAsync(long userId)
+        {
+            try
+            {
+                var today = DateTime.Today.ToUnixTime();
+                var tomorrow = DateTime.Today.AddDays(1).ToUnixTime();
+                return await _jobberApi.GetAssignedVisitsAsync(today, tomorrow, userId);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = "Failed while getting today's assigned visits.";
+                throw ConvertToJobberException(errorMessage, ex);
+            }
+        }
+         
         public async Task<VisitsCollections> GetTodaysVisitsAsync()
         {
             try

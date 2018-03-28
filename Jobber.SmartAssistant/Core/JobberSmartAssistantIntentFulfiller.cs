@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Assistant.Sdk.Core;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Rest;
+
+using System.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Jobber.SmartAssistant.Core
 {
@@ -31,7 +35,6 @@ namespace Jobber.SmartAssistant.Core
             {
                 ApiKey = fulfillmentRequest.OriginalRequest.Data.User.AccessToken
             });
-
             return await GetJobberIntentFulfillerFor(fulfillmentRequest).FulfillAsync(fulfillmentRequest, jobberServer);
         }
 

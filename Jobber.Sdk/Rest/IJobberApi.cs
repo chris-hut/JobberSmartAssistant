@@ -34,6 +34,10 @@ namespace Jobber.Sdk.Rest
         [Get("/visits")]
         Task<VisitsCollections> GetVisitsAsync();
 
+        [Get("/visits?where=[start_at>={start},start_at<={end},assigned_to_user={user_id}]")]
+        Task<VisitsCollections> GetAssignedVisitsAsync([AliasAs("start")] long start, [AliasAs("end")] long end,  
+                                                                            [AliasAs("user_id")] long userId);
+        
         [Get("/visits?where=[start_at>={start},start_at<={end}]")]
         Task<VisitsCollections> GetTodaysVisitsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
 

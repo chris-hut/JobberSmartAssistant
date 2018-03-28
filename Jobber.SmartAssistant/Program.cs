@@ -14,8 +14,8 @@ using Jobber.SmartAssistant.Features.Welcome;
 using Jobber.SmartAssistant.Features.UnassignedVisits;
 using Jobber.SmartAssistant.Features.ConvertableQuotes;
 using Jobber.SmartAssistant.Features.EasterEggs;
+using Jobber.SmartAssistant.Features.GetAssignedVisits;
 using Jobber.SmartAssistant.Features.GetCompletableVisits;
-using Jobber.SmartAssistant.Features.GetJobs;
 using Jobber.SmartAssistant.Features.SendableInvoices;
 using Jobber.SmartAssistant.Features.GetRevenue;
 using Microsoft.AspNetCore;
@@ -54,9 +54,7 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new ConvertibleQuoteIntentDefinition())
                 .WithIntentDefinition(new SendableInvoicesIntentDefinition())
                 .WithIntentDefinition(new GetRevenueIntentDefiniton())
-                .WithIntentDefinition(new GetJobsIntentDefinition())
-                .WithIntentDefinition(new GetAmountOfJobsIntentDefinition())
-                .WithIntentDefinition(new GetLengthWorkDayIntentDefinition())
+                .WithIntentDefinition(new GetAssignedVisitsIntentDefinition())
                 .WithIntentDefinition(new GetCompletableVisitsIntentDefinition())
                 .WithIntentDefinition(new GetCompleteableVisitsDetailsIntentDefinition())
                 .WithIntentDefinition(new DontGetCompletableDetailsIntentDefinition());
@@ -72,9 +70,7 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new ConvertibleQuoteIntentFulfiller())
                 .WithJobberIntentFulfiller(new SendableInvoivesIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetRevenueIntentFulfiller())
-                .WithJobberIntentFulfiller(new GetJobsIntentFullfiller())
-                .WithJobberIntentFulfiller(new GetAmountOfJobsIntentFulfiller())
-                .WithJobberIntentFulfiller(new GetLengthWorkDayIntentFulfiller())
+                .WithJobberIntentFulfiller(new GetAssignedVisitsIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetCompletableVisitsIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetCompleteableVisitsDetailsIntentFulfiller());
         }

@@ -16,3 +16,5 @@ jobs:
           when: always
       - store_test_results:
           path: ~/TestResults/
+      - store_artifacts:
+          path: ~/TestResults/

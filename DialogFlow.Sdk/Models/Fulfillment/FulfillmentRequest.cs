@@ -12,6 +12,8 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public string Id { get; set; }
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; }
+        [JsonProperty("timezone")]
+        public string Timezone { get; set; }
         [JsonProperty("lang")]
         public string Language { get; set; }
         [JsonProperty("result")]

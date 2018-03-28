@@ -121,7 +121,8 @@ namespace Assistant.Sdk
 
             _logger.LogInfo("Fulfillment started for request with action: " +
                             $"{actionName} " +
-                            $"and id: {fulfillmentRequest.Id}.");
+                            $"and id: {fulfillmentRequest.Id}" +
+                            $"and timezone : {fulfillmentRequest.Timezone}");
 
             var seralizedContexts = ConvertToPrettyJson(fulfillmentRequest.ConversationResult.Contexts);
             _logger.LogInfo($"{logTag} Request Contexts\n{seralizedContexts}");

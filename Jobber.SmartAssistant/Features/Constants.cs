@@ -24,6 +24,7 @@ namespace Jobber.SmartAssistant.Features
             public const string SendableInvoices = "SENDABLE_INVOICES";
             public const string GetRevenue = "GET_REVENUE";
             public const string GetAssignedVisits = "GET_ASSIGNED_VISITS";
+            public const string GetAmountVisits = "GET_AMOUNT_VISITS";
         }
 
         public static class Variables

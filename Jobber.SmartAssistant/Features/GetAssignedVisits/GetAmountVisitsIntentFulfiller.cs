@@ -11,13 +11,13 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.GetAssignedVisits
 {
-    public class GetAssignedVisitsIntentFulfiller : IJobberIntentFulfiller
+    public class GetAmountVisitsIntentFulfiller : IJobberIntentFulfiller
     {
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)
         {
-            return fulfillmentRequest.IsForAction(Constants.Intents.GetAssignedVisits);
+            return fulfillmentRequest.IsForAction(Constants.Intents.GetAmountVisits);
         }
-
+        
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest,
             IJobberClient jobberClient)
         {
@@ -41,7 +41,7 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         private static FulfillmentResponse BuildNoVisitResponse()
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You don't have any assigned visits today.")
+                .Speech($"Your day looks clear today")
                 .MarkEndOfAssistantConversation()
                 .Build();
         }
@@ -49,23 +49,15 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         private static FulfillmentResponse BuildVisitFoundResponse(Visit visit) 
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have one visit today. {visit.Description}")
+                .Speech($"You have one visit today.")
                 .MarkEndOfAssistantConversation()
                 .Build();
         }
 
         private static FulfillmentResponse buildMultipleVisitsFoundResponse(VisitsCollections visits)
         {
-            // This is temporary, need to specify date range
-            var first2_visits = visits.Visits.Take(2);
-            StringBuilder sb = new StringBuilder();
-            foreach (Visit visit in first2_visits)
-            {
-                sb.Append(visit.Description + ". ");
-            }
-            
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have {visits.Count} visits today. Visits include: {sb.ToString()}")
+                .Speech($"You have {visits.Count} visits today.")
                 .MarkEndOfAssistantConversation()
                 .Build();
         }

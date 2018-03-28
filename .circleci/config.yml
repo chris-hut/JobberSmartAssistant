@@ -9,4 +9,4 @@ jobs:
       - run: dotnet build
       - run: dotnet test DialogFlow.Sdk.Tests/DialogFlow.Sdk.Tests.csproj --no-build --logger:nunit
       - store_test_results:
-          path: **/TestResults/*.xml
+          path: ~/**/TestResults/*.xml

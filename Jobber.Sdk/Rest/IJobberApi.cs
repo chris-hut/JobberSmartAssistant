@@ -29,6 +29,9 @@ namespace Jobber.Sdk.Rest
         [Get("/invoices")]
         Task<InvoicesCollection> GetInvoicesAsync();
 
+        [Get("/invoices?where=[status=\"draft\"]")]
+        Task<InvoicesCollection> GetDraftInvoicesAsync();
+
         [Get("/transactions")]
         Task<TransactionCollection> GetTransactionsAsync();
 

@@ -16,6 +16,7 @@ namespace Jobber.Sdk
         Task<QuotesCollection> GetQuotesAsync();
         Task<ClientCollection> GetClientsAsync(string searchQuery = "");
         Task<InvoicesCollection> GetInvoicesAsync();
+        Task<InvoicesCollection> GetDraftInvoicesAsync();
         Task<TransactionCollection> GetTransactionsAsync();
         Task<VisitsCollections> GetVisitsAsync();
         Task<VisitsCollections> GetTodayAssignedVisitsAsync(long user_id, long start=0);

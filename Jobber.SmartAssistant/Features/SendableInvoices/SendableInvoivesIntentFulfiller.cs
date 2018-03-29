@@ -15,8 +15,8 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-            var Invoices = await jobberClient.GetInvoicesAsync();
-            var numOfSendableInvoices = Invoices.NumSendable();
+            var Invoices = await jobberClient.GetDraftInvoicesAsync();
+            var numOfSendableInvoices = Invoices.Count();
 
             switch (numOfSendableInvoices)
             {

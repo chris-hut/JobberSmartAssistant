@@ -21,6 +21,7 @@ namespace Jobber.Sdk
         Task<VisitsCollections> GetTodayAssignedVisitsAsync(long user_id, long start=0);
         Task<VisitsCollections> GetTodaysVisitsAsync();
         Task<TransactionCollection> GetRangedTransactionsAsync(GetTransactionRequest getTransactionRequest);
+        Task<UserCollection> GetUserAsync(long userId);
 
     }
 }

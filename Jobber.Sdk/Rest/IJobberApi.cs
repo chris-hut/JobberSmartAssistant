@@ -4,6 +4,7 @@ using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.Sdk.Rest.Requests;
+using Jobber.Sdk.Models;
 using Refit;
 
 namespace Jobber.Sdk.Rest
@@ -46,5 +47,8 @@ namespace Jobber.Sdk.Rest
         
         [Get("/transactions?where=[created_at>={start},created_at<={end}]")]
         Task<TransactionCollection> GetRangedTransactionsAsync([AliasAs("start")] long start, [AliasAs("end")] long end);
+
+        [Get("/users/{userId}")]
+        Task<UserCollection> GetUserAsync([AliasAs("userId")] long userId);
     }
 }

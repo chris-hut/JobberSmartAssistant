@@ -25,6 +25,7 @@ namespace Jobber.SmartAssistant.Features
             public const string GetAmountVisits = "GET_AMOUNT_VISITS";
             public const string GetLengthWorkday = "GET_LENGTH_WORKDAY";
             public const string GetNextVisit = "GET_NEXT_VISIT";
+            public const string Help = "HELP";
         }
 
         public static class Variables

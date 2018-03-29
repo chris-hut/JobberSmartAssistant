@@ -8,6 +8,7 @@ using Jobber.Sdk.Extensions;
 using Jobber.Sdk.Models.Clients;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
+using Jobber.Sdk.Models;
 using Jobber.Sdk.Rest;
 using Jobber.Sdk.Rest.Requests;
 using Newtonsoft.Json;
@@ -113,6 +114,20 @@ namespace Jobber.Sdk
             catch (Exception ex)
             {
                 var errorMessage = $"Failed while getting transactions for last {timeUnit} with start: {start} and end: {end}";
+                throw ConvertToJobberException(errorMessage, ex);
+            }
+        }
+
+        public async Task<UserCollection> GetUserAsync(long userId)
+        {
+
+            try
+            {
+                return await _jobberApi.GetUserAsync(userId);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Failed while getting user {userId}";
                 throw ConvertToJobberException(errorMessage, ex);
             }
         }

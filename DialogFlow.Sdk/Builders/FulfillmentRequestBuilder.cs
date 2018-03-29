@@ -16,14 +16,14 @@ namespace DialogFlow.Sdk.Builders
             };
         }
 
-        public static FulfillmentRequestBuilder For(string name)
+        public static FulfillmentRequestBuilder Create(string name)
         {
             return new FulfillmentRequestBuilder(name);
         }
 
         public FulfillmentRequestBuilder WithParameter(string parameterName, object parameterValue)
         {
-            _fulfillmentRequest.ConversationResult.Parameters[parameterName] = parameterName.ToString();
+            _fulfillmentRequest.ConversationResult.Parameters[parameterName] = parameterValue.ToString();
             return this;
         }
 

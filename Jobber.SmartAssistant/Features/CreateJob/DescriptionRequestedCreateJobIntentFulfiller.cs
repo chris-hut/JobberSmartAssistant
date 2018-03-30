@@ -70,12 +70,12 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         
         private static DateTimeRange GetDateTimeRangeForJobFrom(FulfillmentRequest fulfillmentRequest)
         {
-            if (fulfillmentRequest.IsParameterDateRange(Constants.Variables.JobDate))
+            if (fulfillmentRequest.IsParameterDateRange(Constants.Variables.Date))
             {
-                return fulfillmentRequest.GetParemterAsDateTimeRange(Constants.Variables.JobDate);
+                return fulfillmentRequest.GetParemterAsDateTimeRange(Constants.Variables.Date);
             }
 
-            var dateSpecified = fulfillmentRequest.GetParameterAsDateTime(Constants.Variables.JobDate);
+            var dateSpecified = fulfillmentRequest.GetParameterAsDateTime(Constants.Variables.Date);
 
             return new DateTimeRange
             {

@@ -15,7 +15,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
                 .RequireParameter(ParameterBuilder.Of(Constants.Variables.JobDescription, Entity.Any)
                     .WithPrompt("What is the description of the job?")
                 )
-                .RequireParameter(ParameterBuilder.Of(Constants.Variables.JobDate, Entity.DateTime)
+                .RequireParameter(ParameterBuilder.Of(Constants.Variables.Date, Entity.DateTime)
                     .WithPrompt("What day is the job?")
                 )
                 .FulfillWithWebhook()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using Jobber.Sdk.Models.Clients;
@@ -59,7 +60,14 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
             response
                 .AssertResponseSpeech("Okay! What are you going to do for John Smith?")
                 .AssertContainsOutgoingContext(Constants.Contexts.CreateJobClientSet)
-                .AssertOutgoingContextHasLifespanOf(Constants.Contexts.CreateJobClientSet, 1);
+                .AssertOutgoingContextHasLifespanOf(Constants.Contexts.CreateJobClientSet, 1)
+                .AssertOutgoingContextHasParameter(Constants.Contexts.CreateJobClientSet, Constants.Variables.CreateJobContext);
+
+            var createJobContext = response.GetContextParameterAs<CreateJobContext>(
+                Constants.Contexts.CreateJobClientSet, Constants.Variables.CreateJobContext);
+            
+            Assert.AreEqual("John Smith", createJobContext.Client.Name);
+            Assert.AreEqual("Rogers Place, Edmonton", createJobContext.Property.MapAddress);
         }
 
         [TestCase]

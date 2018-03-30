@@ -23,6 +23,12 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         {
             return ContextOut.First(c => c.Name.ToLower() == contextName.ToLower());
         }
+
+        public T GetContextParameterAs<T>(string contextName, string parameterName)
+        {
+            var context = ContextOut.First(c => c.Name.ToLower() == contextName.ToLower());
+            return JsonConvert.DeserializeObject<T>(context.Parameters[parameterName]);
+        }
     }
 
     public interface IFulfillmentData

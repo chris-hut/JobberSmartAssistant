@@ -29,5 +29,13 @@ namespace Jobber.SmartAssistant.Tests.Extensions
             Assert.AreEqual(lifespan, context.Lifespan);
             return fulfillmentResponse;
         }
+        
+        public static FulfillmentResponse AssertOutgoingContextHasParameter(
+            this FulfillmentResponse fulfillmentResponse, string contextName, string parameterName)
+        {
+            var context = fulfillmentResponse.GetContext(contextName);
+            Assert.IsTrue(context.Parameters.ContainsKey(parameterName));
+            return fulfillmentResponse;
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
         public async Task TestIfNoClientMatches()
         {
             var mockJobberClient = MockJobberClientBuilder.Create()
-                .ReturnsClients(new List<Client>())
+                .SearchReturnsClients("John", new List<Client>())
                 .Build();
 
             var fulfillmentRequest = FulfillmentRequestBuilder.Create(Constants.Intents.ClientRequestedCreateJob)
@@ -47,7 +47,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
             };
             
             var mockJobberClient = MockJobberClientBuilder.Create()
-                .ReturnsClients(new List<Client> { john })
+                .SearchReturnsClients("John", new List<Client> { john })
                 .Build();
 
             var fulfillmentRequest = FulfillmentRequestBuilder.Create(Constants.Intents.ClientRequestedCreateJob)
@@ -77,7 +77,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
             var johnAppleseed = new Client { Name = "John Appleseed" };
             
             var mockJobberClient = MockJobberClientBuilder.Create()
-                .ReturnsClients(new List<Client> { johnSmith, johnAppleseed })
+                .SearchReturnsClients("John", new List<Client> { johnSmith, johnAppleseed })
                 .Build();
 
             var fulfillmentRequest = FulfillmentRequestBuilder.Create(Constants.Intents.ClientRequestedCreateJob)

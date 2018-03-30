@@ -52,7 +52,7 @@ namespace Jobber.SmartAssistant.Tests.Mocks
             return this;
         }
         
-        public MockJobberClientBuilder ReturnsClients(IEnumerable<Client> clients, string clientQuery = "")
+        public MockJobberClientBuilder SearchReturnsClients(string clientQuery, IEnumerable<Client> clients)
         {
             _jobberClientMock
                 .Setup(m => m.GetClientsAsync(It.Is<string>(s => s == clientQuery)))

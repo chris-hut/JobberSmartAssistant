@@ -14,6 +14,8 @@ namespace Jobber.SmartAssistant.Features
             public const string ClientRequestedCreateJob = "CLIENT_REQUESTED_CREATE_JOB"; 
             public const string DescritptionRequestedCreateJob = "DESCRIPTION_REQUESTED_CREATE_JOB";
 
+            public const string StartModifyQuote = "START_MODIFY_QUOTE";
+            
             public const string GetCompletableVisits = "GET_COMPLETEABLE_VISITS";
             public const string GetCompletableVisitsDetails = "GET_COMPLETEABLE_VISITS_DETAILS";
             public const string DontGetCompletableVisitsDetails = "DONT_GET_COMPLETEABLE_VISITS_DETAILS";
@@ -40,6 +42,7 @@ namespace Jobber.SmartAssistant.Features
 
         public static class Contexts
         {
+            public const string QuoteDetailsRequested = "QUOTE_DETAILS_REQUESTED";
             public const string CreateJobClientRequested = "CREATE_JOB_CLIENT_REQUESTED";
             public const string CreateJobClientSet = "CREATE_JOB_CLIENT_SET";
             public const string AskedIfUserWantsCompletableDetails = "ASKED_COMPLETABLE_DETAILS";

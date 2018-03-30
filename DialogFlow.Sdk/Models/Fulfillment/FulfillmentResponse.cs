@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DialogFlow.Sdk.Models.Common;
 using DialogFlow.Sdk.Models.Messages;
 using Newtonsoft.Json;
@@ -17,6 +18,17 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public IList<IMessage> Messages { get; set; } = new List<IMessage>();
         [JsonProperty("data")]
         public Dictionary<string, IFulfillmentData> Data { get; set; } = new Dictionary<string, IFulfillmentData>();
+
+        public Context GetContext(string contextName)
+        {
+            return ContextOut.First(c => c.Name.ToLower() == contextName.ToLower());
+        }
+
+        public T GetContextParameterAs<T>(string contextName, string parameterName)
+        {
+            var context = ContextOut.First(c => c.Name.ToLower() == contextName.ToLower());
+            return JsonConvert.DeserializeObject<T>(context.Parameters[parameterName]);
+        }
     }
 
     public interface IFulfillmentData

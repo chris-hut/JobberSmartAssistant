@@ -8,6 +8,7 @@ jobs:
       - run: dotnet restore
       - run: dotnet build
       - run: dotnet test DialogFlow.Sdk.Tests/DialogFlow.Sdk.Tests.csproj --no-build --logger:nunit
+      - run: dotnet test Jobber.SmartAssistant.Tests/Jobber.SmartAssistant.Tests.csproj --no-build --logger:nunit
       - run:
           name: Collect test results
           command: |

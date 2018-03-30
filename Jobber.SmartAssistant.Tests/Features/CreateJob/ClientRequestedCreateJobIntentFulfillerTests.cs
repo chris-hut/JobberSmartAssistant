@@ -25,7 +25,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
                 .Build();
             
             var fulfiller = new ClientRequestedCreateJobIntentFulfiller();
-            var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient);
+            var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient.Object);
             
             response.AssertResponseSpeech("Sorry I dont know who John is.");
         }
@@ -54,7 +54,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
                 .Build();
             
             var fulfiller = new ClientRequestedCreateJobIntentFulfiller();
-            var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient);
+            var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient.Object);
 
             response
                 .AssertResponseSpeech("Okay! What are you going to do for John Smith?")
@@ -77,7 +77,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
                 .Build();
             
             var fulfiller = new ClientRequestedCreateJobIntentFulfiller();
-            var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient);
+            var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient.Object);
 
             response
                 .AssertResponseSpeech("There a few people who have a smiliar name to John, can you be a bit more specific?")

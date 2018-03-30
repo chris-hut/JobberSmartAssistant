@@ -32,9 +32,9 @@ namespace Jobber.SmartAssistant.Tests.Mocks
             return this;
         }
         
-        public IJobberClient Build()
+        public Mock<IJobberClient> Build()
         {
-            return _jobberClientMock.Object;
+            return _jobberClientMock;
         }
     }
 }

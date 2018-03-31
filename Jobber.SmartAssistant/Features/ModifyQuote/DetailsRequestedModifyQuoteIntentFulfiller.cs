@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models.Financials;
+using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 
@@ -32,6 +34,8 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
             {
                 case 0:
                     return BuildResponseForNoMatchingQuotes();
+                case 1:
+                    return BuildResponseFor(filteredQuotes.First());
                 default:
                     return BuildResponseForMuiltipleMatches();
             }
@@ -51,7 +55,28 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 .Build();
         }
 
-        public static FulfillmentResponse BuildResponseForMuiltipleMatches()
+        private static FulfillmentResponse BuildResponseFor(Quote quote)
+        {
+            var outgoingContext = new ModifyQuoteContext { Quote = quote };
+            
+            var serviceDescriptions = quote.LineItems
+                .Select(l => $"{l.Name} with a unit cost of ${l.UnitCost}");
+
+            var joinedServicesDescriptions = String.Join(", ", serviceDescriptions);
+
+            var responseSpeech = $"Okay the quote currently has {quote.LineItems.Count()} " +
+                                  $"services. {joinedServicesDescriptions}. Please let me know what service " +
+                                  $"you would like to update.";
+
+            return FulfillmentResponseBuilder.Create()
+                .Speech(responseSpeech)
+                .WithContext(ContextBuilder.For(Constants.Contexts.QuoteDetailsSet)
+                    .WithParameter(Constants.Variables.ModifyQuoteContext, outgoingContext)
+                )
+                .Build();
+        }
+        
+        private static FulfillmentResponse BuildResponseForMuiltipleMatches()
         {
             var message = "Sorry, it looks like there are multiple quotes " +
                           "that match what you said. I'm not sure which one to modify.";

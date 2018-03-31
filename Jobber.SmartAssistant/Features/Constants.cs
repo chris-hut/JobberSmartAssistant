@@ -35,6 +35,7 @@ namespace Jobber.SmartAssistant.Features
         {
             public const string ClientName = "CLIENT_NAME";
             public const string CreateJobContext = "CREATE_JOB_CONTEXT";
+            public const string ModifyQuoteContext = "MODIFY_QUOTE_CONTEXT";
             public const string JobDescription = "DESCRIPTION";
             public const string Date = "DATE";
             public const string ServiceNames = "SERVICES";
@@ -45,6 +46,8 @@ namespace Jobber.SmartAssistant.Features
         public static class Contexts
         {
             public const string QuoteDetailsRequested = "QUOTE_DETAILS_REQUESTED";
+            public const string QuoteDetailsSet = "QUOTE_DETAILS_Set";
+
             public const string CreateJobClientRequested = "CREATE_JOB_CLIENT_REQUESTED";
             public const string CreateJobClientSet = "CREATE_JOB_CLIENT_SET";
             public const string AskedIfUserWantsCompletableDetails = "ASKED_COMPLETABLE_DETAILS";

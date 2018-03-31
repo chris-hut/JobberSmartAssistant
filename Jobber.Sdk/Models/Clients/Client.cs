@@ -29,6 +29,6 @@ namespace Jobber.Sdk.Models.Clients
         public IEnumerable<Note> Notes { get; set; }
 
         [JsonProperty("properties")]
-        public IEnumerable<Properties> MyProperties { get; set; }
+        public IEnumerable<Property> MyProperties { get; set; }
     }
 }

@@ -37,9 +37,9 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
             var john = new Client
             {
                 Name = "John Smith",
-                MyProperties = new List<Properties>
+                MyProperties = new List<Property>
                 {
-                    new Properties
+                    new Property
                     {
                         MapAddress = "Rogers Place, Edmonton"
                     }

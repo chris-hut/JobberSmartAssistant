@@ -2,7 +2,7 @@
 
 namespace Jobber.Sdk.Models.Clients
 {
-    public class Properties
+    public class Property
     {
         [JsonProperty("id")]
         public int Id { get; set; }

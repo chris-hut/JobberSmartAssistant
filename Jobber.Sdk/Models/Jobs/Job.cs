@@ -37,7 +37,7 @@ namespace Jobber.Sdk.Models.Jobs
         public Client Client { get; set; }
 
         [JsonProperty("properties")] 
-        public IEnumerable<Properties> Property { get; set; }
+        public IEnumerable<Property> Property { get; set; }
 
         [JsonProperty("quote")]
         public Quote Quote { get; set; }

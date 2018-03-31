@@ -43,6 +43,12 @@ namespace DialogFlow.Sdk.Models.Fulfillment
             }
         }
 
+        public T GetParamterAs<T>(string parameterName)
+        {
+            var rawParameter = GetParameter(parameterName);
+            return JsonConvert.DeserializeObject<T>(rawParameter);
+        }
+
         public int GetParameterAsInt(string parameterName)
         {
             return int.Parse(GetParameter(parameterName));

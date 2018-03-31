@@ -44,7 +44,7 @@ namespace DialogFlow.Sdk.Builders
             return this;
         }
 
-        public ParameterBuilder ExpectsList()
+        public ParameterBuilder IsListParameter()
         {
             _parameter.IsList = true;
             return this;

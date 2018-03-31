@@ -18,7 +18,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 )
                 .RequireParameter(ParameterBuilder.Of(Constants.Variables.ServiceNames, Entity.Any)
                     .WithPrompt("What services did the quote contain?")
-                    .ExpectsList()
+                    .IsListParameter()
                 )
                 .FulfillWithWebhook()
                 .Build();

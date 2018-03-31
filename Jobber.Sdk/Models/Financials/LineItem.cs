@@ -15,5 +15,8 @@ namespace Jobber.Sdk.Models.Financials
 
         [JsonProperty("qty")]
         public string Qty { get; set; }
+        
+        [JsonProperty("unit_cost")]
+        public string UnitCost { get; set; }
     }
 }

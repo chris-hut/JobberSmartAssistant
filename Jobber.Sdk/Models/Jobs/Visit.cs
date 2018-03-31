@@ -49,7 +49,7 @@ namespace Jobber.Sdk.Models.Jobs
         public Job MyJob { get; set; }
 
         [JsonProperty("property")]
-        public Properties MyProperty { get; set; }
+        public Property MyProperty { get; set; }
 
         [JsonProperty("assigned_to")]
         public  IEnumerable<Assigned> AssignedTo { get; set; }

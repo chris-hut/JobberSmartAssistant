@@ -1,4 +1,6 @@
-﻿using Jobber.Sdk.Models.Clients;
+﻿using System.Collections.Generic;
+using Jobber.Sdk.Models.Clients;
+using Jobber.Sdk.Models.Financials;
 using Newtonsoft.Json;
 
 namespace Jobber.Sdk.Models.Jobs
@@ -33,7 +35,7 @@ namespace Jobber.Sdk.Models.Jobs
         public string State { get; set; }
 
         [JsonProperty("client")]
-        public Client MyClient { get; set; }
+        public Client Client { get; set; }
 
         [JsonProperty("changes_requested_at")]
         public int ChangedAt { get; set; }
@@ -42,7 +44,10 @@ namespace Jobber.Sdk.Models.Jobs
         public int ApprovedAt { get; set; }
 
         [JsonProperty("property")]
-        public Properties Property { get; set; }
+        public Property Property { get; set; }
+        
+        [JsonProperty("line_items")]
+        public IList<LineItem> LineItems { get; set; } = new List<LineItem>();
 
         public bool Convertable()
         {

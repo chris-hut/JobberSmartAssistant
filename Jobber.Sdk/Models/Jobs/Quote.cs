@@ -5,7 +5,6 @@ namespace Jobber.Sdk.Models.Jobs
 {
     public class Quote
     {
-
         [JsonProperty("id")]
         public int Id { get; set; }
 

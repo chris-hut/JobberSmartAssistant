@@ -38,11 +38,15 @@ namespace DialogFlow.Sdk.Builders
             return new ParameterBuilder(name, dataType, original);
         }
 
-
-
         public ParameterBuilder WithPrompt(string prompt)
         {
             _parameter.Prompts.Add(prompt);
+            return this;
+        }
+
+        public ParameterBuilder ExpectsList()
+        {
+            _parameter.IsList = true;
             return this;
         }
 

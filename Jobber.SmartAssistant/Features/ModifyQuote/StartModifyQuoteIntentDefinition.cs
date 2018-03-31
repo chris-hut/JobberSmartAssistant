@@ -17,7 +17,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 .TriggerOn("Update quote")
                 .TriggerOn("I need to change a quote")
                 .TriggerOn("Can you help me change a quote")
-                .RespondsWith("Okay can you tell me a bit about the quote?")
+                .RespondsWith("Okay. Who was the quote made for?")
                 .CreatesContext(ContextBuilder.For(Constants.Contexts.QuoteDetailsRequested))
                 .Build();
         }

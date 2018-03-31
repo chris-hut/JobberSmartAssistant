@@ -10,7 +10,16 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.DetailsRequestedModifyQuote)
-                .TriggerOn($"The quote is for [{Entity.Any}:{Constants.Variables.ClientName}:John] on [{Entity.DateTime}:{Constants.Variables.Date}:friday]")
+                .RequiresContext(Constants.Contexts.QuoteDetailsRequested)
+                .TriggerOn($"The quote is for [{Entity.Any}:{Constants.Variables.ClientName}:John]")
+                .TriggerOn($"[{Entity.Any}:{Constants.Variables.ClientName}:John]")
+                .RequireParameter(ParameterBuilder.Of(Constants.Variables.ClientName, Entity.Any)
+                    .WithPrompt("Who is the quote for?")
+                )
+                .RequireParameter(ParameterBuilder.Of(Constants.Variables.ServiceNames, Entity.Any)
+                    .WithPrompt("What services did the quote contain?")
+                    .ExpectsList()
+                )
                 .FulfillWithWebhook()
                 .Build();
         }

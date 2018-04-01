@@ -22,13 +22,13 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var clientName = fulfillmentRequest.GetParameter(Constants.Variables.ClientName);
-            var serviceNames = fulfillmentRequest.GetParamterAs<List<string>>(Constants.Variables.ServiceNames);
+            var serviceName = fulfillmentRequest.GetParameter(Constants.Variables.ServiceNames);
 
             var quotesCollection = await jobberClient.GetQuotesAsync();
 
             var filteredQuotes = quotesCollection.Quotes
                 .Where(q => q.Client.Name.ContainsIgnoringCase(clientName))
-                .Where(q => DoesLineItemsMatchUserQuery(q.LineItems, serviceNames));
+                .Where(q => DoesLineItemsMatchUserQuery(q.LineItems, serviceName));
 
             switch (filteredQuotes.Count())
             {
@@ -41,11 +41,9 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
             }
         }
 
-        private static bool DoesLineItemsMatchUserQuery(IEnumerable<LineItem> lineItems, 
-            IEnumerable<string> userDefinedServices)
+        private static bool DoesLineItemsMatchUserQuery(IEnumerable<LineItem> lineItems, string serviceName)
         {
-            return userDefinedServices
-                .All(s => lineItems.Any(l => l.Name.ContainsIgnoringCase(s)));
+            return lineItems.Any(l => l.Name.ContainsIgnoringCase(serviceName));
         }
 
         private static FulfillmentResponse BuildResponseForNoMatchingQuotes()

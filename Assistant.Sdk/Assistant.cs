@@ -91,7 +91,7 @@ namespace Assistant.Sdk
             }
             catch(Exception ex)
             {
-                _logger.LogError($"Encountered an exception. {ex.GetType().Name}: {ex.Message}");
+                _logger.LogError($"Encountered an exception.\n{ex.GetType().Name}: {ex.Message}\n{ex.StackTrace}");
                 
                 var response = FulfillmentResponseBuilder.Create()
                     .Speech("Sorry something went wrong. Try asking me again later.")
@@ -104,7 +104,6 @@ namespace Assistant.Sdk
         
         private async Task HandleFulfillmentRequestAsync(HttpContext httpContext)
         {
-            var headerValues = String.Join(", ", httpContext.Request.Headers.Select(s => (s.Key, s.Value)));
             var fulfillmentRequest = ExtractFulfillmentRequestFrom(httpContext.Request);
             LogRequest(fulfillmentRequest);
 
@@ -121,14 +120,10 @@ namespace Assistant.Sdk
 
             _logger.LogInfo("Fulfillment started for request with action: " +
                             $"{actionName} " +
-                            $"and id: {fulfillmentRequest.Id} " +
-                            $"and timezone : {fulfillmentRequest.Timezone}");
+                            $"and id: {fulfillmentRequest.Id}");
 
-            var seralizedContexts = ConvertToPrettyJson(fulfillmentRequest.ConversationResult.Contexts);
-            _logger.LogInfo($"{logTag} Request Contexts\n{seralizedContexts}");
-
-            var seralizedParameters = ConvertToPrettyJson(fulfillmentRequest.ConversationResult.Parameters);
-            _logger.LogInfo($"{logTag} Request Parameters\n{seralizedParameters}");
+            var serializedRequest = ConvertToPrettyJson(fulfillmentRequest);
+            _logger.LogInfo($"{logTag} Raw Request\n{serializedRequest}");
         }
 
         private void LogResponse(FulfillmentRequest fulfillmentRequest, FulfillmentResponse fulfillmentResponse)
@@ -136,11 +131,11 @@ namespace Assistant.Sdk
             var actionName = fulfillmentRequest.ConversationResult.ActionName;
             var logTag = $"{actionName}:{fulfillmentRequest.Id}";
 
-            var seralizedContexts = ConvertToPrettyJson(fulfillmentResponse.ContextOut);
-            _logger.LogInfo($"{logTag} Response Contexts\n{seralizedContexts}");
+            var serlializedResponse = ConvertToPrettyJson(fulfillmentResponse);
+            _logger.LogInfo($"{logTag} Raw Response\n{serlializedResponse}");
         }
 
-        private string ConvertToPrettyJson(object obj)
+        private static string ConvertToPrettyJson(object obj)
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }

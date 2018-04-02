@@ -22,7 +22,6 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest,
             IJobberClient jobberClient)
         {
-            // Get user_id
             var userId = fulfillmentRequest.GetCurrentUserId();
             var visits = await jobberClient.GetTodayAssignedVisitsAsync(userId);
             

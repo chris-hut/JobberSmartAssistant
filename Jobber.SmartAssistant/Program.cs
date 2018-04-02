@@ -63,7 +63,8 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new DontGetCompletableDetailsIntentDefinition())
                 .WithIntentDefinition(new HelpIntentDefinition())
                 .WithIntentDefinition(new StartModifyQuoteIntentDefinition())
-                .WithIntentDefinition(new DetailsRequestedModifyQuoteIntentDefinition());
+                .WithIntentDefinition(new DetailsRequestedModifyQuoteIntentDefinition())
+                .WithIntentDefinition(new NewQuoteRequestedModifyQuoteIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()
@@ -83,7 +84,8 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new GetCompletableVisitsIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetCompleteableVisitsDetailsIntentFulfiller())
                 .WithJobberIntentFulfiller(new HelpIntentFulfiller())
-                .WithJobberIntentFulfiller(new DetailsRequestedModifyQuoteIntentFulfiller());
+                .WithJobberIntentFulfiller(new DetailsRequestedModifyQuoteIntentFulfiller())
+                .WithJobberIntentFulfiller(new NewQuoteRequestedModifyQuoteFulfiller());
         }
 
         private static IIntentSynchronizer BuildIntentSynchronizerFrom(Configuration config)

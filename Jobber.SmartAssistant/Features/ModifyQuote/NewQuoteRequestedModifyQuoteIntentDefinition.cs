@@ -5,7 +5,7 @@ using DialogFlow.Sdk.Models.Intents;
 
 namespace Jobber.SmartAssistant.Features.ModifyQuote
 {
-    public class NewQuoteRequestedModifyQuoteIntent : IIntentDefinition
+    public class NewQuoteRequestedModifyQuoteIntentDefinition : IIntentDefinition
     {
         public Intent DefineIntent()
         {

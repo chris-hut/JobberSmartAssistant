@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
 using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
+using Jobber.SmartAssistant.Extensions;
 
 namespace Jobber.SmartAssistant.Features.ModifyQuote
 {
@@ -32,6 +34,12 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
 
         private Quote UpdateServicePriceInQuote(Quote quote, string serviceName, double newPrice)
         {
+            var modifiedServices = quote
+                .LineItems
+                .SelectWhere(l => l.Name.ContainsIgnoringCase(serviceName), l => l.WithUnitCost(newPrice));
+
+            quote.LineItems = modifiedServices.ToList();
+
             return quote;
         }
     }

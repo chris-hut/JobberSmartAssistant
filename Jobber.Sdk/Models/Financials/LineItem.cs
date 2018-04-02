@@ -18,5 +18,17 @@ namespace Jobber.Sdk.Models.Financials
         
         [JsonProperty("unit_cost")]
         public string UnitCost { get; set; }
+
+        public LineItem WithUnitCost(double unitCost)
+        {
+            return new LineItem
+            {
+                Id = Id,
+                Name = Name,
+                Description = Description,
+                Qty = Qty,
+                UnitCost = unitCost.ToString()
+            };
+        }
     }
 }

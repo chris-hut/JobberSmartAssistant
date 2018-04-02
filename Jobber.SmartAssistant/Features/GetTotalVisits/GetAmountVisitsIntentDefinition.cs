@@ -2,7 +2,7 @@
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Intents;
 
-namespace Jobber.SmartAssistant.Features.GetAssignedVisits
+namespace Jobber.SmartAssistant.Features.GetTotalVisits
 {
     public class GetAmountVisitsIntentDefinition : IIntentDefinition
     {

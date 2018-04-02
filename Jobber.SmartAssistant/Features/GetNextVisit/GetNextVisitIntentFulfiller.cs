@@ -10,10 +10,8 @@ using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 using Jobber.SmartAssistant.GoogleMaps;
-using Microsoft.AspNetCore.ApplicationInsights.HostingStartup;
-using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
 
-namespace Jobber.SmartAssistant.Features.GetAssignedVisits
+namespace Jobber.SmartAssistant.Features.GetNextVisit
 {
     public class GetNextVisitIntentFulfiller : IJobberIntentFulfiller
     {

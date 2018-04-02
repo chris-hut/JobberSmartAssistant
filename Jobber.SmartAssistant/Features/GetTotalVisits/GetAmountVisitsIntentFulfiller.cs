@@ -1,7 +1,4 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
@@ -10,7 +7,7 @@ using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 
-namespace Jobber.SmartAssistant.Features.GetAssignedVisits
+namespace Jobber.SmartAssistant.Features.GetTotalVisits
 {
     public class GetAmountVisitsIntentFulfiller : IJobberIntentFulfiller
     {

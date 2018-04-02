@@ -32,7 +32,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 .Build();
         }
 
-        private Quote UpdateServicePriceInQuote(Quote quote, string serviceName, double newPrice)
+        private static Quote UpdateServicePriceInQuote(Quote quote, string serviceName, double newPrice)
         {
             var modifiedServices = quote
                 .LineItems

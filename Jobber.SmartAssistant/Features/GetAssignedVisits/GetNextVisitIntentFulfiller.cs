@@ -46,7 +46,10 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         {
             if (!visit.MyJob.Notes.Any())
             {
-                return $"Next visit is {visit.Title}, {visit.Description}";
+                return $"Next visit is {visit.Title}, {visit.Description}. " +
+                       $"Visit location is {visit.MyProperty.MapAddress}. " +
+                       $"Visit starts at {visit.StartAt}. " +
+                       $"Visit ends at {visit.EndAt}.";
             }
     
             StringBuilder sb = new StringBuilder();
@@ -58,7 +61,7 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
                    $"Visit location is {visit.MyProperty.MapAddress}. " +
                    $"Visit starts at {visit.StartAt}. " +
                    $"Visit ends at {visit.EndAt}. " +
-                   $"Job notes are {sb.ToString()}";
+                   $"Job notes are {sb.ToString()}.";
         }
         
         private static GoogleCardMessage BuildGoogleCardFrom(Visit visit)

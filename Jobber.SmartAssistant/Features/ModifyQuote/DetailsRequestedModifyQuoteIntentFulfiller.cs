@@ -58,7 +58,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
             var outgoingContext = new ModifyQuoteContext { Quote = quote };
             
             var serviceDescriptions = quote.LineItems
-                .Select(l => $"{l.Name} with a unit cost of ${l.UnitCost}");
+                .Select(l => $"{l.Name} with a cost of ${l.Cost}");
 
             var joinedServicesDescriptions = String.Join(", ", serviceDescriptions);
 

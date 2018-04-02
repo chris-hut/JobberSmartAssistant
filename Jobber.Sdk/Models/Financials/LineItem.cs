@@ -18,8 +18,11 @@ namespace Jobber.Sdk.Models.Financials
         
         [JsonProperty("unit_cost")]
         public string UnitCost { get; set; }
+        
+        [JsonProperty("cost")]
+        public string Cost { get; set; }
 
-        public LineItem WithUnitCost(double unitCost)
+        public LineItem WithCost(double cost)
         {
             return new LineItem
             {
@@ -27,7 +30,8 @@ namespace Jobber.Sdk.Models.Financials
                 Name = Name,
                 Description = Description,
                 Qty = Qty,
-                UnitCost = unitCost.ToString()
+                Cost = cost.ToString(),
+                UnitCost = UnitCost
             };
         }
     }

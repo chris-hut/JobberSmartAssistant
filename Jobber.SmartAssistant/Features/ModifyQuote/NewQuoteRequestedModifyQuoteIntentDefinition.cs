@@ -21,8 +21,8 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                     .WithPrompt("What is the name of the service?")
                 )
                 .RequireParameter(ParameterBuilder.Of(Constants.Variables.Price, Entity.Number)
-                    .WithPrompt("What unit price would you like to update it to?")
-                    .WithPrompt("What unit price do you want me to update to?")
+                    .WithPrompt("What cost would you like to update it to?")
+                    .WithPrompt("What cost price do you want me to update to?")
                 )
                 .FulfillWithWebhook()
                 .Build();

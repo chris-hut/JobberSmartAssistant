@@ -36,7 +36,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         {
             var modifiedServices = quote
                 .LineItems
-                .SelectWhere(l => l.Name.ContainsIgnoringCase(serviceName), l => l.WithUnitCost(newPrice));
+                .SelectWhere(l => l.Name.ContainsIgnoringCase(serviceName), l => l.WithCost(newPrice));
 
             quote.LineItems = modifiedServices.ToList();
 

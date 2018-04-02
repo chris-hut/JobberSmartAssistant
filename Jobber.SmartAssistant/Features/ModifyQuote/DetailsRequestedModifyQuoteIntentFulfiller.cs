@@ -62,8 +62,10 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
 
             var joinedServicesDescriptions = String.Join(", ", serviceDescriptions);
 
+            var serviceWord = quote.LineItems.Count() == 1 ? "service" : "services";
+            
             var responseSpeech = $"Okay the quote currently has {quote.LineItems.Count()} " +
-                                  $"services. {joinedServicesDescriptions}. Please let me know what service " +
+                                  $"{serviceWord}. {joinedServicesDescriptions}. Please let me know what service " +
                                   $"you would like to update.";
 
             return FulfillmentResponseBuilder.Create()

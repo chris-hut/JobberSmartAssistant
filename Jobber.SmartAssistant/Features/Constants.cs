@@ -15,6 +15,8 @@ namespace Jobber.SmartAssistant.Features
             public const string DescritptionRequestedCreateJob = "DESCRIPTION_REQUESTED_CREATE_JOB";
 
             public const string StartModifyQuote = "START_MODIFY_QUOTE";
+            public const string CancelDescribingModifyQuote = "CANCEL_DESCRIBING_MODIFY_QUOTE";
+            public const string CancelUpdatingModifyQuote = "CANCEL_UPDATING_MODIFY_QUOTE";
             public const string DetailsRequestedModifyQuote = "DETAILS_REQUESTED_MODIFY_QUOTE";
             public const string NewQuoteRequestedModifyQuote = "NEW_QUOTE_REQUESTED_MODIFY_QUOTE";
             

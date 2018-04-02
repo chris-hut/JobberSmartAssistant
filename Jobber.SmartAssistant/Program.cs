@@ -64,7 +64,9 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new HelpIntentDefinition())
                 .WithIntentDefinition(new StartModifyQuoteIntentDefinition())
                 .WithIntentDefinition(new DetailsRequestedModifyQuoteIntentDefinition())
-                .WithIntentDefinition(new NewQuoteRequestedModifyQuoteIntentDefinition());
+                .WithIntentDefinition(new CancelDescribingQuoteDetailsIntentDefinition())
+                .WithIntentDefinition(new NewQuoteRequestedModifyQuoteIntentDefinition())
+                .WithIntentDefinition(new CancelUpdatingQuoteIntentDefinition());
         }
 
         private static IIntentFulfiller BuildIntentFulfiller()

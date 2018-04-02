@@ -59,6 +59,16 @@ namespace DialogFlow.Sdk.Builders
                 .TriggerOn("definitely not")
                 .TriggerOn("duh no");
         }
+        
+        public static IntentBuilder CancelRequestFor(string name)
+        {
+            return IntentBuilder.For(name)
+                .TriggerOn("Stop")
+                .TriggerOn("Cancel")
+                .TriggerOn("Nevermind")
+                .TriggerOn("Don't worry about it")
+                .TriggerOn("I'll do it later");
+        }
 
         public IntentBuilder RequiresContext(string contextName)
         {

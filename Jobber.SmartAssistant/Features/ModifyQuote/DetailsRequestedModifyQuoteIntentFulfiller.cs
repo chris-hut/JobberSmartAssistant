@@ -22,7 +22,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
             var clientName = fulfillmentRequest.GetParameter(Constants.Variables.ClientName);
-            var serviceName = fulfillmentRequest.GetParameter(Constants.Variables.ServiceNames);
+            var serviceName = fulfillmentRequest.GetParameter(Constants.Variables.ServiceName);
 
             var quotesCollection = await jobberClient.GetQuotesAsync();
 

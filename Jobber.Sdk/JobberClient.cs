@@ -41,16 +41,16 @@ namespace Jobber.Sdk
             }
         }
         
-        public async Task UpdateQuoteAsync(string quoteId, Quote quote)
+        public async Task UpdateQuoteAsync(Quote quote)
         {
             try
             {
                 var requestBody = JobberRequestUtils.CreateRequestBodyFor("quote", quote);
-                await _jobberApi.UpdateQuoteAsync(quoteId, requestBody);
+                await _jobberApi.UpdateQuoteAsync(quote.Id.ToString(), requestBody);
             }
             catch (Exception ex)
             {
-                var errorMessage = $"Failed when updating quote with id: {quoteId} and value: {quote.Cost}";
+                var errorMessage = $"Failed when updating quote with cost: {quote.Cost}";
                 throw ConvertToJobberException(errorMessage, ex);
             }
         }

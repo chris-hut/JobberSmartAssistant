@@ -12,7 +12,7 @@ namespace Jobber.Sdk
     {
         Task CreateJobAsync(CreateJobRequest createJobRequest);
         Task<JobCollection> GetJobsAsync();
-        Task UpdateQuoteAsync(string quoteId, Quote quote);
+        Task UpdateQuoteAsync(Quote quote);
         Task<QuotesCollection> GetQuotesAsync();
         Task<ClientCollection> GetClientsAsync(string searchQuery = "");
         Task<InvoicesCollection> GetInvoicesAsync();

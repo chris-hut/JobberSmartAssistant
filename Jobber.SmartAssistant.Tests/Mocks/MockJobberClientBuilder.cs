@@ -19,7 +19,7 @@ namespace Jobber.SmartAssistant.Tests.Mocks
             _jobberClientMock = new Mock<IJobberClient>();
             _jobberClientMock.Setup(m => m.CreateJobAsync(It.IsAny<CreateJobRequest>()))
                 .Returns(() => Task.CompletedTask);
-            _jobberClientMock.Setup(m => m.UpdateQuoteAsync(It.IsAny<string>(), It.IsAny<Quote>()))
+            _jobberClientMock.Setup(m => m.UpdateQuoteAsync(It.IsAny<Quote>()))
                 .Returns(() => Task.CompletedTask);
         }
 

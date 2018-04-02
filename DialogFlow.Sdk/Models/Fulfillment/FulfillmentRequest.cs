@@ -54,6 +54,11 @@ namespace DialogFlow.Sdk.Models.Fulfillment
             return int.Parse(GetParameter(parameterName));
         }
         
+        public double GetParameterAsDouble(string parameterName)
+        {
+            return double.Parse(GetParameter(parameterName));
+        }
+        
         public bool IsParameterDateRange(string parameter)
         {
             return DateTimeRange.IsParsable(GetParameter(parameter));

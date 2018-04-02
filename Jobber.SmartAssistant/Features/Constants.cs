@@ -16,6 +16,7 @@ namespace Jobber.SmartAssistant.Features
 
             public const string StartModifyQuote = "START_MODIFY_QUOTE";
             public const string DetailsRequestedModifyQuote = "DETAILS_REQUESTED_MODIFY_QUOTE";
+            public const string NewQuoteRequestedModifyQuote = "NEW_QUOTE_REQUESTED_MODIFY_QUOTE";
             
             public const string GetCompletableVisits = "GET_COMPLETEABLE_VISITS";
             public const string GetCompletableVisitsDetails = "GET_COMPLETEABLE_VISITS_DETAILS";
@@ -37,8 +38,9 @@ namespace Jobber.SmartAssistant.Features
             public const string CreateJobContext = "CREATE_JOB_CONTEXT";
             public const string ModifyQuoteContext = "MODIFY_QUOTE_CONTEXT";
             public const string JobDescription = "DESCRIPTION";
+            public const string Price = "PRICE";
             public const string Date = "DATE";
-            public const string ServiceNames = "SERVICES";
+            public const string ServiceName = "SERVICES";
             public const string TimeUnit = "TIME_UNIT";
             public const string TimeUnitOriginal = "TIME_UNIT_ORIGINAL";
         }

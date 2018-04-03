@@ -21,6 +21,9 @@ using Jobber.SmartAssistant.Features.GetTotalVisits;
 using Jobber.SmartAssistant.Features.GetWorkdayLength;
 using Jobber.SmartAssistant.Features.Help;
 using Jobber.SmartAssistant.Features.ModifyQuote;
+using Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteDetails;
+using Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteNumber;
+using Jobber.SmartAssistant.Features.ModifyQuote.UpdatingQuoteCost;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 

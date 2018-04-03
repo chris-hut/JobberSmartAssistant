@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
@@ -11,7 +10,7 @@ using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 
-namespace Jobber.SmartAssistant.Features.ModifyQuote
+namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteDetails
 {
     public class DetailsRequestedModifyQuoteIntentFulfiller : IJobberIntentFulfiller
     {

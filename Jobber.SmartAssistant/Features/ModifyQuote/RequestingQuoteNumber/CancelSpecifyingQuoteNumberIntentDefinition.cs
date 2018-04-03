@@ -2,7 +2,7 @@
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Intents;
 
-namespace Jobber.SmartAssistant.Features.ModifyQuote
+namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteNumber
 {
     public class CancelSpecifyingQuoteNumberIntentDefinition : IIntentDefinition
     {

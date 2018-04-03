@@ -2,14 +2,14 @@
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Intents;
 
-namespace Jobber.SmartAssistant.Features.ModifyQuote
+namespace Jobber.SmartAssistant.Features.ModifyQuote.UpdatingQuoteCost
 {
-    public class CancelDescribingQuoteDetailsIntentDefinition : IIntentDefinition
+    public class CancelUpdatingQuoteIntentDefinition : IIntentDefinition
     {
         public Intent DefineIntent()
         {
-            return IntentBuilder.CancelRequestFor(Constants.Intents.CancelDescribingModifyQuote)
-                .RequiresContext(Constants.Contexts.QuoteDetailsRequested)
+            return IntentBuilder.CancelRequestFor(Constants.Intents.CancelUpdatingModifyQuote)
+                .RequiresContext(Constants.Contexts.QuoteDetailsSet)
                 .TriggerOn("Stop modifying quote")
                 .RespondsWith("Okay I won't change anything. Talk to you later.")
                 .Build();

@@ -3,7 +3,7 @@ using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Common;
 using DialogFlow.Sdk.Models.Intents;
 
-namespace Jobber.SmartAssistant.Features.ModifyQuote
+namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteDetails
 {
     public class DetailsRequestedModifyQuoteIntentDefinition : IIntentDefinition
     {

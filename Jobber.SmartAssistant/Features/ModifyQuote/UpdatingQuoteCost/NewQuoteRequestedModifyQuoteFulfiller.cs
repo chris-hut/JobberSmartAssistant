@@ -7,7 +7,7 @@ using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 using Jobber.SmartAssistant.Extensions;
 
-namespace Jobber.SmartAssistant.Features.ModifyQuote
+namespace Jobber.SmartAssistant.Features.ModifyQuote.UpdatingQuoteCost
 {
     public class NewQuoteRequestedModifyQuoteFulfiller : IJobberIntentFulfiller
     {

@@ -3,10 +3,9 @@ using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
-using Jobber.Sdk.Models.Jobs;
 using Jobber.SmartAssistant.Core;
 
-namespace Jobber.SmartAssistant.Features.ModifyQuote
+namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteNumber
 {
     public class QuoteNumberRequestedIntentFulfiller : IJobberIntentFulfiller
     {

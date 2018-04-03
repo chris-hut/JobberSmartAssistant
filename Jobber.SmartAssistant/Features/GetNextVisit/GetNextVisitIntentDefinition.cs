@@ -18,6 +18,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
                 .TriggerOn("Can you tell me about my next visit?")
                 .TriggerOn("Can you tell me a bit about my next visit?")
                 .TriggerOn("Get my next visit.")
+                .TriggerOn("Can you get me details about my next job?")
                 .FulfillWithWebhook()
                 .Build();
         }

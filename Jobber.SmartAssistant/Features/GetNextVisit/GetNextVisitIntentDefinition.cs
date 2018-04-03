@@ -15,7 +15,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
                 .TriggerOn("When is my next visit?")
                 .TriggerOn("What do I have next?")
                 .TriggerOn("Can you tell me about my next job?")
-                .TriggerOn("Can you tell me about my next visit?")
+                .TriggerOn("Can you tell me about my next visit?")a
                 .TriggerOn("Can you tell me a bit about my next visit?")
                 .TriggerOn("Get my next visit.")
                 .TriggerOn("Can you get my next visit?")

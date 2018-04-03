@@ -15,8 +15,8 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
 
         public async Task<FulfillmentResponse> FulfillAsync(FulfillmentRequest fulfillmentRequest, IJobberClient jobberClient)
         {
-            var Invoices = await jobberClient.GetDraftInvoicesAsync();
-            var numOfSendableInvoices = Invoices.Count();
+            var invoices = await jobberClient.GetDraftInvoicesAsync();
+            var numOfSendableInvoices = invoices.Count();
 
             switch (numOfSendableInvoices)
             {
@@ -32,7 +32,7 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
         private static FulfillmentResponse BuildMultipleSendableInvoicesFoundResponse(int numOfSendableInvoices)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"There are {numOfSendableInvoices} invoices ready to be sent")
+                .Speech($"There are {numOfSendableInvoices} invoices ready to be sent.")
                 .Build();
         }
 
@@ -46,7 +46,7 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
         private static FulfillmentResponse BuildNoSendableInvoicesFoundResponse()
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech("There are no invoices ready to be sent.")
+                .Speech("Looks like you have no invoices that need to be sent!")
                 .Build();
         }
     }

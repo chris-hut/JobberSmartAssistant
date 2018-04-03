@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
 using Jobber.Sdk;
@@ -24,7 +25,10 @@ namespace Jobber.SmartAssistant.Features.GetWorkdayLength
             {
                 length += visit.EndAt - visit.StartAt;
             }
-            int hours = (int) (length / 3600);
+            float duration = (float) (length / 3600 / 100);
+            int hours = (int) Math.Floor(duration);
+            int minutes = (int) ((duration - hours) * 60);
+            
             if (hours == 0)
             {
                 return FulfillmentResponseBuilder.Create()
@@ -33,7 +37,7 @@ namespace Jobber.SmartAssistant.Features.GetWorkdayLength
                     .Build();
             }
             return FulfillmentResponseBuilder.Create()
-                .Speech($"You have {hours} of work today.")
+                .Speech($"Your work is {hours} hours and {minutes} long today.")
                 .MarkEndOfAssistantConversation()
                 .Build();    
         }

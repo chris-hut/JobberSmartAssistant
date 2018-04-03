@@ -42,12 +42,21 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
 
         private static string BuildResponseFrom(Visit visit)
         {
+            float fromNow = visit.StartAt - DateTime.Now.ToUnixTime();
+            int hoursFromNow = (int) Math.Floor(fromNow);
+            int minutesFromNow = (int) ((fromNow - hoursFromNow) * 60);
+            
+            float length = visit.EndAt - visit.StartAt;
+            float duration = (float) (length / 3600 / 100);
+            int hours = (int) Math.Floor(duration);
+            int minutes = (int) ((duration - hours) * 60);
+            
             if (!visit.MyJob.Notes.Any())
             {
                 return $"Next visit is {visit.Title}, {visit.Description}. " +
                        $"Visit location is {visit.MyProperty.MapAddress}. " +
-                       $"Visit starts at {visit.StartAt}. " +
-                       $"Visit ends at {visit.EndAt}.";
+                       $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
+                       $"Visit duration is {hours} hours and {minutes} minutes.";
             }
     
             StringBuilder sb = new StringBuilder();
@@ -57,8 +66,8 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
             }
             return $"Next visit is {visit.Title}, {visit.Description}. " +
                    $"Visit location is {visit.MyProperty.MapAddress}. " +
-                   $"Visit starts at {visit.StartAt}. " +
-                   $"Visit ends at {visit.EndAt}. " +
+                   $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
+                   $"Visit duration is {hours} hours and {minutes} minutes." +
                    $"Job notes are {sb.ToString()}.";
         }
         

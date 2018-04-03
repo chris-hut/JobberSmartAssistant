@@ -35,7 +35,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 case 0:
                     return BuildResponseForNoMatchingQuotes();
                 case 1:
-                    return BuildResponseFor(filteredQuotes.First());
+                    return QuoteUtils.BuildResponseFor(filteredQuotes.First());
                 default:
                     return BuildResponseForMuiltipleMatches(filteredQuotes);
             }
@@ -50,29 +50,6 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech("Sorry, I couldn't find a quote that matches what you said")
-                .Build();
-        }
-
-        private static FulfillmentResponse BuildResponseFor(Quote quote)
-        {
-            var outgoingContext = new ModifyQuoteContext { Quote = quote };
-            
-            var serviceDescriptions = quote.LineItems
-                .Select(l => $"{l.Name} with a cost of ${l.Cost}");
-
-            var joinedServicesDescriptions = String.Join(", ", serviceDescriptions);
-
-            var serviceWord = quote.LineItems.Count() == 1 ? "service" : "services";
-            
-            var responseSpeech = $"Okay the quote currently has {quote.LineItems.Count()} " +
-                                  $"{serviceWord}. {joinedServicesDescriptions}. Please let me know what service " +
-                                  $"you would like to update.";
-
-            return FulfillmentResponseBuilder.Create()
-                .Speech(responseSpeech)
-                .WithContext(ContextBuilder.For(Constants.Contexts.QuoteDetailsSet)
-                    .WithParameter(Constants.Variables.ModifyQuoteContext, outgoingContext)
-                )
                 .Build();
         }
         
@@ -93,10 +70,15 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         }
 
         public static FulfillmentResponse BuildResponseForMultipleMatchesForAudioDevice(
-            IEnumerable<Quote> matchingqQuotes)
+            IEnumerable<Quote> matchingQuotes)
         {
-            var message = "Sorry, it looks like there are multiple quotes " +
-                          "that match what you said. I'm not sure which one to modify.";
+            var commaSeperatedQuoteNumbers = matchingQuotes
+                .Select(q => q.QuoteNumber.ToString())
+                .ToCommaSeperatedSentence();
+
+            var message = $"Quotes with numbers {commaSeperatedQuoteNumbers} all matched " +
+                          $"what you said. If you remember the quote number you can pick " +
+                          $"one to modify.";
             
             return FulfillmentResponseBuilder.Create()
                 .Speech(message)

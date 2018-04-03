@@ -19,6 +19,8 @@ namespace Jobber.SmartAssistant.Features
             public const string CancelUpdatingModifyQuote = "CANCEL_UPDATING_MODIFY_QUOTE";
             public const string DetailsRequestedModifyQuote = "DETAILS_REQUESTED_MODIFY_QUOTE";
             public const string NewQuoteRequestedModifyQuote = "NEW_QUOTE_REQUESTED_MODIFY_QUOTE";
+            public const string QuoteNumberRequestedModifyQuote = "QUOTE_NUMBER_REQUESTED_MODIFY_QUOTE";
+            public const string CancelQuoteNumberRequestedModifyQuote = "CANCEL_QUOTE_NUMBER_REQUESTED_MODIFY_QUOTE";
             
             public const string GetCompletableVisits = "GET_COMPLETEABLE_VISITS";
             public const string GetCompletableVisitsDetails = "GET_COMPLETEABLE_VISITS_DETAILS";
@@ -39,6 +41,7 @@ namespace Jobber.SmartAssistant.Features
             public const string ClientName = "CLIENT_NAME";
             public const string CreateJobContext = "CREATE_JOB_CONTEXT";
             public const string ModifyQuoteContext = "MODIFY_QUOTE_CONTEXT";
+            public const string QuoteNumber = "QUOTE_NUMBER";
             public const string JobDescription = "DESCRIPTION";
             public const string Price = "PRICE";
             public const string Date = "DATE";
@@ -51,6 +54,7 @@ namespace Jobber.SmartAssistant.Features
         {
             public const string QuoteDetailsRequested = "QUOTE_DETAILS_REQUESTED";
             public const string QuoteDetailsSet = "QUOTE_DETAILS_Set";
+            public const string QuoteNumberRequested = "QUOTE_NUMBER_REQUESTED";
 
             public const string CreateJobClientRequested = "CREATE_JOB_CLIENT_REQUESTED";
             public const string CreateJobClientSet = "CREATE_JOB_CLIENT_SET";

@@ -68,6 +68,8 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new StartModifyQuoteIntentDefinition())
                 .WithIntentDefinition(new DetailsRequestedModifyQuoteIntentDefinition())
                 .WithIntentDefinition(new CancelDescribingQuoteDetailsIntentDefinition())
+                .WithIntentDefinition(new QuoteNumberRequestedIntentDefinition())
+                .WithIntentDefinition(new CancelSpecifyingQuoteNumberIntentDefinition())
                 .WithIntentDefinition(new NewQuoteRequestedModifyQuoteIntentDefinition())
                 .WithIntentDefinition(new CancelUpdatingQuoteIntentDefinition());
         }
@@ -90,6 +92,7 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new GetCompleteableVisitsDetailsIntentFulfiller())
                 .WithJobberIntentFulfiller(new HelpIntentFulfiller())
                 .WithJobberIntentFulfiller(new DetailsRequestedModifyQuoteIntentFulfiller())
+                .WithJobberIntentFulfiller(new QuoteNumberRequestedIntentFulfiller())
                 .WithJobberIntentFulfiller(new NewQuoteRequestedModifyQuoteFulfiller());
         }
 

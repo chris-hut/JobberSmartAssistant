@@ -27,6 +27,9 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
                 .TriggerOn("Get my visits")
                 .TriggerOn("Get my visits for the day")
                 .TriggerOn("Could you get my visits?")
+                .TriggerOn("Get jobs for today")
+                .TriggerOn("Get my jobs for today")
+                .TriggerOn("Can you get my jobs for today")
                 .FulfillWithWebhook()
                 .Build();
         }

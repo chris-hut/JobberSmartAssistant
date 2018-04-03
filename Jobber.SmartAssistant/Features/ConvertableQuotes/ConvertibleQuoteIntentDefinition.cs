@@ -16,7 +16,7 @@ namespace Jobber.SmartAssistant.Features.ConvertableQuotes
                 .TriggerOn("Ready quotes")
                 .TriggerOn("Convertible quotes")
                 .TriggerOn("Approved quotes")
-                .TriggerOn("Convertible quotes")
+                .TriggerOn("Get convertible quotes")
                 .TriggerOn("Can you let me know how many quotes are ready to be turned into jobs?")
                 .TriggerOn("I wonder how many quotes are approved")
                 .FulfillWithWebhook()

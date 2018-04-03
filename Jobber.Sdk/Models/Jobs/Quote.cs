@@ -10,6 +10,9 @@ namespace Jobber.Sdk.Models.Jobs
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        [JsonProperty("quote_number")]
+        public int QuoteNumber { get; set; }
+        
         [JsonProperty("cost")]
         public string Cost { get; set; }
 

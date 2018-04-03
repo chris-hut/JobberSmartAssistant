@@ -37,7 +37,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 case 1:
                     return BuildResponseFor(filteredQuotes.First());
                 default:
-                    return BuildResponseForMuiltipleMatches();
+                    return BuildResponseForMuiltipleMatches(filteredQuotes);
             }
         }
 
@@ -76,7 +76,24 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 .Build();
         }
         
-        private static FulfillmentResponse BuildResponseForMuiltipleMatches()
+        private static FulfillmentResponse BuildResponseForMuiltipleMatches(IEnumerable<Quote> matchingQuotes)
+        {
+            var message = "Sorry, it looks like there are multiple quotes " +
+                          "that match what you said. I'm not sure which one to modify.";
+            
+            return FulfillmentResponseBuilder.Create()
+                .Speech(message)
+                .Build();
+        }
+
+        private static FulfillmentResponse BuildResponseForMultipleMatchesForDeviceWithScreen(
+            IEnumerable<Quote> matchingQuotes)
+        {
+            return null;
+        }
+
+        public static FulfillmentResponse BuildResponseForMultipleMatchesForAudioDevice(
+            IEnumerable<Quote> matchingqQuotes)
         {
             var message = "Sorry, it looks like there are multiple quotes " +
                           "that match what you said. I'm not sure which one to modify.";

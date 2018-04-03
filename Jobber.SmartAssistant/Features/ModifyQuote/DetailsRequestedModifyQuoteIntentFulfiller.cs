@@ -72,6 +72,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
 
             return FulfillmentResponseBuilder.Create()
                 .Speech("A few quotes matched what you said. Here are some of the quote numbers that matched:")
+                .WithContext(ContextBuilder.For(Constants.Contexts.QuoteNumberRequested))
                 .WithMessage(suggestionChips)
                 .Build();
         }
@@ -89,6 +90,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
             
             return FulfillmentResponseBuilder.Create()
                 .Speech(message)
+                .WithContext(ContextBuilder.For(Constants.Contexts.QuoteNumberRequested))
                 .Build();
         }
     }

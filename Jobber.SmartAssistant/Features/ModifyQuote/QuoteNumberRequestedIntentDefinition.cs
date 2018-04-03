@@ -10,7 +10,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.QuoteNumberRequestedModifyQuote)
-                .RequiresContext(Constants.Intents.QuoteNumberRequestedModifyQuote)
+                .RequiresContext(Constants.Contexts.QuoteNumberRequested)
                 .TriggerOn($"[{Entity.Number}:{Constants.Variables.QuoteNumber}:2]")
                 .RequireParameter(ParameterBuilder.Of(Constants.Variables.QuoteNumber, Entity.Number)
                     .WithPrompt("What was the quote number?")

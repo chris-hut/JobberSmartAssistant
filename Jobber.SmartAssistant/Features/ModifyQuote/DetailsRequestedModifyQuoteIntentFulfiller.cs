@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
+using DialogFlow.Sdk.Models.Messages;
 using Jobber.Sdk;
 using Jobber.Sdk.Models.Financials;
 using Jobber.Sdk.Models.Jobs;
@@ -37,7 +38,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 case 1:
                     return QuoteUtils.BuildResponseFor(filteredQuotes.First());
                 default:
-                    return BuildResponseForMuiltipleMatches(filteredQuotes);
+                    return BuildResponseForMuiltipleMatchesFor(fulfillmentRequest, filteredQuotes);
             }
         }
 
@@ -53,23 +54,29 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote
                 .Build();
         }
         
-        private static FulfillmentResponse BuildResponseForMuiltipleMatches(IEnumerable<Quote> matchingQuotes)
+        private static FulfillmentResponse BuildResponseForMuiltipleMatchesFor(
+            FulfillmentRequest fulfillmentRequest, IEnumerable<Quote> matchingQuotes)
         {
-            var message = "Sorry, it looks like there are multiple quotes " +
-                          "that match what you said. I'm not sure which one to modify.";
-            
-            return FulfillmentResponseBuilder.Create()
-                .Speech(message)
-                .Build();
+            return fulfillmentRequest.DoesRequestingDeviceHaveAScreen()
+                ? BuildResponseForMultipleMatchesForDeviceWithScreen(matchingQuotes)
+                : BuildResponseForMultipleMatchesForAudioDevice(matchingQuotes);
         }
 
         private static FulfillmentResponse BuildResponseForMultipleMatchesForDeviceWithScreen(
             IEnumerable<Quote> matchingQuotes)
         {
-            return null;
+            var quoteSuggestions = matchingQuotes.Select(q => q.QuoteNumber.ToString()).ToList();
+            quoteSuggestions.Add("Cancel");
+
+            var suggestionChips = GoogleChipMessage.From(quoteSuggestions);
+
+            return FulfillmentResponseBuilder.Create()
+                .Speech("A few quotes matched what you said. Here are some of the quote numbers that matched:")
+                .WithMessage(suggestionChips)
+                .Build();
         }
 
-        public static FulfillmentResponse BuildResponseForMultipleMatchesForAudioDevice(
+        private static FulfillmentResponse BuildResponseForMultipleMatchesForAudioDevice(
             IEnumerable<Quote> matchingQuotes)
         {
             var commaSeperatedQuoteNumbers = matchingQuotes

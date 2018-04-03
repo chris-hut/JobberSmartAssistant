@@ -9,6 +9,7 @@ namespace Jobber.Sdk.Models.Jobs
         [JsonProperty("quotes")]
         public IEnumerable<Quote> Quotes { get; set; } = new List<Quote>();
 
+        public IEnumerable<Quote> ConvertableQuotes => Quotes.Where(q => q.Convertable());
         public int NumConvertable => Quotes.Count(quote => quote.Convertable());
     }
 }

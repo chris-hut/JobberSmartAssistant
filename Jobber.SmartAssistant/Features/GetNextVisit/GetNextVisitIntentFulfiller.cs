@@ -60,26 +60,40 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
         {
             float fromNow = visit.StartAt - DateTime.Now.ToUnixTime();
             float durationFromNow = fromNow / 3600 / 100;
-            int hoursFromNow = (int) Math.Floor(durationFromNow);
-            int minutesFromNow = (int) ((durationFromNow - hoursFromNow) * 60);
-            
+            int hoursFromNow = (int)Math.Floor(durationFromNow);
+            int minutesFromNow = (int)((durationFromNow - hoursFromNow) * 60);
+
             float length = visit.EndAt - visit.StartAt;
             float duration = length / 3600 / 100;
-            int hours = (int) Math.Floor(duration);
-            int minutes = (int) ((duration - hours) * 60);
+            int hours = (int)Math.Floor(duration);
+            int minutes = (int)((duration - hours) * 60);
 
-            if (string.IsNullOrEmpty(visit.Description))
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Next visit is {visit.Title}.)");
+            if (!string.IsNullOrEmpty(visit.Description))
             {
-                return  $"Next visit is {visit.Title}. " +
-                        $"Visit location is {visit.MyProperty.MapAddress}. " +
-                        $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
-                        $"Visit duration is {hours} hours and {minutes} minutes.";
+                sb.Append($"Decription is {visit.Description}.");
             }
-            return $"Next visit is {visit.Title}. " +
-                   $"Decription is {visit.Description}. " +
-                   $"Visit location is {visit.MyProperty.MapAddress}. " +
-                   $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
-                   $"Visit duration is {hours} hours and {minutes} minutes. ";
+
+            if (hoursFromNow == 0 && minutesFromNow == 0)
+            {
+                sb.Append($"Visit starts right now.");
+            }
+            else
+            {
+                sb.Append($"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. ");
+            }
+
+            if (hours == 0 && minutes == 0)
+            {
+                sb.Append($"Visit duration is all day.");
+            }
+            else
+            {
+                sb.Append($"Visit duration is {hours} hours and {minutes} minutes.");
+            }
+
+            return sb.ToString();
         }
         
         private static GoogleCardMessage BuildGoogleCardFrom(Visit visit)

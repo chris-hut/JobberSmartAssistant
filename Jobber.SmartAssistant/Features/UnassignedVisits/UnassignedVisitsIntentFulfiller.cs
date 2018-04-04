@@ -7,7 +7,7 @@ using Jobber.SmartAssistant.Core;
 
 namespace Jobber.SmartAssistant.Features.UnassignedVisits
 {
-    public class UnassignedVisitsFulfiller : IJobberIntentFulfiller
+    public class UnassignedVisitsIntentFulfiller : IJobberIntentFulfiller
     {
 
         public bool CanFulfill(FulfillmentRequest fulfillmentRequest)

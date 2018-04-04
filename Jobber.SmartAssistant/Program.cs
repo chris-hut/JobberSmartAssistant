@@ -85,7 +85,7 @@ namespace Jobber.SmartAssistant
                 .WithJobberIntentFulfiller(new ClientRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new DescriptionRequestedCreateJobIntentFulfiller())
                 .WithJobberIntentFulfiller(new FavoriteNumberIntentFulfiller())
-                .WithJobberIntentFulfiller(new UnassignedVisitsFulfiller())
+                .WithJobberIntentFulfiller(new UnassignedVisitsIntentFulfiller())
                 .WithJobberIntentFulfiller(new ConvertibleQuoteIntentFulfiller())
                 .WithJobberIntentFulfiller(new SendableInvoivesIntentFulfiller())
                 .WithJobberIntentFulfiller(new GetRevenueIntentFulfiller())

@@ -42,6 +42,22 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
 
         private static string BuildResponseFrom(Visit visit)
         {
+            string response = _BuildResponseFrom(visit)
+            if (!visit.MyJob.Notes.Any())
+            {
+                return response;
+            }
+    
+            StringBuilder sb = new StringBuilder();
+            foreach (Note note in visit.MyJob.Notes)
+            {
+                sb.Append(note.Message);
+            }
+            return response + $"Job notes are {sb.ToString()}.";
+        }
+
+        private static string _BuildResponseFrom(Visit visit)
+        {
             float fromNow = visit.StartAt - DateTime.Now.ToUnixTime();
             int hoursFromNow = (int) Math.Floor(fromNow);
             int minutesFromNow = (int) ((fromNow - hoursFromNow) * 60);
@@ -50,25 +66,19 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
             float duration = (float) (length / 3600 / 100);
             int hours = (int) Math.Floor(duration);
             int minutes = (int) ((duration - hours) * 60);
-            
-            if (!visit.MyJob.Notes.Any())
+
+            if (string.IsNullOrEmpty(visit.Description))
             {
-                return $"Next visit is {visit.Title}, {visit.Description}. " +
-                       $"Visit location is {visit.MyProperty.MapAddress}. " +
-                       $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
-                       $"Visit duration is {hours} hours and {minutes} minutes.";
+                return  $"Next visit is {visit.Title}. " +
+                        $"Visit location is {visit.MyProperty.MapAddress}. " +
+                        $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
+                        $"Visit duration is {hours} hours and {minutes} minutes.";
             }
-    
-            StringBuilder sb = new StringBuilder();
-            foreach (Note note in visit.MyJob.Notes)
-            {
-                sb.Append(note.Message);
-            }
-            return $"Next visit is {visit.Title}, {visit.Description}. " +
+            return $"Next visit is {visit.Title}. " +
+                   $"Decription is {visit.Description}. " +
                    $"Visit location is {visit.MyProperty.MapAddress}. " +
                    $"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. " +
-                   $"Visit duration is {hours} hours and {minutes} minutes." +
-                   $"Job notes are {sb.ToString()}.";
+                   $"Visit duration is {hours} hours and {minutes} minutes. ";
         }
         
         private static GoogleCardMessage BuildGoogleCardFrom(Visit visit)

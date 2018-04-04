@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
@@ -71,6 +72,10 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
 
         private static string BuildResponseFrom(Visit visit)
         {
+            if (string.IsNullOrEmpty(visit.Description))
+            {
+                return $"Visit {visit.Title}";
+            }
             return $"Visit {visit.Title}, {visit.Description}.";
         }
         
@@ -78,7 +83,16 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         {
             var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(visit.MyProperty.MapAddress);
             var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(visit.MyProperty.MapAddress);
-            
+
+            if (string.IsNullOrEmpty(visit.Description))
+            {
+                return GoogleCardBuilder.Create()
+                    .Title($"Visit {visit.Title}")
+                    .Content("There is no description for this visit")
+                    .Image(mapImage, "Map of visit location.")
+                    .WithButton("Open Map", mapLink)
+                    .Build();
+            }
             return GoogleCardBuilder.Create()
                 .Title($"Visit {visit.Title}")
                 .Content(visit.Description)

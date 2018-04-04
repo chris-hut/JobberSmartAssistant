@@ -42,7 +42,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
 
         private static string BuildResponseFrom(Visit visit)
         {
-            string response = _BuildResponseFrom(visit)
+            string response = _BuildResponseFrom(visit);
             if (!visit.MyJob.Notes.Any())
             {
                 return response;

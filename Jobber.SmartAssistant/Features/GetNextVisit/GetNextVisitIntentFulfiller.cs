@@ -59,11 +59,12 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
         private static string _BuildResponseFrom(Visit visit)
         {
             float fromNow = visit.StartAt - DateTime.Now.ToUnixTime();
-            int hoursFromNow = (int) Math.Floor(fromNow);
-            int minutesFromNow = (int) ((fromNow - hoursFromNow) * 60);
+            float durationFromNow = fromNow / 3600 / 100;
+            int hoursFromNow = (int) Math.Floor(durationFromNow);
+            int minutesFromNow = (int) ((durationFromNow - hoursFromNow) * 60);
             
             float length = visit.EndAt - visit.StartAt;
-            float duration = (float) (length / 3600 / 100);
+            float duration = length / 3600 / 100;
             int hours = (int) Math.Floor(duration);
             int minutes = (int) ((duration - hours) * 60);
 

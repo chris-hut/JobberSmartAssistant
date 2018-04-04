@@ -37,7 +37,7 @@ namespace Jobber.SmartAssistant.Features.GetWorkdayLength
                     .Build();
             }
             return FulfillmentResponseBuilder.Create()
-                .Speech($"Your work is {hours} hours and {minutes} long today.")
+                .Speech($"Your work is {hours} hours and {minutes} minutes long today.")
                 .MarkEndOfAssistantConversation()
                 .Build();    
         }

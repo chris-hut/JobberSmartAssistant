@@ -21,6 +21,7 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
                 .TriggerOn("Ready invoices?")
                 .TriggerOn("Sendable invoices")
                 .TriggerOn("Issuable invoices")
+                .TriggerOn("How many invoices are drafts")
                 .FulfillWithWebhook()
                 .Build();
         

@@ -82,7 +82,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
                 sb.Append($"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. ");
             }
 
-            if (hours == 0 && minutes == 0)
+            if (hours == 0 && minutes == 0 || hours > 23)
             {
                 sb.Append($"Visit duration is all day.");
             }

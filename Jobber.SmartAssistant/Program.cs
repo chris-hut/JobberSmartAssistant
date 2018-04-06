@@ -52,6 +52,7 @@ namespace Jobber.SmartAssistant
                 .WithIntentDefinition(new ThankYouIntentDefiniton())
                 .WithIntentDefinition(new WhoAreYouIntentDefinition())
                 .WithIntentDefinition(new NotWorkingIntentDefinition())
+                .WithIntentDefinition(new WhatDoYouDoIntent())
                 .WithIntentDefinition(new WelcomeIntentDefinition())
                 .WithIntentDefinition(new FallbackIntentDefinition())
                 .WithIntentDefinition(new StartCreateJobIntentDefinition())

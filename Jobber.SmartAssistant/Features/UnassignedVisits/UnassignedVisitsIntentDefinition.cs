@@ -12,6 +12,7 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
                 .TriggerOn("How many visits do I still need to assign today?")
                 .TriggerOn("How many visits do I still need to assign?")
                 .TriggerOn("How many visits are unassigned today?")
+                .TriggerOn("How many visits are unassigned?")
                 .TriggerOn("Can you let me know how many visits I still need to assign today?")
                 .TriggerOn("Can you let me know how many visits I need to assign today?")
                 .TriggerOn("Can you tell me know how many visits I still need to assign today?")

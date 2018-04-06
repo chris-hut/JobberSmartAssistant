@@ -34,7 +34,7 @@ namespace Jobber.SmartAssistant.Features.ConvertableQuotes
         private static FulfillmentResponse BuildMultipleConvertableQuotesFoundResponse(int numConvertableQuotes)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"There are {numConvertableQuotes} jobs ready to be converted into jobs.")
+                .Speech($"There are {numConvertableQuotes} quotes ready to be converted into jobs.")
                 .Build();
         }
 

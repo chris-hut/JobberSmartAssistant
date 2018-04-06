@@ -9,7 +9,7 @@ namespace Jobber.Sdk.Models.Financials
         [JsonProperty("transactions")]
         public IEnumerable<Transaction> Transactions { get; set; }
 
-        public double GetTotal()
+        public decimal GetTotal()
         {
             return Transactions
                 .Where(transaction => transaction.IsInvoice())

@@ -36,12 +36,12 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
             };
 
             var Transactions = await jobberClient.GetRangedTransactionsAsync(getTransactionRequest);
-            double revenue = Transactions.GetTotal();
+            decimal revenue = Transactions.GetTotal();
 
 
 
             return FulfillmentResponseBuilder.Create()
-                .Speech($"We made ${revenue} in {timeUnit}")
+                .Speech($"We made {revenue.ToString("C")} in {timeUnit}")
                 .Build();
         }
 

@@ -76,6 +76,18 @@ namespace Jobber.SmartAssistant.Tests.Mocks
             return this;
         }
 
+        public MockJobberClientBuilder ReturnsDraftInvoices(IEnumerable<Invoice> invoices)
+        {
+            _jobberClientMock
+                .Setup(m => m.GetDraftInvoicesAsync())
+                .ReturnsAsync(() => new InvoicesCollection
+                {
+                    Invoices = invoices
+                });
+
+            return this;
+        }
+
         public MockJobberClientBuilder ReturnsTransactions(IEnumerable<Transaction> transactions)
         {
             _jobberClientMock

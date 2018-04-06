@@ -35,16 +35,9 @@ namespace Jobber.Sdk.Models.Financials
         [JsonProperty("client")]
         public int ClientId { get; set; }
 
-        public double GetAmountValue()
-        {
-            double.TryParse(Amount, out double amountValue);
-            return amountValue;
-        }
+        public decimal GetAmountValue() => System.Convert.ToDecimal(Amount);
 
-        public bool IsInvoice()
-        {
-            return Type == "Invoice";
-        }
+        public bool IsInvoice() => Type == "Invoice";
 
     }
 }

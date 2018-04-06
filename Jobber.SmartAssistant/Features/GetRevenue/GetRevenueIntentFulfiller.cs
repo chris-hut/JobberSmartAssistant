@@ -41,7 +41,7 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
 
 
             return FulfillmentResponseBuilder.Create()
-                .Speech($"We made {revenue.ToString("C")} in {timeUnit}")
+                .Speech($"We made ${revenue.ToString("N")} in {timeUnit}")
                 .Build();
         }
 

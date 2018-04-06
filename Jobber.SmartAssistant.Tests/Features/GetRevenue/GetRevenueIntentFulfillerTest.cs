@@ -30,7 +30,7 @@ namespace Jobber.SmartAssistant.Tests.Features.GetRevenue
             var fulfiller = new GetRevenueIntentFulfiller();
             var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient.Object);
 
-            response.AssertResponseSpeech("We made $100.00 in last week");
+            response.AssertResponseSpeech("We made $100.00 last week");
         }
 
         [TestCase]
@@ -43,7 +43,7 @@ namespace Jobber.SmartAssistant.Tests.Features.GetRevenue
                 .Build();
 
             var fulfillmentRequest = FulfillmentRequestBuilder.Create(Constants.Intents.GetRevenue)
-                .WithParameter(Constants.Variables.TimeUnitOriginal, "last March")
+                .WithParameter(Constants.Variables.TimeUnitOriginal, "in last March")
                 .Build();
 
             var fulfiller = new GetRevenueIntentFulfiller();

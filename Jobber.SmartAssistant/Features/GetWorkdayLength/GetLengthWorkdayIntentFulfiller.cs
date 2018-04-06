@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using DialogFlow.Sdk.Builders;
 using DialogFlow.Sdk.Models.Fulfillment;
@@ -21,24 +22,37 @@ namespace Jobber.SmartAssistant.Features.GetWorkdayLength
             var userId = fulfillmentRequest.GetCurrentUserId();
             var visits = await jobberClient.GetTodayAssignedVisitsAsync(userId);
             float length = 0;
+            float currentEnd = 0;
+            
             foreach (Visit visit in visits.Visits)
             {
-                length += visit.EndAt - visit.StartAt;
+                // To handle overlap intervals
+                length += Math.Max(0, visit.EndAt - Math.Max(currentEnd, visit.StartAt));
+                currentEnd = visit.EndAt;
             }
-            float duration = (float) (length / 3600 / 100);
+            float duration = (float) (length / 3600);
             int hours = (int) Math.Floor(duration);
             int minutes = (int) ((duration - hours) * 60);
             
+
+            StringBuilder sb = new StringBuilder();
             if (hours == 0)
             {
-                return FulfillmentResponseBuilder.Create()
-                    .Speech($"You have no work today.")
-                    .MarkEndOfAssistantConversation()
-                    .Build();
+                sb.Append($"You have no work today.");
+            }
+            else
+            {
+                if (hours >= 24)
+                {
+                    sb.Append($"You have work all day.");
+                }
+                else
+                {
+                    sb.Append($"Your work is {hours} hours and {minutes} minutes long today.");
+                }
             }
             return FulfillmentResponseBuilder.Create()
-                .Speech($"Your work is {hours} hours and {minutes} minutes long today.")
-                .MarkEndOfAssistantConversation()
+                .Speech(sb.ToString())
                 .Build();    
         }
     }

@@ -37,7 +37,6 @@ namespace Jobber.SmartAssistant.Features.GetTotalVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"Your day looks clear today")
-                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -45,7 +44,6 @@ namespace Jobber.SmartAssistant.Features.GetTotalVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You have one visit today.")
-                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -53,7 +51,6 @@ namespace Jobber.SmartAssistant.Features.GetTotalVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You have {visits.Count} visits today.")
-                .MarkEndOfAssistantConversation()
                 .Build();
         }
     }

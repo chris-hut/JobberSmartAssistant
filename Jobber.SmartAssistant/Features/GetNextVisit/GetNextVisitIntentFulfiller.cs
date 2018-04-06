@@ -30,13 +30,11 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
             {
                 return FulfillmentResponseBuilder.Create()
                     .Speech($"Your remaining day looks clear")
-                    .MarkEndOfAssistantConversation()
                     .Build();    
             }
             return FulfillmentResponseBuilder.Create()
                 .Speech(BuildResponseFrom(visits.Visits.First()))
                 .WithMessage(BuildGoogleCardFrom(visits.Visits.First()))
-                .MarkEndOfAssistantConversation()
                 .Build(); 
         }
 

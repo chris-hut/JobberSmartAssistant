@@ -43,7 +43,6 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         {
             return FulfillmentResponseBuilder.Create()
                 .Speech($"You don't have any assigned visits today.")
-                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -52,7 +51,6 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
             return FulfillmentResponseBuilder.Create()
                 .Speech(BuildResponseFrom(visit))
                 .WithMessage(BuildGoogleCardFrom(visit))
-                .MarkEndOfAssistantConversation()
                 .Build();
         }
 
@@ -66,7 +64,6 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
                 res.WithMessage(BuildGoogleCardFrom(visit));
             }  
             return res
-                .MarkEndOfAssistantConversation()
                 .Build();
         }
 

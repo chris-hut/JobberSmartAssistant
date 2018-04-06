@@ -74,9 +74,9 @@ namespace Jobber.Sdk
             {
                 if (start == 0)
                 {
-                    start = DateTime.Today.ToUnixTime();    
+                    start = DateTime.Now.ToUnixTime();    
                 }
-                var tomorrow = DateTime.Today.AddDays(1).ToUnixTime();
+                var tomorrow = DateTime.Now.AddDays(1).ToUnixTime();
                 return await _jobberApi.GetAssignedVisitsAsync(start, tomorrow, userId);
             }
             catch (Exception ex)

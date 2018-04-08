@@ -38,7 +38,10 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
             var Transactions = await jobberClient.GetRangedTransactionsAsync(getTransactionRequest);
             decimal revenue = Transactions.GetTotal();
 
-
+            if (timeUnit.EndsWith("?"))
+            {
+                timeUnit = timeUnit.Remove(timeUnit.Length - 1);
+            }
 
             return FulfillmentResponseBuilder.Create()
                 .Speech($"We made ${revenue.ToString("N")} {timeUnit}")

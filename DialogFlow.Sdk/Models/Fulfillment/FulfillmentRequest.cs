@@ -20,6 +20,7 @@ namespace DialogFlow.Sdk.Models.Fulfillment
         public ConversationResult ConversationResult { get; set; }
         [JsonProperty("originalRequest")]
         public OriginalRequest OriginalRequest { get; set; }
+        public long UserId { get; set; } = -1;
 
         public bool IsForAction(string actionName)
         {

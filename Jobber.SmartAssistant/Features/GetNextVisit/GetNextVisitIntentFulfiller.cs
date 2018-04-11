@@ -67,31 +67,31 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
             int minutes = (int)((duration - hours) * 60);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"Next visit is {visit.Title}.");
+            sb.Append($"Next visit is for {visit.Title} ");
             if (!string.IsNullOrEmpty(visit.Description))
             {
-                sb.Append($"Decription is {visit.Description}.");
+                sb.Append($"Decription is {visit.Description}. ");
             }
 
             if (hoursFromNow == 0 && minutesFromNow == 0)
             {
-                sb.Append($"Visit starts right now.");
+                sb.Append("right now. ");
             }
             else
             {
-                sb.Append($"Visit starts in {hoursFromNow} hours and {minutesFromNow} minutes. ");
+                sb.Append($"in {hoursFromNow} hours and {minutesFromNow} minutes. ");
             }
 
-            if (hours == 0 && minutes == 0 || hours > 23)
+            if (hours == 0 && minutes == 0 || hours >= 12)
             {
-                sb.Append($"Visit duration is all day.");
+                sb.Append($"Looks like this visit lasts all day. ");
             }
             else
             {
-                sb.Append($"Visit duration is {hours} hours and {minutes} minutes.");
+                sb.Append($"This visit is for {hours} hours and {minutes} minutes.");
             }
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
         
         private static GoogleCardMessage BuildGoogleCardFrom(Visit visit)

@@ -9,6 +9,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.GetNextVisit)
+                .TriggerOn("What's next?")
                 .TriggerOn("What is my next visit?")
                 .TriggerOn("What is my next job?")
                 .TriggerOn("When is my next job?")

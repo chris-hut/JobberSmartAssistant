@@ -100,7 +100,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
             var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(visit.MyProperty.MapAddress);
             return GoogleCardBuilder.Create()
                 .Title($"Visit {visit.Title}")
-                .Content(BuildResponseFrom(visit))
+                .Content($"At {visit.MyProperty.MapAddress}.")
                 .Image(mapImage, "Map of visit location.")
                 .WithButton("Open Map", mapLink)
                 .Build();

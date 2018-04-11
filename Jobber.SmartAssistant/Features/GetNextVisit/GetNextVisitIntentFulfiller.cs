@@ -67,7 +67,7 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
             int minutes = (int)((duration - hours) * 60);
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"Next visit is for {visit.Title} ");
+            sb.Append($"Your next visit is for {visit.Title} ");
             if (!string.IsNullOrEmpty(visit.Description))
             {
                 sb.Append($"Decription is {visit.Description}. ");

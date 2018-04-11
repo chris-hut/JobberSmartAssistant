@@ -33,7 +33,6 @@ namespace Jobber.SmartAssistant.Tests.Features.GetWorkdayLength
             var fulfiller = new GetLengthWorkdayIntentFulfiller();
             var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient.Object);
             
-            Console.Write(response);
             response.AssertResponseSpeech($"You have no work today.");
         }
     }

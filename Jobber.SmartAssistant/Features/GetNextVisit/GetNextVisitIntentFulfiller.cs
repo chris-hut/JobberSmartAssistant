@@ -41,17 +41,20 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
         private static string BuildResponseFrom(Visit visit)
         {
             string response = _BuildResponseFrom(visit);
-            if (!visit.MyJob.Notes.Any())
+            if (visit.MyJob != null)
             {
-                return response;
+                if (!visit.MyJob.Notes.Any())
+                {
+                    return response;
+                }    
+                StringBuilder sb = new StringBuilder();
+                foreach (Note note in visit.MyJob.Notes)
+                {
+                    sb.Append(note.Message);
+                }
+                return response + $"Job notes are {sb.ToString()}.";
             }
-    
-            StringBuilder sb = new StringBuilder();
-            foreach (Note note in visit.MyJob.Notes)
-            {
-                sb.Append(note.Message);
-            }
-            return response + $"Job notes are {sb.ToString()}.";
+            return response;
         }
 
         private static string _BuildResponseFrom(Visit visit)
@@ -96,14 +99,20 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
         
         private static GoogleCardMessage BuildGoogleCardFrom(Visit visit)
         {
-            var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(visit.MyProperty.MapAddress);
-            var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(visit.MyProperty.MapAddress);
+            if (visit.MyProperty != null)
+            {
+                var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(visit.MyProperty.MapAddress);
+                var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(visit.MyProperty.MapAddress);
+                return GoogleCardBuilder.Create()
+                    .Title($"Visit {visit.Title}")
+                    .Content($"At {visit.MyProperty.MapAddress}.")
+                    .Image(mapImage, "Map of visit location.")
+                    .WithButton("Open Map", mapLink)
+                    .Build();    
+            }
             return GoogleCardBuilder.Create()
                 .Title($"Visit {visit.Title}")
-                .Content($"At {visit.MyProperty.MapAddress}.")
-                .Image(mapImage, "Map of visit location.")
-                .WithButton("Open Map", mapLink)
-                .Build();
+                .Build();     
         }
     }
 }

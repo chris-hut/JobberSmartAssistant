@@ -51,8 +51,8 @@ namespace Jobber.Sdk.Models.Jobs
         [JsonProperty("property")]
         public Property MyProperty { get; set; }
 
-        [JsonProperty("assigned_to")]
-        public  IEnumerable<Assigned> AssignedTo { get; set; }
+        [JsonProperty("assigned_to")] 
+        public IEnumerable<Assigned> AssignedTo { get; set; } = new List<Assigned>();
 
         [JsonProperty("line_items")]
         public IEnumerable<LineItem> LineItems { get; set; }

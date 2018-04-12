@@ -78,24 +78,31 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
         
         private static GoogleCardMessage BuildGoogleCardFrom(Visit visit)
         {
-            var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(visit.MyProperty.MapAddress);
-            var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(visit.MyProperty.MapAddress);
-
-            if (string.IsNullOrEmpty(visit.Description))
+            if (visit.MyProperty != null)
             {
+                var mapImage = GoogleMapsHelper.GetStaticMapLinkFor(visit.MyProperty.MapAddress);
+                var mapLink = GoogleMapsHelper.GetGoogleMapsLinkFor(visit.MyProperty.MapAddress);
+
+                if (string.IsNullOrEmpty(visit.Description))
+                {
+                    return GoogleCardBuilder.Create()
+                        .Title($"Visit {visit.Title}")
+                        .Content("There is no description for this visit")
+                        .Image(mapImage, "Map of visit location.")
+                        .WithButton("Open Map", mapLink)
+                        .Build();
+                }
                 return GoogleCardBuilder.Create()
                     .Title($"Visit {visit.Title}")
-                    .Content("There is no description for this visit")
+                    .Content(visit.Description)
                     .Image(mapImage, "Map of visit location.")
                     .WithButton("Open Map", mapLink)
-                    .Build();
+                    .Build();    
             }
             return GoogleCardBuilder.Create()
                 .Title($"Visit {visit.Title}")
                 .Content(visit.Description)
-                .Image(mapImage, "Map of visit location.")
-                .WithButton("Open Map", mapLink)
-                .Build();
+                .Build();   
         }
     }
 }

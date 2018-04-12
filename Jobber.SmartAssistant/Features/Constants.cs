@@ -38,6 +38,7 @@ namespace Jobber.SmartAssistant.Features
             public const string WhoAreYou = "WHO_ARE_YOU";
             public const string NotWorking = "NOT_WORKING";
             public const string WhatDoYouDo = "WHAT_DO_YOU_DO";
+            public const string Laughing = "LAUGHING";
         }
 
         public static class Variables

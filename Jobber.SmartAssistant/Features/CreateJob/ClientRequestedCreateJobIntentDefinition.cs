@@ -7,6 +7,8 @@ namespace Jobber.SmartAssistant.Features.CreateJob
 {
     public class ClientRequestedCreateJobIntentDefinition : IIntentDefinition
     {
+        // FR-2.2: Starting a create job request
+        // FR-2.3: Specifying the client for a new job
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.ClientRequestedCreateJob)

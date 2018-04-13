@@ -7,6 +7,9 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteDetails
 {
     public class DetailsRequestedModifyQuoteIntentDefinition : IIntentDefinition
     {
+        //FR-3.3: Specifying an existing quote to be changed
+        //FR-3.4: Specifying a non-existing quote to be changed
+        //FR-3.5: Specifying a vague quote to be changed
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.DetailsRequestedModifyQuote)

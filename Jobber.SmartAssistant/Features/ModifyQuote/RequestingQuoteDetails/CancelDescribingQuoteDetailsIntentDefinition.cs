@@ -6,6 +6,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteDetails
 {
     public class CancelDescribingQuoteDetailsIntentDefinition : IIntentDefinition
     {
+        //FR-3.8: Cancel a quote modification when prompted for quote details
         public Intent DefineIntent()
         {
             return IntentBuilder.CancelRequestFor(Constants.Intents.CancelDescribingModifyQuote)

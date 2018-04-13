@@ -6,6 +6,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote.UpdatingQuoteCost
 {
     public class CancelUpdatingQuoteIntentDefinition : IIntentDefinition
     {
+        //FR-3.9: Cancel a quote modification when prompted for new quote
         public Intent DefineIntent()
         {
             return IntentBuilder.CancelRequestFor(Constants.Intents.CancelUpdatingModifyQuote)

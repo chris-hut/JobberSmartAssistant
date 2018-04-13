@@ -7,6 +7,9 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote.UpdatingQuoteCost
 {
     public class NewQuoteRequestedModifyQuoteIntentDefinition : IIntentDefinition
     {
+        //FR-3.6: Specifying the new valid quote cash value
+        //FR-3.7: Specifying an invalid new quote cash value
+        
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.NewQuoteRequestedModifyQuote)

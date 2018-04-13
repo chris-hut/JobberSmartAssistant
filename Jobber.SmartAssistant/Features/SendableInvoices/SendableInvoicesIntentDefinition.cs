@@ -6,6 +6,11 @@ namespace Jobber.SmartAssistant.Features.SendableInvoices
 {
     public class SendableInvoicesIntentDefinition : IIntentDefinition
     {
+        //FR-7.1: Getting the amount of sendable invoices from Jobber
+        //FR-7.2: Requesting for the number of sendable invoices when none exists
+        //FR-7.3: Requesting for the number of sendable invoices when only one exists
+        //FR-7.4: Requesting for the number of sendable invoices when multiple exists
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.SendableInvoices)

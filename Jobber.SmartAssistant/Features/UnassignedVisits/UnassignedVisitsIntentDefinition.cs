@@ -6,6 +6,11 @@ namespace Jobber.SmartAssistant.Features.UnassignedVisits
 {
     public class UnassignedVisitsIntentDefinition : IIntentDefinition
     {
+        //FR-5.1: Getting the amount of unassigned jobs from Jobber
+        //FR-5.2: Requesting for the number of unassigned jobs when there are none
+        //FR-5.3: Requesting for the number of unassigned jobs when there is one
+        //FR-5.4: Requesting for the number of unassigned jobs when there are multiple
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.UnassignedVisits)

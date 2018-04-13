@@ -7,6 +7,12 @@ namespace Jobber.SmartAssistant.Features.GetRevenue
 {
     public class GetRevenueIntentDefiniton : IIntentDefinition
     {
+        //FR-8.1: Getting the amount of revenue made within a unit of time
+        //FR-8.2: Requesting the amount of revenue made specifying a time frame
+        //FR-8.3: Requesting the amount of revenue made within a unit of time
+        //FR-8.4: Requesting the amount of revenue made when given a bad time unit
+        //FR-8.5: Requesting the amount of revenue made when given multiple bad time unit
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.GetRevenue)

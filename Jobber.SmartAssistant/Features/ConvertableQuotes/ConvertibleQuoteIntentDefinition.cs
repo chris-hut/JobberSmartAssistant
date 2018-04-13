@@ -8,6 +8,11 @@ namespace Jobber.SmartAssistant.Features.ConvertableQuotes
     {
         public Intent DefineIntent()
         {
+            //FR-6.1: Getting the amount of quotes convertable to jobs
+            //FR-6.2: Requesting for the number of unassigned jobs when no quotes are ready
+            //FR-6.3: Requesting for the number of unassigned jobs with one quote ready
+            //FR-6.4: Requesting for the number of unassigned jobs when multiple quotes are ready
+
             return IntentBuilder.For(Constants.Intents.ConvertibleQuotes)
                 .TriggerOn("How many quotes are ready to be turned into jobs?")
                 .TriggerOn("How many quotes are ready?")

@@ -6,6 +6,12 @@ namespace Jobber.SmartAssistant.Features.GetNextVisit
 {
     public class GetNextVisitIntentDefinition : IIntentDefinition
     {
+        //FR-12.1: Getting information on next job
+        //FR-12.2: Requesting information on next job with a note
+        //FR-12.3: Requesting information on next job with notes
+        //FR-12.4: Requesting information on next job with no note
+        //FR-12.5: Requesting information on next job when there is no next job
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.GetNextVisit)

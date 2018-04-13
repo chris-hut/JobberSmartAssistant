@@ -6,6 +6,10 @@ namespace Jobber.SmartAssistant.Features.GetWorkdayLength
 {
     public class GetLengthWorkdayIntentDefinition : IIntentDefinition
     {
+        //FR-11.1: Getting how long the work day is
+        //FR-11.2: Requesting how long their work day is
+        //FR-11.3: Requesting for how long their work day when they have no jobs
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.GetLengthWorkday)

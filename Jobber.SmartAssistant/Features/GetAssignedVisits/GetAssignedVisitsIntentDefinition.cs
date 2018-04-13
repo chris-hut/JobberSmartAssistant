@@ -6,6 +6,10 @@ namespace Jobber.SmartAssistant.Features.GetAssignedVisits
 {
     public class GetAssignedVisitsIntentDefinition : IIntentDefinition
     {
+        //FR-10.1: Getting the jobs assigned for the day
+        //FR-10.2: Requesting the jobs assigned for the day
+        //FR-10.3: Requesting jobs assigned for the day when there aren’t any
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.GetAssignedVisits)

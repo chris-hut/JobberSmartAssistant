@@ -6,6 +6,11 @@ namespace Jobber.SmartAssistant.Features.GetTotalVisits
 {
     public class GetAmountVisitsIntentDefinition : IIntentDefinition
     {
+        //FR-9.1: Getting the amount of jobs assigned for the day
+        //FR-9.2: Requesting for the amount of jobs assigned to them for the day when there isn’t any
+        //FR-9.3: Requesting for the amount of jobs assigned to them for the day when there is only one
+        //FR-9.4: Requesting for the amount of jobs assigned to them for the day when there is multiple
+
         public Intent DefineIntent()
         {
             return IntentBuilder.For(Constants.Intents.GetAmountVisits)

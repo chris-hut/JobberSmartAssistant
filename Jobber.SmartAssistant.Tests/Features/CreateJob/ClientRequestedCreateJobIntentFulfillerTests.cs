@@ -28,7 +28,7 @@ namespace Jobber.SmartAssistant.Tests.Features.CreateJob
             var fulfiller = new ClientRequestedCreateJobIntentFulfiller();
             var response = await fulfiller.FulfillAsync(fulfillmentRequest, mockJobberClient.Object);
             
-            response.AssertResponseSpeech("Sorry I dont know who John is.");
+            response.AssertResponseSpeech("Sorry I don't know who John is.");
         }
 
         [TestCase]

@@ -66,7 +66,7 @@ namespace Jobber.SmartAssistant.Features.CreateJob
         private static FulfillmentResponse BuildClientNotFoundResponse(string clientName)
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech($"Sorry I dont know who {clientName} is.")
+                .Speech($"Sorry I don't know who {clientName} is.")
                 .Build();
         }
     }

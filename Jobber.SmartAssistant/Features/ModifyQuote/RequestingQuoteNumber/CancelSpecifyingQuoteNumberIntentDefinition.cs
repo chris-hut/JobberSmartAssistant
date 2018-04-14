@@ -10,7 +10,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteNumber
         {
             return IntentBuilder.CancelRequestFor(Constants.Intents.CancelQuoteNumberRequestedModifyQuote)
                 .RequiresContext(Constants.Contexts.QuoteNumberRequested)
-                .RespondsWith("Okay. I won't change any quotes")
+                .RespondsWith("Okay. I won't change any quotes.")
                 .Build();
         }
     }

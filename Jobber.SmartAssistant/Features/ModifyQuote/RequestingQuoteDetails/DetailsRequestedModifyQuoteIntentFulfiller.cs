@@ -49,7 +49,7 @@ namespace Jobber.SmartAssistant.Features.ModifyQuote.RequestingQuoteDetails
         private static FulfillmentResponse BuildResponseForNoMatchingQuotes()
         {
             return FulfillmentResponseBuilder.Create()
-                .Speech("Sorry, I couldn't find a quote that matches what you said")
+                .Speech("Sorry, I couldn't find a quote that matches what you said.")
                 .Build();
         }
         

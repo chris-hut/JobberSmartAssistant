@@ -2,6 +2,9 @@
 
 An assistant utilizing DialogFlow to help Jobber clients carry out common tasks and ask common questions without having to open up their laptop.
 
+## Testing
+
+The following sections will show you how to run our Smart Assistant locally. This will only launch the fulfillment API and won't be connected to the actual Google Assistant. To test it with a Google Assistant simulator follow the instructions [here](./USAGE.md).
 ## Building
 
 This project uses the .NET Core 2 SDK. If you don't have it available you can grab it from https://www.microsoft.com/net/download/. To build the project do:
